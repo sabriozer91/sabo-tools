@@ -175,7 +175,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 24px;
-      max-width: 960px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
@@ -639,7 +639,86 @@
     .btn-download:hover { background: #ea580c; }
 
     /* Canvas hidden */
-    #resize-canvas, #convert-canvas { display: none; }
+    #resize-canvas, #convert-canvas, #comp-canvas { display: none; }
+
+    /* Compressor */
+    .comp-editor {
+      display: none;
+      background: rgba(18, 18, 26, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .comp-editor.active { display: block; }
+
+    .comp-editor-inner {
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      flex-wrap: wrap;
+    }
+
+    .comp-controls {
+      width: 300px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .comp-size-compare {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .comp-size-item {
+      flex: 1;
+      text-align: center;
+    }
+
+    .comp-size-item .label {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .comp-size-item .value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e2e2e8;
+    }
+
+    .comp-size-item .value.green { color: #22c55e; }
+
+    .comp-size-arrow {
+      color: #f97316;
+      flex-shrink: 0;
+    }
+
+    .comp-savings {
+      text-align: center;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      font-weight: 600;
+      color: #22c55e;
+      font-size: 15px;
+    }
+
+    @media (max-width: 700px) {
+      .comp-editor-inner { flex-direction: column; }
+      .comp-controls { width: 100%; }
+    }
 
     /* ===== CONVERTER ===== */
     .conv-editor {
@@ -878,6 +957,7 @@
       <button class="nav-link" data-nav="resizer" onclick="navigateTo('resizer')">Image Resizer</button>
       <button class="nav-link" data-nav="converter" onclick="navigateTo('converter')">Image Converter</button>
       <button class="nav-link" data-nav="bgremover" onclick="navigateTo('bgremover')">BG Remover</button>
+      <button class="nav-link" data-nav="compressor" onclick="navigateTo('compressor')">Compressor</button>
     </nav>
   </div>
 </header>
@@ -888,7 +968,7 @@
   <div class="view home-view active" id="view-home">
     <div class="home-hero">
       <h2>Aracını Seç</h2>
-      <p>Resimlerini kolayca boyutlandır, formatlar arası dönüştür veya arka planı kaldır</p>
+      <p>Resimlerini kolayca boyutlandır, sıkıştır, formatlar arası dönüştür veya arka planı kaldır</p>
     </div>
     <div class="tool-cards">
       <div class="tool-card" onclick="navigateTo('resizer')">
@@ -933,6 +1013,23 @@
         </div>
         <h3>BG Remover</h3>
         <p>Kişi ve evcil hayvan fotoğraflarından arka planı AI ile kaldır, şeffaf PNG olarak indir</p>
+      </div>
+      <div class="tool-card" onclick="navigateTo('compressor')">
+        <div class="tool-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3h12"/>
+            <path d="M6 21h12"/>
+            <path d="M9 3v4"/>
+            <path d="M15 3v4"/>
+            <path d="M9 17v4"/>
+            <path d="M15 17v4"/>
+            <rect x="5" y="7" width="14" height="10" rx="2"/>
+            <path d="M9 12h6"/>
+            <path d="M12 9v6"/>
+          </svg>
+        </div>
+        <h3>Compressor</h3>
+        <p>Görselleri kaliteden ödün vermeden sıkıştır, dosya boyutunu küçült</p>
       </div>
     </div>
   </div>
@@ -1210,10 +1307,89 @@
     </div>
   </div>
 
+  <!-- ===== COMPRESSOR VIEW ===== -->
+  <div class="view" id="view-compressor">
+    <div class="upload-area" id="comp-upload-area">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      <h2>Sıkıştırmak İçin Resim Seçin</h2>
+      <p>veya sürükleyip bırakın (PNG, JPG, WebP, GIF, BMP, AVIF)</p>
+      <button class="upload-btn" onclick="document.getElementById('comp-file-input').click()">Dosya Seç</button>
+      <input type="file" id="comp-file-input" accept="image/*" style="display:none">
+    </div>
+
+    <div class="comp-editor" id="comp-editor">
+      <div class="comp-editor-inner">
+        <div class="preview-panel">
+          <div class="preview-wrapper">
+            <img id="comp-preview-img" alt="Preview">
+          </div>
+          <div class="file-info" id="comp-file-info"></div>
+        </div>
+        <div class="comp-controls">
+          <div class="format-group">
+            <label for="comp-output-format">Çıkış Formatı</label>
+            <select id="comp-output-format">
+              <option value="webp">WebP</option>
+              <option value="avif">AVIF</option>
+              <option value="jpeg">JPEG</option>
+              <option value="png">PNG</option>
+            </select>
+          </div>
+          <div class="quality-group" id="comp-quality-group">
+            <label>Kalite</label>
+            <div class="quality-row">
+              <input type="range" id="comp-quality-slider" min="10" max="100" value="75">
+              <span class="quality-val" id="comp-quality-val">75</span>
+            </div>
+          </div>
+          <div class="comp-size-compare" id="comp-size-compare" style="display:none">
+            <div class="comp-size-item">
+              <div class="label">Orijinal</div>
+              <div class="value" id="comp-orig-size">-</div>
+            </div>
+            <div class="comp-size-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+            <div class="comp-size-item">
+              <div class="label">Sıkıştırılmış</div>
+              <div class="value green" id="comp-new-size">-</div>
+            </div>
+          </div>
+          <div class="comp-savings" id="comp-savings" style="display:none"></div>
+          <div class="actions" id="comp-actions">
+            <button class="btn-primary" id="btn-compress">Sıkıştır</button>
+            <button class="btn-secondary" id="btn-comp-reset">Sıfırla</button>
+          </div>
+          <div class="actions" id="comp-actions-done" style="display:none">
+            <button class="btn-primary" id="btn-comp-new" style="width:100%">Yeni Sıkıştırma</button>
+          </div>
+        </div>
+      </div>
+      <div class="result" id="comp-result">
+        <a class="btn-download" id="btn-comp-download" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          İndir
+        </a>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <canvas id="resize-canvas"></canvas>
 <canvas id="convert-canvas"></canvas>
+<canvas id="comp-canvas"></canvas>
 
 <script>
 /* ===== SPA NAVIGATION ===== */
@@ -1719,6 +1895,156 @@ async function encodeOptimized(canvasEl, format, quality) {
     canvasEl.toBlob(resolve, mimeType, q);
   });
 }
+
+/* ===== COMPRESSOR ===== */
+const compUploadArea = document.getElementById('comp-upload-area');
+const compEditor = document.getElementById('comp-editor');
+const compFileInput = document.getElementById('comp-file-input');
+const compPreviewImg = document.getElementById('comp-preview-img');
+const compFileInfo = document.getElementById('comp-file-info');
+const compOutputFormat = document.getElementById('comp-output-format');
+const compQualitySlider = document.getElementById('comp-quality-slider');
+const compQualityVal = document.getElementById('comp-quality-val');
+const compQualityGroup = document.getElementById('comp-quality-group');
+const compSizeCompare = document.getElementById('comp-size-compare');
+const compOrigSize = document.getElementById('comp-orig-size');
+const compNewSize = document.getElementById('comp-new-size');
+const compSavings = document.getElementById('comp-savings');
+const compActions = document.getElementById('comp-actions');
+const compActionsDone = document.getElementById('comp-actions-done');
+const btnCompress = document.getElementById('btn-compress');
+const btnCompReset = document.getElementById('btn-comp-reset');
+const btnCompNew = document.getElementById('btn-comp-new');
+const btnCompDownload = document.getElementById('btn-comp-download');
+const compResult = document.getElementById('comp-result');
+const compCanvas = document.getElementById('comp-canvas');
+const compCtx = compCanvas.getContext('2d');
+
+let compOrigImg = null;
+let compOrigFileSize = 0;
+let compOrigFileName = '';
+
+compUploadArea.addEventListener('dragover', e => { e.preventDefault(); compUploadArea.classList.add('drag-over'); });
+compUploadArea.addEventListener('dragleave', () => compUploadArea.classList.remove('drag-over'));
+compUploadArea.addEventListener('drop', e => {
+  e.preventDefault(); compUploadArea.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) handleCompFile(e.dataTransfer.files[0]);
+});
+compUploadArea.addEventListener('click', e => { if (e.target.tagName !== 'BUTTON') compFileInput.click(); });
+compFileInput.addEventListener('change', () => { if (compFileInput.files.length) handleCompFile(compFileInput.files[0]); });
+
+function handleCompFile(file) {
+  if (!file.type.startsWith('image/')) { alert('Lütfen bir görsel dosyası seçin.'); return; }
+  compOrigFileSize = file.size;
+  compOrigFileName = file.name.replace(/\.[^.]+$/, '');
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      compOrigImg = img;
+      compPreviewImg.src = e.target.result;
+      compFileInfo.textContent = `${img.naturalWidth} × ${img.naturalHeight} • ${formatSize(compOrigFileSize)} • ${file.name}`;
+      compUploadArea.style.display = 'none';
+      compEditor.classList.add('active');
+      compResult.style.display = 'none';
+      compSizeCompare.style.display = 'none';
+      compSavings.style.display = 'none';
+      compActions.style.display = '';
+      compActionsDone.style.display = 'none';
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// Quality slider update
+compQualitySlider.addEventListener('input', () => {
+  compQualityVal.textContent = compQualitySlider.value;
+});
+
+// Toggle quality visibility for PNG (lossless)
+compOutputFormat.addEventListener('change', () => {
+  compQualityGroup.style.display = compOutputFormat.value === 'png' ? 'none' : '';
+});
+
+// Compress
+btnCompress.addEventListener('click', async () => {
+  if (!compOrigImg) return;
+  const format = compOutputFormat.value;
+  const quality = parseInt(compQualitySlider.value);
+
+  showLoading('Sıkıştırılıyor...');
+  await yieldFrame();
+
+  compCanvas.width = compOrigImg.naturalWidth;
+  compCanvas.height = compOrigImg.naturalHeight;
+  compCtx.clearRect(0, 0, compCanvas.width, compCanvas.height);
+  compCtx.imageSmoothingEnabled = true;
+  compCtx.imageSmoothingQuality = 'high';
+  compCtx.drawImage(compOrigImg, 0, 0);
+
+  try {
+    const blob = await encodeOptimized(compCanvas, format, quality);
+    const newSize = blob.size;
+    const saving = ((1 - newSize / compOrigFileSize) * 100);
+
+    // Show size comparison
+    compOrigSize.textContent = formatSize(compOrigFileSize);
+    compNewSize.textContent = formatSize(newSize);
+    compSizeCompare.style.display = '';
+
+    if (saving > 0) {
+      compSavings.textContent = `%${saving.toFixed(1)} küçüldü`;
+      compSavings.style.background = 'rgba(34, 197, 94, 0.1)';
+      compSavings.style.borderColor = 'rgba(34, 197, 94, 0.2)';
+      compSavings.style.color = '#22c55e';
+    } else {
+      compSavings.textContent = `%${Math.abs(saving).toFixed(1)} büyüdü — farklı format veya düşük kalite deneyin`;
+      compSavings.style.background = 'rgba(239, 68, 68, 0.1)';
+      compSavings.style.borderColor = 'rgba(239, 68, 68, 0.2)';
+      compSavings.style.color = '#ef4444';
+    }
+    compSavings.style.display = '';
+
+    // Download link
+    const ext = format === 'jpeg' ? 'jpg' : format;
+    const url = URL.createObjectURL(blob);
+    btnCompDownload.href = url;
+    btnCompDownload.download = `${compOrigFileName}_compressed.${ext}`;
+    compResult.style.display = '';
+
+    // Swap buttons
+    compActions.style.display = 'none';
+    compActionsDone.style.display = '';
+  } catch (err) {
+    alert('Sıkıştırma sırasında hata: ' + err.message);
+  }
+  hideLoading();
+});
+
+function resetComp() {
+  compOrigImg = null;
+  compOrigFileSize = 0;
+  compOrigFileName = '';
+  compPreviewImg.src = '';
+  compFileInfo.textContent = '';
+  compEditor.classList.remove('active');
+  compUploadArea.style.display = '';
+  compResult.style.display = 'none';
+  compSizeCompare.style.display = 'none';
+  compSavings.style.display = 'none';
+  compActions.style.display = '';
+  compActionsDone.style.display = 'none';
+  compQualitySlider.value = 75;
+  compQualityVal.textContent = '75';
+  compOutputFormat.value = 'webp';
+  compQualityGroup.style.display = '';
+  compFileInput.value = '';
+  if (btnCompDownload.href) URL.revokeObjectURL(btnCompDownload.href);
+}
+
+btnCompReset.addEventListener('click', resetComp);
+btnCompNew.addEventListener('click', resetComp);
 
 /* ===== UTILS ===== */
 function formatSize(bytes) {
