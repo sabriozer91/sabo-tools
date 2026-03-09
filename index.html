@@ -1946,7 +1946,7 @@ function handleCompFile(file) {
       compFileInfo.textContent = `${img.naturalWidth} × ${img.naturalHeight} • ${formatSize(compOrigFileSize)} • ${file.name}`;
       compUploadArea.style.display = 'none';
       compEditor.classList.add('active');
-      compResult.style.display = 'none';
+      compResult.classList.remove('active');
       compSizeCompare.style.display = 'none';
       compSavings.style.display = 'none';
       compActions.style.display = '';
@@ -2011,7 +2011,7 @@ btnCompress.addEventListener('click', async () => {
     const url = URL.createObjectURL(blob);
     btnCompDownload.href = url;
     btnCompDownload.download = `${compOrigFileName}_compressed.${ext}`;
-    compResult.style.display = '';
+    compResult.classList.add('active');
 
     // Swap buttons
     compActions.style.display = 'none';
@@ -2030,7 +2030,7 @@ function resetComp() {
   compFileInfo.textContent = '';
   compEditor.classList.remove('active');
   compUploadArea.style.display = '';
-  compResult.style.display = 'none';
+  compResult.classList.remove('active');
   compSizeCompare.style.display = 'none';
   compSavings.style.display = 'none';
   compActions.style.display = '';
