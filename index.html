@@ -30,6 +30,14 @@
       width: 100%;
       height: 100%;
       display: block;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      #spline-bg {
+        touch-action: none;
+        overflow: hidden;
+      }
     }
 
     #spline-bg spline-viewer::part(logo) {
@@ -840,7 +848,7 @@
   <div class="loading-text" id="loading-text">Dönüştürülüyor...</div>
 </div>
 <div id="spline-bg">
-  <spline-viewer url="https://prod.spline.design/IGqPp9Ljk3J69L10/scene.splinecode" loading-anim-type="none"></spline-viewer>
+  <spline-viewer url="https://prod.spline.design/IGqPp9Ljk3J69L10/scene.splinecode" loading-anim-type="none" events-target="none"></spline-viewer>
 </div>
 
 <header>
