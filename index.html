@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabo Tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Raleway:wght@800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0f;
+      color: #e2e2e8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Spline 3D BG */
+    #spline-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    #spline-bg spline-viewer {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    #spline-bg spline-viewer::part(logo) {
+      display: none;
+    }
+
+    /* Header */
+    header {
+      background: rgba(12, 12, 18, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(249, 115, 22, 0.15);
+      position: relative;
+      z-index: 10;
+    }
+
+    .header-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    header .brand-text {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+
+    header .brand-sabo {
+      color: #E8650A;
+    }
+
+    header .brand-tools {
+      color: #9E3F08;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+    }
+
+    .nav-link {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #9ca3af;
+      cursor: pointer;
+      border: none;
+      background: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: #e2e2e8;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
+      color: #f97316;
+      background: rgba(249, 115, 22, 0.1);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 0 16px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ===== HOME VIEW ===== */
+    .home-view { display: block; }
+
+    .home-hero {
+      text-align: center;
+      margin-bottom: 48px;
+      padding: 48px 32px 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .home-hero h2 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      text-shadow: 0 0 12px rgba(0, 0, 0, 0.9), 0 0 24px rgba(0, 0, 0, 0.7), 0 2px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .home-hero p {
+      font-size: 16px;
+      color: #e2e2e8;
+      max-width: 500px;
+      margin: 0 auto;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.7), 0 2px 32px rgba(0, 0, 0, 0.6);
+    }
+
+    .tool-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .tool-card {
+      background: rgba(18, 18, 26, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 40px 28px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      border: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(249, 115, 22, 0.15);
+    }
+
+    .tool-card:hover::before {
+      border-color: #f97316;
+    }
+
+    .tool-card-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: rgba(249, 115, 22, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .tool-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .tool-card p {
+      font-size: 14px;
+      color: #9ca3af;
+      line-height: 1.5;
+    }
+
+    /* ===== VIEWS ===== */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* ===== UPLOAD AREA (shared style) ===== */
+    .upload-area {
+      border: 2px dashed rgba(249, 115, 22, 0.3);
+      border-radius: 16px;
+      padding: 60px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: rgba(18, 18, 26, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .upload-area:hover, .upload-area.drag-over {
+      border-color: #f97316;
+      background: rgba(249, 115, 22, 0.08);
+    }
+
+    .upload-area svg { margin-bottom: 16px; }
+
+    .upload-area h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .upload-area p {
+      color: #9ca3af;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .upload-btn {
+      display: inline-block;
+      background: #f97316;
+      color: #fff;
+      padding: 10px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .upload-btn:hover { background: #ea580c; }
+
+    /* ===== EDITOR (resizer) ===== */
+    .editor {
+      display: none;
+      background: rgba(18, 18, 26, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .editor.active { display: block; }
+
+    .editor-top {
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      flex-wrap: wrap;
+    }
+
+    .preview-panel {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .preview-wrapper {
+      width: 100%;
+      max-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: repeating-conic-gradient(#1a1a24 0% 25%, #12121a 0% 50%) 50% / 16px 16px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .preview-wrapper img {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+    }
+
+    .file-info {
+      font-size: 13px;
+      color: #9ca3af;
+      text-align: center;
+    }
+
+    .file-info span { font-weight: 600; color: #f97316; }
+
+    .controls-panel {
+      width: 300px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .editor-top { flex-direction: column; }
+      .controls-panel { width: 100%; }
+      .home-hero h2 { font-size: 28px; }
+      .header-nav { gap: 0; }
+      .nav-link { padding: 8px 10px; font-size: 13px; }
+    }
+
+    /* Mode Tabs */
+    .mode-tabs {
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mode-tab {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: rgba(255, 255, 255, 0.03);
+      color: #9ca3af;
+      transition: all 0.2s;
+    }
+
+    .mode-tab.active {
+      background: #f97316;
+      color: #fff;
+    }
+
+    /* Dimension inputs */
+    .dim-group { display: flex; flex-direction: column; gap: 12px; }
+
+    .dim-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dim-row label {
+      width: 56px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #d1d5db;
+    }
+
+    .dim-row input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      transition: border 0.2s;
+      background: rgba(255, 255, 255, 0.04);
+      color: #e2e2e8;
+    }
+
+    .dim-row input:focus { border-color: #f97316; }
+
+    .dim-row .unit {
+      font-size: 13px;
+      color: #6b7280;
+      width: 24px;
+    }
+
+    /* Aspect ratio toggle */
+    .aspect-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #d1d5db;
+      user-select: none;
+    }
+
+    .aspect-toggle input { display: none; }
+
+    .lock-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.2s;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .aspect-toggle input:checked ~ .lock-icon {
+      background: #f97316;
+      border-color: #f97316;
+    }
+
+    .aspect-toggle input:checked ~ .lock-icon svg { stroke: #fff; }
+
+    /* Percentage input */
+    .pct-group { display: flex; flex-direction: column; gap: 12px; }
+
+    .pct-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pct-row input[type="range"] {
+      flex: 1;
+      accent-color: #f97316;
+    }
+
+    .pct-row input[type="number"] {
+      width: 70px;
+      padding: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      font-size: 14px;
+      text-align: center;
+      outline: none;
+      background: rgba(255, 255, 255, 0.04);
+      color: #e2e2e8;
+    }
+
+    .pct-row input[type="number"]:focus { border-color: #f97316; }
+
+    .pct-row .unit { font-size: 13px; color: #6b7280; }
+
+    .new-dimensions {
+      font-size: 13px;
+      color: #9ca3af;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 6px;
+    }
+
+    .new-dimensions span { font-weight: 600; color: #f97316; }
+
+    /* Format select */
+    .format-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .format-group label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #d1d5db;
+    }
+
+    .format-group select {
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.04);
+      color: #e2e2e8;
+      cursor: pointer;
+    }
+
+    .format-group select:focus { border-color: #f97316; }
+
+    /* Quality slider */
+    .quality-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .quality-group label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #d1d5db;
+    }
+
+    .quality-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quality-row input[type="range"] {
+      flex: 1;
+      accent-color: #f97316;
+    }
+
+    .quality-val {
+      font-size: 14px;
+      font-weight: 600;
+      color: #f97316;
+      width: 36px;
+      text-align: center;
+    }
+
+    /* Action buttons */
+    .actions {
+      display: flex;
+      gap: 12px;
+      padding-top: 4px;
+    }
+
+    .btn-primary {
+      flex: 1;
+      padding: 12px;
+      background: #f97316;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: #ea580c; }
+
+    .btn-secondary {
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #d1d5db;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
+
+    /* Result */
+    .result {
+      display: none;
+      padding: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: center;
+    }
+
+    .result.active { display: block; }
+
+    .result-info {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .result-item { text-align: center; }
+
+    .result-item .label {
+      font-size: 12px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .result-item .value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e2e2e8;
+    }
+
+    .result-item .value.green { color: #f97316; }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 32px;
+      background: #f97316;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-download:hover { background: #ea580c; }
+
+    /* Canvas hidden */
+    #resize-canvas, #convert-canvas { display: none; }
+
+    /* ===== CONVERTER ===== */
+    .conv-editor {
+      display: none;
+      background: rgba(18, 18, 26, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .conv-editor.active { display: block; }
+
+    .conv-editor-inner {
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      flex-wrap: wrap;
+    }
+
+    .conv-controls {
+      width: 300px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .conv-editor-inner { flex-direction: column; }
+      .conv-controls { width: 100%; }
+    }
+
+    .conv-format-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      background: rgba(249, 115, 22, 0.12);
+      color: #f97316;
+      border: 1px solid rgba(249, 115, 22, 0.2);
+    }
+
+    .conv-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      font-size: 20px;
+      padding: 8px 0;
+    }
+
+    /* ===== BG REMOVER ===== */
+    .bg-editor {
+      display: none;
+      background: rgba(18, 18, 26, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .bg-editor.active { display: block; }
+
+    .bg-editor-inner {
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      flex-wrap: wrap;
+    }
+
+    .bg-preview-compare {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .bg-compare-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .bg-compare-item {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bg-compare-item .compare-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .bg-compare-item .preview-wrapper {
+      width: 100%;
+      max-height: 350px;
+    }
+
+    .bg-controls {
+      width: 300px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .bg-info-card {
+      padding: 16px;
+      background: rgba(249, 115, 22, 0.06);
+      border: 1px solid rgba(249, 115, 22, 0.15);
+      border-radius: 10px;
+      font-size: 13px;
+      color: #d1d5db;
+      line-height: 1.6;
+    }
+
+    .bg-info-card strong {
+      color: #f97316;
+    }
+
+    .bg-progress {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bg-progress.active { display: flex; }
+
+    .bg-progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .bg-progress-fill {
+      height: 100%;
+      background: #f97316;
+      border-radius: 3px;
+      transition: width 0.3s;
+      width: 0%;
+    }
+
+    .bg-progress-text {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .bg-editor-inner { flex-direction: column; }
+      .bg-controls { width: 100%; }
+      .bg-compare-row { flex-direction: column; }
+    }
+
+    /* Loading overlay */
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .loading-overlay.active {
+      display: flex;
+    }
+    .loader {
+      --c: no-repeat linear-gradient(orange 0 0);
+      background:
+        var(--c),var(--c),var(--c),
+        var(--c),var(--c),var(--c),
+        var(--c),var(--c),var(--c);
+      background-size: 16px 16px;
+      animation:
+        l32-1 1s infinite,
+        l32-2 1s infinite;
+    }
+    @keyframes l32-1 {
+      0%,100% { width: 45px; height: 45px; }
+      35%,65% { width: 65px; height: 65px; }
+    }
+    @keyframes l32-2 {
+      0%,40%  { background-position: 0 0,0 50%,0 100%,50% 100%,100% 100%,100% 50%,100% 0,50% 0,50% 50%; }
+      60%,100%{ background-position: 0 50%,0 100%,50% 100%,100% 100%,100% 50%,100% 0,50% 0,0 0,50% 50%; }
+    }
+    .loading-overlay .loading-text {
+      font-size: 16px;
+      font-weight: 500;
+      color: #e2e2e8;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Spline 3D Background -->
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loading-overlay">
+  <div class="loader"></div>
+  <div class="loading-text" id="loading-text">Dönüştürülüyor...</div>
+</div>
+<div id="spline-bg">
+  <spline-viewer url="https://prod.spline.design/IGqPp9Ljk3J69L10/scene.splinecode" loading-anim-type="none"></spline-viewer>
+</div>
+
+<header>
+  <div class="header-inner">
+    <a class="header-brand" onclick="navigateTo('home')">
+      <span class="brand-text"><span class="brand-sabo">SABO</span> <span class="brand-tools">TOOLS</span></span>
+    </a>
+    <nav class="header-nav">
+      <button class="nav-link" data-nav="resizer" onclick="navigateTo('resizer')">Image Resizer</button>
+      <button class="nav-link" data-nav="converter" onclick="navigateTo('converter')">Image Converter</button>
+      <button class="nav-link" data-nav="bgremover" onclick="navigateTo('bgremover')">BG Remover</button>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ===== HOME VIEW ===== -->
+  <div class="view home-view active" id="view-home">
+    <div class="home-hero">
+      <h2>Aracını Seç</h2>
+      <p>Resimlerini kolayca boyutlandır, formatlar arası dönüştür veya arka planı kaldır</p>
+    </div>
+    <div class="tool-cards">
+      <div class="tool-card" onclick="navigateTo('resizer')">
+        <div class="tool-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M15 3v18"/>
+            <path d="M3 15h18"/>
+            <circle cx="9" cy="9" r="2"/>
+          </svg>
+        </div>
+        <h3>Image Resizer</h3>
+        <p>Resimleri piksel veya yüzde olarak boyutlandır, farklı formatlarda kaydet</p>
+      </div>
+      <div class="tool-card" onclick="navigateTo('converter')">
+        <div class="tool-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 3 21 3 21 8"/>
+            <line x1="4" y1="20" x2="21" y2="3"/>
+            <polyline points="21 16 21 21 16 21"/>
+            <line x1="15" y1="15" x2="21" y2="21"/>
+            <line x1="4" y1="4" x2="9" y2="9"/>
+          </svg>
+        </div>
+        <h3>Image Converter</h3>
+        <p>PNG, JPEG, GIF gibi formatlardan WebP, AVIF gibi modern formatlara dönüştür</p>
+      </div>
+      <div class="tool-card" onclick="navigateTo('bgremover')">
+        <div class="tool-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Back square with checkerboard pattern -->
+            <rect x="1" y="1" width="14" height="14" rx="2" fill="none"/>
+            <line x1="4.67" y1="1" x2="4.67" y2="15" stroke-width="0.4" opacity="0.45"/>
+            <line x1="8.33" y1="1" x2="8.33" y2="15" stroke-width="0.4" opacity="0.45"/>
+            <line x1="12" y1="1" x2="12" y2="15" stroke-width="0.4" opacity="0.45"/>
+            <line x1="1" y1="4.67" x2="15" y2="4.67" stroke-width="0.4" opacity="0.45"/>
+            <line x1="1" y1="8.33" x2="15" y2="8.33" stroke-width="0.4" opacity="0.45"/>
+            <line x1="1" y1="12" x2="15" y2="12" stroke-width="0.4" opacity="0.45"/>
+            <!-- Front square (solid) -->
+            <rect x="9" y="9" width="14" height="14" rx="2" fill="none"/>
+          </svg>
+        </div>
+        <h3>BG Remover</h3>
+        <p>Kişi ve evcil hayvan fotoğraflarından arka planı AI ile kaldır, şeffaf PNG olarak indir</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RESIZER VIEW ===== -->
+  <div class="view" id="view-resizer">
+    <div class="upload-area" id="upload-area">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      <h2>Resim Seçin</h2>
+      <p>veya sürükleyip bırakın (WebP, PNG, JPG)</p>
+      <button class="upload-btn" onclick="document.getElementById('file-input').click()">Dosya Seç</button>
+      <input type="file" id="file-input" accept="image/webp,image/png,image/jpeg,image/jpg" style="display:none">
+    </div>
+
+    <div class="editor" id="editor">
+      <div class="editor-top">
+        <div class="preview-panel">
+          <div class="preview-wrapper">
+            <img id="preview-img" alt="Preview">
+          </div>
+          <div class="file-info" id="file-info"></div>
+        </div>
+        <div class="controls-panel">
+          <div class="mode-tabs">
+            <button class="mode-tab active" data-mode="dimensions">Boyutlar</button>
+            <button class="mode-tab" data-mode="percentage">Yüzde (%)</button>
+          </div>
+          <div class="dim-group" id="dim-mode">
+            <div class="dim-row">
+              <label for="input-w">Genişlik</label>
+              <input type="number" id="input-w" min="1" max="10000">
+              <span class="unit">px</span>
+            </div>
+            <div class="dim-row">
+              <label for="input-h">Yükseklik</label>
+              <input type="number" id="input-h" min="1" max="10000">
+              <span class="unit">px</span>
+            </div>
+            <label class="aspect-toggle">
+              <input type="checkbox" id="lock-ratio" checked>
+              <div class="lock-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              En-boy oranını koru
+            </label>
+          </div>
+          <div class="pct-group" id="pct-mode" style="display:none">
+            <div class="pct-row">
+              <input type="range" id="pct-slider" min="1" max="500" value="100">
+              <input type="number" id="pct-input" min="1" max="500" value="100">
+              <span class="unit">%</span>
+            </div>
+            <div class="new-dimensions" id="new-dims">
+              Yeni boyut: <span id="pct-dims-text">-</span>
+            </div>
+          </div>
+          <div class="format-group">
+            <label for="output-format">Çıktı Formatı</label>
+            <select id="output-format">
+              <option value="webp">WebP</option>
+              <option value="avif">AVIF</option>
+              <option value="png">PNG</option>
+              <option value="jpeg">JPEG</option>
+            </select>
+          </div>
+          <div class="quality-group" id="quality-group">
+            <label>Kalite</label>
+            <div class="quality-row">
+              <input type="range" id="quality-slider" min="10" max="100" value="90">
+              <span class="quality-val" id="quality-val">90</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn-primary" id="btn-resize">Boyutlandır</button>
+            <button class="btn-secondary" id="btn-reset">Sıfırla</button>
+          </div>
+        </div>
+      </div>
+      <div class="result" id="result">
+        <div class="result-info">
+          <div class="result-item">
+            <div class="label">Orijinal</div>
+            <div class="value" id="res-original">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">Yeni Boyut</div>
+            <div class="value" id="res-new">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">Dosya Boyutu</div>
+            <div class="value green" id="res-size">-</div>
+          </div>
+        </div>
+        <a class="btn-download" id="btn-download" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          İndir
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONVERTER VIEW ===== -->
+  <div class="view" id="view-converter">
+    <div class="upload-area" id="conv-upload-area">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      <h2>Dönüştürmek İçin Resim Seçin</h2>
+      <p>veya sürükleyip bırakın (WebP, PNG, JPG, GIF, BMP, AVIF, TIFF, SVG)</p>
+      <button class="upload-btn" onclick="document.getElementById('conv-file-input').click()">Dosya Seç</button>
+      <input type="file" id="conv-file-input" accept="image/*" style="display:none">
+    </div>
+
+    <div class="conv-editor" id="conv-editor">
+      <div class="conv-editor-inner">
+        <div class="preview-panel">
+          <div class="preview-wrapper">
+            <img id="conv-preview-img" alt="Preview">
+          </div>
+          <div class="file-info" id="conv-file-info"></div>
+        </div>
+        <div class="conv-controls">
+          <div style="text-align:center">
+            <div class="conv-format-badge" id="conv-source-format">PNG</div>
+            <div class="conv-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <polyline points="19 12 12 19 5 12"/>
+              </svg>
+            </div>
+          </div>
+          <div class="format-group">
+            <label for="conv-output-format">Hedef Format</label>
+            <select id="conv-output-format">
+              <option value="webp">WebP</option>
+              <option value="avif">AVIF</option>
+              <option value="png">PNG</option>
+              <option value="jpeg">JPEG</option>
+            </select>
+          </div>
+          <div class="quality-group" id="conv-quality-group">
+            <label>Kalite</label>
+            <div class="quality-row">
+              <input type="range" id="conv-quality-slider" min="10" max="100" value="85">
+              <span class="quality-val" id="conv-quality-val">85</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn-primary" id="btn-convert">Dönüştür</button>
+            <button class="btn-secondary" id="btn-conv-reset">Sıfırla</button>
+          </div>
+        </div>
+      </div>
+      <div class="result" id="conv-result">
+        <div class="result-info">
+          <div class="result-item">
+            <div class="label">Orijinal Format</div>
+            <div class="value" id="conv-res-original">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">Yeni Format</div>
+            <div class="value" id="conv-res-new">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">Orijinal Boyut</div>
+            <div class="value" id="conv-res-orig-size">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">Yeni Boyut</div>
+            <div class="value green" id="conv-res-new-size">-</div>
+          </div>
+        </div>
+        <a class="btn-download" id="btn-conv-download" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          İndir
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BG REMOVER VIEW ===== -->
+  <div class="view" id="view-bgremover">
+    <div class="upload-area" id="bg-upload-area">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      <h2>Arka Planı Kaldırmak İçin Resim Seçin</h2>
+      <p>veya sürükleyip bırakın (PNG, JPG, WebP)</p>
+      <button class="upload-btn" onclick="document.getElementById('bg-file-input').click()">Dosya Seç</button>
+      <input type="file" id="bg-file-input" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none">
+    </div>
+
+    <div class="bg-editor" id="bg-editor">
+      <div class="bg-editor-inner">
+        <div class="bg-preview-compare">
+          <div class="bg-compare-row">
+            <div class="bg-compare-item">
+              <span class="compare-label">Orijinal</span>
+              <div class="preview-wrapper">
+                <img id="bg-preview-original" alt="Orijinal">
+              </div>
+            </div>
+            <div class="bg-compare-item">
+              <span class="compare-label">Sonuç</span>
+              <div class="preview-wrapper">
+                <img id="bg-preview-result" alt="Sonuç" style="display:none">
+              </div>
+            </div>
+          </div>
+          <div class="file-info" id="bg-file-info"></div>
+        </div>
+        <div class="bg-controls">
+          <div class="bg-info-card">
+            <strong>AI Arka Plan Kaldırma</strong><br>
+            Kişi ve evcil hayvan fotoğraflarından arka planı otomatik olarak kaldırır.
+          </div>
+          <div class="bg-progress" id="bg-progress">
+            <div class="bg-progress-bar">
+              <div class="bg-progress-fill" id="bg-progress-fill"></div>
+            </div>
+            <div class="bg-progress-text" id="bg-progress-text">Hazırlanıyor...</div>
+          </div>
+          <div class="actions" id="bg-actions">
+            <button class="btn-primary" id="btn-bg-remove">Arka Planı Kaldır</button>
+            <button class="btn-secondary" id="btn-bg-reset">Sıfırla</button>
+          </div>
+          <div class="actions" id="bg-actions-done" style="display:none">
+            <button class="btn-primary" id="btn-bg-new" style="width:100%">Yeni Arka Plan Kaldır</button>
+          </div>
+        </div>
+      </div>
+      <div class="result" id="bg-result">
+        <div class="result-info">
+          <div class="result-item">
+            <div class="label">Orijinal Boyut</div>
+            <div class="value" id="bg-res-orig-size">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">Yeni Boyut</div>
+            <div class="value green" id="bg-res-new-size">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">Format</div>
+            <div class="value" id="bg-res-format">PNG</div>
+          </div>
+        </div>
+        <a class="btn-download" id="btn-bg-download" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          İndir
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<canvas id="resize-canvas"></canvas>
+<canvas id="convert-canvas"></canvas>
+
+<script>
+/* ===== SPA NAVIGATION ===== */
+function navigateTo(view) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + view).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+  const navBtn = document.querySelector(`.nav-link[data-nav="${view}"]`);
+  if (navBtn) navBtn.classList.add('active');
+}
+
+/* ===== RESIZER ===== */
+const uploadArea = document.getElementById('upload-area');
+const editor = document.getElementById('editor');
+const fileInput = document.getElementById('file-input');
+const previewImg = document.getElementById('preview-img');
+const fileInfo = document.getElementById('file-info');
+const inputW = document.getElementById('input-w');
+const inputH = document.getElementById('input-h');
+const lockRatio = document.getElementById('lock-ratio');
+const pctSlider = document.getElementById('pct-slider');
+const pctInput = document.getElementById('pct-input');
+const pctDimsText = document.getElementById('pct-dims-text');
+const outputFormat = document.getElementById('output-format');
+const qualitySlider = document.getElementById('quality-slider');
+const qualityVal = document.getElementById('quality-val');
+const qualityGroup = document.getElementById('quality-group');
+const btnResize = document.getElementById('btn-resize');
+const btnReset = document.getElementById('btn-reset');
+const btnDownload = document.getElementById('btn-download');
+const resultDiv = document.getElementById('result');
+const canvas = document.getElementById('resize-canvas');
+const ctx = canvas.getContext('2d');
+
+let originalImg = null;
+let origW = 0, origH = 0;
+let aspectRatio = 1;
+let currentMode = 'dimensions';
+let originalFileSize = 0;
+let originalFileName = '';
+
+uploadArea.addEventListener('dragover', e => {
+  e.preventDefault();
+  uploadArea.classList.add('drag-over');
+});
+uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
+uploadArea.addEventListener('drop', e => {
+  e.preventDefault();
+  uploadArea.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+});
+uploadArea.addEventListener('click', e => {
+  if (e.target.tagName !== 'BUTTON') fileInput.click();
+});
+fileInput.addEventListener('change', () => {
+  if (fileInput.files.length) handleFile(fileInput.files[0]);
+});
+
+function handleFile(file) {
+  if (!file.type.match(/^image\/(webp|png|jpeg|jpg)$/)) {
+    alert('Lütfen WebP, PNG veya JPG formatında bir resim seçin.');
+    return;
+  }
+  originalFileSize = file.size;
+  originalFileName = file.name.replace(/\.[^.]+$/, '');
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      originalImg = img;
+      origW = img.naturalWidth;
+      origH = img.naturalHeight;
+      aspectRatio = origW / origH;
+      previewImg.src = e.target.result;
+      fileInfo.innerHTML = `<span>${file.name}</span> &mdash; ${origW} x ${origH} &mdash; ${formatSize(originalFileSize)}`;
+      inputW.value = origW;
+      inputH.value = origH;
+      pctSlider.value = 100;
+      pctInput.value = 100;
+      updatePctDims();
+      uploadArea.style.display = 'none';
+      editor.classList.add('active');
+      resultDiv.classList.remove('active');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+document.querySelectorAll('.mode-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentMode = tab.dataset.mode;
+    document.getElementById('dim-mode').style.display = currentMode === 'dimensions' ? '' : 'none';
+    document.getElementById('pct-mode').style.display = currentMode === 'percentage' ? '' : 'none';
+  });
+});
+
+inputW.addEventListener('input', () => {
+  if (lockRatio.checked && origW > 0) inputH.value = Math.round(inputW.value / aspectRatio);
+});
+inputH.addEventListener('input', () => {
+  if (lockRatio.checked && origH > 0) inputW.value = Math.round(inputH.value * aspectRatio);
+});
+
+pctSlider.addEventListener('input', () => { pctInput.value = pctSlider.value; updatePctDims(); });
+pctInput.addEventListener('input', () => { pctSlider.value = pctInput.value; updatePctDims(); });
+
+function updatePctDims() {
+  const pct = parseInt(pctInput.value) || 100;
+  pctDimsText.textContent = `${Math.round(origW * pct / 100)} x ${Math.round(origH * pct / 100)} px`;
+}
+
+qualitySlider.addEventListener('input', () => { qualityVal.textContent = qualitySlider.value; });
+
+outputFormat.addEventListener('change', () => {
+  qualityGroup.style.display = outputFormat.value === 'png' ? 'none' : '';
+});
+
+btnResize.addEventListener('click', async () => {
+  if (!originalImg) return;
+  let newW, newH;
+  if (currentMode === 'dimensions') {
+    newW = parseInt(inputW.value) || origW;
+    newH = parseInt(inputH.value) || origH;
+  } else {
+    const pct = parseInt(pctInput.value) || 100;
+    newW = Math.round(origW * pct / 100);
+    newH = Math.round(origH * pct / 100);
+  }
+  if (newW < 1 || newH < 1 || newW > 10000 || newH > 10000) {
+    alert('Boyutlar 1-10000 px arasında olmalıdır.');
+    return;
+  }
+  canvas.width = newW;
+  canvas.height = newH;
+  ctx.clearRect(0, 0, newW, newH);
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(originalImg, 0, 0, newW, newH);
+  const format = outputFormat.value;
+  const quality = parseInt(qualitySlider.value);
+  const ext = format === 'jpeg' ? 'jpg' : format;
+  btnResize.disabled = true;
+  showLoading('Boyutlandırılıyor...');
+  await yieldFrame();
+  try {
+    const blob = await encodeOptimized(canvas, format, quality);
+    if (!blob) { alert('Boyutlandırma başarısız oldu.'); return; }
+    const url = URL.createObjectURL(blob);
+    btnDownload.href = url;
+    btnDownload.download = `${originalFileName}_${newW}x${newH}.${ext}`;
+    document.getElementById('res-original').textContent = `${origW} x ${origH}`;
+    document.getElementById('res-new').textContent = `${newW} x ${newH}`;
+    document.getElementById('res-size').textContent = formatSize(blob.size);
+    resultDiv.classList.add('active');
+    resultDiv.scrollIntoView({ behavior: 'smooth' });
+  } catch (e) {
+    alert('Boyutlandırma başarısız oldu: ' + e.message);
+  } finally {
+    hideLoading();
+    btnResize.disabled = false;
+  }
+});
+
+btnReset.addEventListener('click', () => {
+  originalImg = null;
+  fileInput.value = '';
+  editor.classList.remove('active');
+  resultDiv.classList.remove('active');
+  uploadArea.style.display = '';
+});
+
+/* ===== CONVERTER ===== */
+const convUploadArea = document.getElementById('conv-upload-area');
+const convEditor = document.getElementById('conv-editor');
+const convFileInput = document.getElementById('conv-file-input');
+const convPreviewImg = document.getElementById('conv-preview-img');
+const convFileInfo = document.getElementById('conv-file-info');
+const convSourceFormat = document.getElementById('conv-source-format');
+const convOutputFormat = document.getElementById('conv-output-format');
+const convQualitySlider = document.getElementById('conv-quality-slider');
+const convQualityVal = document.getElementById('conv-quality-val');
+const convQualityGroup = document.getElementById('conv-quality-group');
+const btnConvert = document.getElementById('btn-convert');
+const btnConvReset = document.getElementById('btn-conv-reset');
+const btnConvDownload = document.getElementById('btn-conv-download');
+const convResult = document.getElementById('conv-result');
+const convCanvas = document.getElementById('convert-canvas');
+const convCtx = convCanvas.getContext('2d');
+
+let convOriginalImg = null;
+let convOriginalFileSize = 0;
+let convOriginalFileName = '';
+let convOriginalExt = '';
+
+convUploadArea.addEventListener('dragover', e => {
+  e.preventDefault();
+  convUploadArea.classList.add('drag-over');
+});
+convUploadArea.addEventListener('dragleave', () => convUploadArea.classList.remove('drag-over'));
+convUploadArea.addEventListener('drop', e => {
+  e.preventDefault();
+  convUploadArea.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) handleConvFile(e.dataTransfer.files[0]);
+});
+convUploadArea.addEventListener('click', e => {
+  if (e.target.tagName !== 'BUTTON') convFileInput.click();
+});
+convFileInput.addEventListener('change', () => {
+  if (convFileInput.files.length) handleConvFile(convFileInput.files[0]);
+});
+
+function handleConvFile(file) {
+  if (!file.type.startsWith('image/')) {
+    alert('Lütfen bir resim dosyası seçin.');
+    return;
+  }
+  convOriginalFileSize = file.size;
+  convOriginalFileName = file.name.replace(/\.[^.]+$/, '');
+  convOriginalExt = file.name.split('.').pop().toUpperCase();
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      convOriginalImg = img;
+      convPreviewImg.src = e.target.result;
+      convFileInfo.innerHTML = `<span>${file.name}</span> &mdash; ${img.naturalWidth} x ${img.naturalHeight} &mdash; ${formatSize(convOriginalFileSize)}`;
+      convSourceFormat.textContent = convOriginalExt;
+      convUploadArea.style.display = 'none';
+      convEditor.classList.add('active');
+      convResult.classList.remove('active');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+convOutputFormat.addEventListener('change', () => {
+  convQualityGroup.style.display = convOutputFormat.value === 'png' ? 'none' : '';
+});
+
+convQualitySlider.addEventListener('input', () => {
+  convQualityVal.textContent = convQualitySlider.value;
+});
+
+btnConvert.addEventListener('click', async () => {
+  if (!convOriginalImg) return;
+  const w = convOriginalImg.naturalWidth;
+  const h = convOriginalImg.naturalHeight;
+  convCanvas.width = w;
+  convCanvas.height = h;
+  convCtx.clearRect(0, 0, w, h);
+  convCtx.drawImage(convOriginalImg, 0, 0, w, h);
+
+  const format = convOutputFormat.value;
+  const ext = format === 'jpeg' ? 'jpg' : format;
+  const quality = parseInt(convQualitySlider.value);
+
+  btnConvert.disabled = true;
+  showLoading('Dönüştürülüyor...');
+  await yieldFrame();
+  try {
+    const blob = await encodeOptimized(convCanvas, format, quality);
+    if (!blob) { alert('Dönüştürme başarısız oldu.'); return; }
+    const url = URL.createObjectURL(blob);
+    btnConvDownload.href = url;
+    btnConvDownload.download = `${convOriginalFileName}.${ext}`;
+    document.getElementById('conv-res-original').textContent = convOriginalExt;
+    document.getElementById('conv-res-new').textContent = ext.toUpperCase();
+    document.getElementById('conv-res-orig-size').textContent = formatSize(convOriginalFileSize);
+    document.getElementById('conv-res-new-size').textContent = formatSize(blob.size);
+    convResult.classList.add('active');
+    convResult.scrollIntoView({ behavior: 'smooth' });
+  } catch (e) {
+    alert('Dönüştürme başarısız oldu: ' + e.message);
+  } finally {
+    hideLoading();
+    btnConvert.disabled = false;
+  }
+});
+
+btnConvReset.addEventListener('click', () => {
+  convOriginalImg = null;
+  convFileInput.value = '';
+  convEditor.classList.remove('active');
+  convResult.classList.remove('active');
+  convUploadArea.style.display = '';
+});
+
+/* ===== BG REMOVER ===== */
+const bgUploadArea = document.getElementById('bg-upload-area');
+const bgEditor = document.getElementById('bg-editor');
+const bgFileInput = document.getElementById('bg-file-input');
+const bgPreviewOriginal = document.getElementById('bg-preview-original');
+const bgPreviewResult = document.getElementById('bg-preview-result');
+const bgFileInfo = document.getElementById('bg-file-info');
+const bgProgress = document.getElementById('bg-progress');
+const bgProgressFill = document.getElementById('bg-progress-fill');
+const bgProgressText = document.getElementById('bg-progress-text');
+const btnBgRemove = document.getElementById('btn-bg-remove');
+const btnBgReset = document.getElementById('btn-bg-reset');
+const btnBgDownload = document.getElementById('btn-bg-download');
+const bgResult = document.getElementById('bg-result');
+const bgActions = document.getElementById('bg-actions');
+const bgActionsDone = document.getElementById('bg-actions-done');
+const btnBgNew = document.getElementById('btn-bg-new');
+
+let bgOriginalFile = null;
+let bgOriginalFileSize = 0;
+let bgOriginalFileName = '';
+
+bgUploadArea.addEventListener('dragover', e => {
+  e.preventDefault();
+  bgUploadArea.classList.add('drag-over');
+});
+bgUploadArea.addEventListener('dragleave', () => bgUploadArea.classList.remove('drag-over'));
+bgUploadArea.addEventListener('drop', e => {
+  e.preventDefault();
+  bgUploadArea.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) handleBgFile(e.dataTransfer.files[0]);
+});
+bgUploadArea.addEventListener('click', e => {
+  if (e.target.tagName !== 'BUTTON') bgFileInput.click();
+});
+bgFileInput.addEventListener('change', () => {
+  if (bgFileInput.files.length) handleBgFile(bgFileInput.files[0]);
+});
+
+function handleBgFile(file) {
+  if (!file.type.match(/^image\/(png|jpeg|jpg|webp)$/)) {
+    alert('Lütfen PNG, JPG veya WebP formatında bir resim seçin.');
+    return;
+  }
+  bgOriginalFile = file;
+  bgOriginalFileSize = file.size;
+  bgOriginalFileName = file.name.replace(/\.[^.]+$/, '');
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      bgPreviewOriginal.src = e.target.result;
+      bgPreviewResult.style.display = 'none';
+      bgPreviewResult.src = '';
+      bgFileInfo.innerHTML = `<span>${file.name}</span> &mdash; ${img.naturalWidth} x ${img.naturalHeight} &mdash; ${formatSize(bgOriginalFileSize)}`;
+      bgUploadArea.style.display = 'none';
+      bgEditor.classList.add('active');
+      bgResult.classList.remove('active');
+      bgProgress.classList.remove('active');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+btnBgRemove.addEventListener('click', async () => {
+  if (!bgOriginalFile) return;
+  btnBgRemove.disabled = true;
+  bgProgress.classList.add('active');
+  bgProgressFill.style.width = '0%';
+  bgProgressText.textContent = 'AI modeli yükleniyor...';
+  showLoading('Arka plan kaldırılıyor...');
+  await yieldFrame();
+  try {
+    const { removeBackground } = await import('https://esm.sh/@imgly/background-removal@1.5.3');
+    bgProgressFill.style.width = '20%';
+    bgProgressText.textContent = 'Görsel işleniyor...';
+    loadingText.textContent = 'Arka plan kaldırılıyor...';
+    const blob = await removeBackground(bgOriginalFile, {
+      progress: (key, current, total) => {
+        if (key === 'compute:inference') {
+          const pct = Math.round((current / total) * 100);
+          const overall = 20 + Math.round(pct * 0.7);
+          bgProgressFill.style.width = overall + '%';
+          bgProgressText.textContent = `İşleniyor... %${pct}`;
+        } else if (key === 'fetch:model') {
+          const pct = Math.round((current / total) * 100);
+          bgProgressFill.style.width = Math.round(pct * 0.2) + '%';
+          bgProgressText.textContent = `Model indiriliyor... %${pct}`;
+          loadingText.textContent = `Model indiriliyor... %${pct}`;
+        }
+      }
+    });
+    bgProgressFill.style.width = '100%';
+    bgProgressText.textContent = 'Tamamlandı!';
+    const resultUrl = URL.createObjectURL(blob);
+    bgPreviewResult.src = resultUrl;
+    bgPreviewResult.style.display = '';
+    btnBgDownload.href = resultUrl;
+    btnBgDownload.download = `${bgOriginalFileName}_nobg.png`;
+    document.getElementById('bg-res-orig-size').textContent = formatSize(bgOriginalFileSize);
+    document.getElementById('bg-res-new-size').textContent = formatSize(blob.size);
+    bgActions.style.display = 'none';
+    bgActionsDone.style.display = '';
+    bgResult.classList.add('active');
+    bgResult.scrollIntoView({ behavior: 'smooth' });
+  } catch (e) {
+    console.error('BG removal error:', e);
+    alert('Arka plan kaldırma başarısız oldu: ' + e.message);
+    bgProgress.classList.remove('active');
+  } finally {
+    hideLoading();
+    btnBgRemove.disabled = false;
+  }
+});
+
+function resetBg() {
+  bgOriginalFile = null;
+  bgFileInput.value = '';
+  bgEditor.classList.remove('active');
+  bgResult.classList.remove('active');
+  bgProgress.classList.remove('active');
+  bgUploadArea.style.display = '';
+  bgPreviewResult.style.display = 'none';
+  bgPreviewResult.src = '';
+  bgActions.style.display = '';
+  bgActionsDone.style.display = 'none';
+}
+
+btnBgReset.addEventListener('click', resetBg);
+btnBgNew.addEventListener('click', resetBg);
+
+/* ===== LOADING OVERLAY ===== */
+const loadingOverlay = document.getElementById('loading-overlay');
+const loadingText = document.getElementById('loading-text');
+function showLoading(text) {
+  loadingText.textContent = text || 'İşleniyor...';
+  loadingOverlay.classList.add('active');
+}
+function hideLoading() {
+  loadingOverlay.classList.remove('active');
+}
+// Yield to let the overlay render before heavy work
+function yieldFrame() {
+  return new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+}
+
+/* ===== OPTIMIZED WASM ENCODER (Web Worker) ===== */
+const encoderWorkerBlob = new Blob([`
+  let wasmModules = {};
+  async function loadWasmEncoder(format) {
+    if (wasmModules[format]) return wasmModules[format];
+    if (format === 'webp') {
+      wasmModules.webp = await import('https://esm.sh/@jsquash/webp@1.5.0');
+    } else if (format === 'avif') {
+      wasmModules.avif = await import('https://esm.sh/@jsquash/avif@2.1.1');
+    }
+    return wasmModules[format];
+  }
+  self.onmessage = async (e) => {
+    const { imageData, format, quality } = e.data;
+    try {
+      const mod = await loadWasmEncoder(format);
+      let opts;
+      if (format === 'webp') {
+        opts = { quality, method: 6, use_sharp_yuv: 1, sns_strength: 50, filter_strength: 60 };
+      } else {
+        opts = { quality, speed: 3, chromaDeltaQ: true, subsample: 1, sharpness: 0 };
+      }
+      const buffer = await mod.encode(imageData, opts);
+      self.postMessage({ ok: true, buffer }, [buffer]);
+    } catch (err) {
+      self.postMessage({ ok: false, error: err.message });
+    }
+  };
+`], { type: 'text/javascript' });
+const encoderWorkerUrl = URL.createObjectURL(encoderWorkerBlob);
+
+function encodeInWorker(imageData, format, quality) {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker(encoderWorkerUrl, { type: 'module' });
+    worker.onmessage = (e) => {
+      worker.terminate();
+      if (e.data.ok) {
+        resolve(new Blob([e.data.buffer], { type: 'image/' + format }));
+      } else {
+        reject(new Error(e.data.error));
+      }
+    };
+    worker.onerror = (err) => {
+      worker.terminate();
+      reject(err);
+    };
+    worker.postMessage({ imageData, format, quality });
+  });
+}
+
+async function encodeOptimized(canvasEl, format, quality) {
+  if (format === 'webp' || format === 'avif') {
+    const ctx2d = canvasEl.getContext('2d');
+    const imageData = ctx2d.getImageData(0, 0, canvasEl.width, canvasEl.height);
+    try {
+      return await encodeInWorker(imageData, format, quality);
+    } catch (e) {
+      console.warn('Worker encoder failed, falling back to canvas:', e);
+    }
+  }
+  // Fallback: canvas.toBlob for JPEG, PNG, or if Worker failed
+  return new Promise(resolve => {
+    const mimeType = format === 'jpeg' ? 'image/jpeg' : format === 'png' ? 'image/png' : 'image/' + format;
+    const q = format === 'png' ? undefined : quality / 100;
+    canvasEl.toBlob(resolve, mimeType, q);
+  });
+}
+
+/* ===== UTILS ===== */
+function formatSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+}
+</script>
+
+</body>
+</html>

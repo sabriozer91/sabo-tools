@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280" width="600" height="280">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- SABO -->
+  <text x="300" y="130"
+    text-anchor="middle"
+    font-family="'Raleway', 'Segoe UI', 'Helvetica Neue', sans-serif"
+    font-weight="900"
+    font-size="128"
+    fill="#E8650A"
+    letter-spacing="8">SABO</text>
+
+  <!-- TOOLS -->
+  <text x="300" y="248"
+    text-anchor="middle"
+    font-family="'Raleway', 'Segoe UI', 'Helvetica Neue', sans-serif"
+    font-weight="900"
+    font-size="128"
+    fill="#9E3F08"
+    letter-spacing="8">TOOLS</text>
+</svg>
