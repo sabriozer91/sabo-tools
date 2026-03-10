@@ -908,24 +908,9 @@
     .loading-overlay.active {
       display: flex;
     }
-    .loader {
-      --c: no-repeat linear-gradient(orange 0 0);
-      background:
-        var(--c),var(--c),var(--c),
-        var(--c),var(--c),var(--c),
-        var(--c),var(--c),var(--c);
-      background-size: 16px 16px;
-      animation:
-        l32-1 1s infinite,
-        l32-2 1s infinite;
-    }
-    @keyframes l32-1 {
-      0%,100% { width: 45px; height: 45px; }
-      35%,65% { width: 65px; height: 65px; }
-    }
-    @keyframes l32-2 {
-      0%,40%  { background-position: 0 0,0 50%,0 100%,50% 100%,100% 100%,100% 50%,100% 0,50% 0,50% 50%; }
-      60%,100%{ background-position: 0 50%,0 100%,50% 100%,100% 100%,100% 50%,100% 0,50% 0,0 0,50% 50%; }
+    .loading-overlay dotlottie-player {
+      width: 180px;
+      height: 180px;
     }
     .loading-overlay .loading-text {
       font-size: 16px;
@@ -939,9 +924,11 @@
 
 <!-- Spline 3D Background -->
 <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+<!-- Lottie Player -->
+<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 <!-- Loading Overlay -->
 <div class="loading-overlay" id="loading-overlay">
-  <div class="loader"></div>
+  <dotlottie-player src="cat-loading.json" background="transparent" speed="1" loop autoplay></dotlottie-player>
   <div class="loading-text" id="loading-text">Dönüştürülüyor...</div>
 </div>
 <div id="spline-bg">
