@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sabo Tools</title>
-  <meta name="description" content="Resimleri kolayca boyutlandır, formatlar arası dönüştür veya AI ile arka planı kaldır. Ücretsiz, hızlı ve tamamen tarayıcıda çalışır.">
+  <meta name="description" content="Easily resize, convert between formats, or remove backgrounds with AI. Free, fast, and runs entirely in your browser.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -12,14 +12,14 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Sabo Tools">
-  <meta property="og:description" content="Resimleri kolayca boyutlandır, formatlar arası dönüştür veya AI ile arka planı kaldır.">
+  <meta property="og:description" content="Easily resize, convert between formats, or remove backgrounds with AI.">
   <meta property="og:image" content="https://sabriozer.com/og-image.png">
   <meta property="og:url" content="https://sabriozer.com">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Sabo Tools">
-  <meta name="twitter:description" content="Resimleri kolayca boyutlandır, formatlar arası dönüştür veya AI ile arka planı kaldır.">
+  <meta name="twitter:description" content="Easily resize, convert between formats, or remove backgrounds with AI.">
   <meta name="twitter:image" content="https://sabriozer.com/og-image.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -929,7 +929,7 @@
 <!-- Loading Overlay -->
 <div class="loading-overlay" id="loading-overlay">
   <dotlottie-player src="cat-loading.json" background="transparent" speed="1" loop autoplay></dotlottie-player>
-  <div class="loading-text" id="loading-text">Dönüştürülüyor...</div>
+  <div class="loading-text" id="loading-text">Converting...</div>
 </div>
 <div id="spline-bg">
   <spline-viewer url="https://prod.spline.design/IGqPp9Ljk3J69L10/scene.splinecode" loading-anim-type="none" events-target="none"></spline-viewer>
@@ -954,8 +954,8 @@
   <!-- ===== HOME VIEW ===== -->
   <div class="view home-view active" id="view-home">
     <div class="home-hero">
-      <h2>Aracını Seç</h2>
-      <p>Resimlerini kolayca boyutlandır, sıkıştır, formatlar arası dönüştür veya arka planı kaldır</p>
+      <h2>Choose Your Tool</h2>
+      <p>Easily resize, compress, convert between formats, or remove backgrounds from your images</p>
     </div>
     <div class="tool-cards">
       <div class="tool-card" onclick="navigateTo('resizer')">
@@ -968,7 +968,7 @@
           </svg>
         </div>
         <h3>Image Resizer</h3>
-        <p>Resimleri piksel veya yüzde olarak boyutlandır, farklı formatlarda kaydet</p>
+        <p>Resize images by pixel or percentage, save in different formats</p>
       </div>
       <div class="tool-card" onclick="navigateTo('converter')">
         <div class="tool-card-icon">
@@ -981,7 +981,7 @@
           </svg>
         </div>
         <h3>Image Converter</h3>
-        <p>PNG, JPEG, GIF gibi formatlardan WebP, AVIF gibi modern formatlara dönüştür</p>
+        <p>Convert from PNG, JPEG, GIF to modern formats like WebP, AVIF</p>
       </div>
       <div class="tool-card" onclick="navigateTo('bgremover')">
         <div class="tool-card-icon">
@@ -999,7 +999,7 @@
           </svg>
         </div>
         <h3>BG Remover</h3>
-        <p>Kişi ve evcil hayvan fotoğraflarından arka planı AI ile kaldır, şeffaf PNG olarak indir</p>
+        <p>Remove backgrounds from people and pet photos with AI, download as transparent PNG</p>
       </div>
       <div class="tool-card" onclick="navigateTo('compressor')">
         <div class="tool-card-icon">
@@ -1016,7 +1016,7 @@
           </svg>
         </div>
         <h3>Compressor</h3>
-        <p>Görselleri kaliteden ödün vermeden sıkıştır, dosya boyutunu küçült</p>
+        <p>Compress images without sacrificing quality, reduce file size</p>
       </div>
     </div>
   </div>
@@ -1029,9 +1029,9 @@
         <polyline points="17 8 12 3 7 8"/>
         <line x1="12" y1="3" x2="12" y2="15"/>
       </svg>
-      <h2>Resim Seçin</h2>
-      <p>veya sürükleyip bırakın (WebP, PNG, JPG)</p>
-      <button class="upload-btn" onclick="document.getElementById('file-input').click()">Dosya Seç</button>
+      <h2>Select Image</h2>
+      <p>or drag and drop (WebP, PNG, JPG)</p>
+      <button class="upload-btn" onclick="document.getElementById('file-input').click()">Choose File</button>
       <input type="file" id="file-input" accept="image/webp,image/png,image/jpeg,image/jpg" style="display:none">
     </div>
 
@@ -1045,17 +1045,17 @@
         </div>
         <div class="controls-panel">
           <div class="mode-tabs">
-            <button class="mode-tab active" data-mode="dimensions">Boyutlar</button>
-            <button class="mode-tab" data-mode="percentage">Yüzde (%)</button>
+            <button class="mode-tab active" data-mode="dimensions">Dimensions</button>
+            <button class="mode-tab" data-mode="percentage">Percentage (%)</button>
           </div>
           <div class="dim-group" id="dim-mode">
             <div class="dim-row">
-              <label for="input-w">Genişlik</label>
+              <label for="input-w">Width</label>
               <input type="number" id="input-w" min="1" max="10000">
               <span class="unit">px</span>
             </div>
             <div class="dim-row">
-              <label for="input-h">Yükseklik</label>
+              <label for="input-h">Height</label>
               <input type="number" id="input-h" min="1" max="10000">
               <span class="unit">px</span>
             </div>
@@ -1067,7 +1067,7 @@
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                 </svg>
               </div>
-              En-boy oranını koru
+              Keep aspect ratio
             </label>
           </div>
           <div class="pct-group" id="pct-mode" style="display:none">
@@ -1077,11 +1077,11 @@
               <span class="unit">%</span>
             </div>
             <div class="new-dimensions" id="new-dims">
-              Yeni boyut: <span id="pct-dims-text">-</span>
+              New size: <span id="pct-dims-text">-</span>
             </div>
           </div>
           <div class="format-group">
-            <label for="output-format">Çıktı Formatı</label>
+            <label for="output-format">Output Format</label>
             <select id="output-format">
               <option value="webp">WebP</option>
               <option value="avif">AVIF</option>
@@ -1090,30 +1090,30 @@
             </select>
           </div>
           <div class="quality-group" id="quality-group">
-            <label>Kalite</label>
+            <label>Quality</label>
             <div class="quality-row">
               <input type="range" id="quality-slider" min="10" max="100" value="90">
               <span class="quality-val" id="quality-val">90</span>
             </div>
           </div>
           <div class="actions">
-            <button class="btn-primary" id="btn-resize">Boyutlandır</button>
-            <button class="btn-secondary" id="btn-reset">Sıfırla</button>
+            <button class="btn-primary" id="btn-resize">Resize</button>
+            <button class="btn-secondary" id="btn-reset">Reset</button>
           </div>
         </div>
       </div>
       <div class="result" id="result">
         <div class="result-info">
           <div class="result-item">
-            <div class="label">Orijinal</div>
+            <div class="label">Original</div>
             <div class="value" id="res-original">-</div>
           </div>
           <div class="result-item">
-            <div class="label">Yeni Boyut</div>
+            <div class="label">New Size</div>
             <div class="value" id="res-new">-</div>
           </div>
           <div class="result-item">
-            <div class="label">Dosya Boyutu</div>
+            <div class="label">File Size</div>
             <div class="value green" id="res-size">-</div>
           </div>
         </div>
@@ -1123,7 +1123,7 @@
             <polyline points="7 10 12 15 17 10"/>
             <line x1="12" y1="15" x2="12" y2="3"/>
           </svg>
-          İndir
+          Download
         </a>
       </div>
     </div>
@@ -1137,9 +1137,9 @@
         <polyline points="17 8 12 3 7 8"/>
         <line x1="12" y1="3" x2="12" y2="15"/>
       </svg>
-      <h2>Dönüştürmek İçin Resim Seçin</h2>
-      <p>veya sürükleyip bırakın (WebP, PNG, JPG, GIF, BMP, AVIF, TIFF, SVG)</p>
-      <button class="upload-btn" onclick="document.getElementById('conv-file-input').click()">Dosya Seç</button>
+      <h2>Select Image to Convert</h2>
+      <p>or drag and drop (WebP, PNG, JPG, GIF, BMP, AVIF, TIFF, SVG)</p>
+      <button class="upload-btn" onclick="document.getElementById('conv-file-input').click()">Choose File</button>
       <input type="file" id="conv-file-input" accept="image/*" style="display:none">
     </div>
 
@@ -1162,7 +1162,7 @@
             </div>
           </div>
           <div class="format-group">
-            <label for="conv-output-format">Hedef Format</label>
+            <label for="conv-output-format">Target Format</label>
             <select id="conv-output-format">
               <option value="webp">WebP</option>
               <option value="avif">AVIF</option>
@@ -1171,34 +1171,34 @@
             </select>
           </div>
           <div class="quality-group" id="conv-quality-group">
-            <label>Kalite</label>
+            <label>Quality</label>
             <div class="quality-row">
               <input type="range" id="conv-quality-slider" min="10" max="100" value="85">
               <span class="quality-val" id="conv-quality-val">85</span>
             </div>
           </div>
           <div class="actions">
-            <button class="btn-primary" id="btn-convert">Dönüştür</button>
-            <button class="btn-secondary" id="btn-conv-reset">Sıfırla</button>
+            <button class="btn-primary" id="btn-convert">Convert</button>
+            <button class="btn-secondary" id="btn-conv-reset">Reset</button>
           </div>
         </div>
       </div>
       <div class="result" id="conv-result">
         <div class="result-info">
           <div class="result-item">
-            <div class="label">Orijinal Format</div>
+            <div class="label">Original Format</div>
             <div class="value" id="conv-res-original">-</div>
           </div>
           <div class="result-item">
-            <div class="label">Yeni Format</div>
+            <div class="label">New Format</div>
             <div class="value" id="conv-res-new">-</div>
           </div>
           <div class="result-item">
-            <div class="label">Orijinal Boyut</div>
+            <div class="label">Original Size</div>
             <div class="value" id="conv-res-orig-size">-</div>
           </div>
           <div class="result-item">
-            <div class="label">Yeni Boyut</div>
+            <div class="label">New Size</div>
             <div class="value green" id="conv-res-new-size">-</div>
           </div>
         </div>
@@ -1208,7 +1208,7 @@
             <polyline points="7 10 12 15 17 10"/>
             <line x1="12" y1="15" x2="12" y2="3"/>
           </svg>
-          İndir
+          Download
         </a>
       </div>
     </div>
@@ -1222,9 +1222,9 @@
         <polyline points="17 8 12 3 7 8"/>
         <line x1="12" y1="3" x2="12" y2="15"/>
       </svg>
-      <h2>Arka Planı Kaldırmak İçin Resim Seçin</h2>
-      <p>veya sürükleyip bırakın (PNG, JPG, WebP)</p>
-      <button class="upload-btn" onclick="document.getElementById('bg-file-input').click()">Dosya Seç</button>
+      <h2>Select Image to Remove Background</h2>
+      <p>or drag and drop (PNG, JPG, WebP)</p>
+      <button class="upload-btn" onclick="document.getElementById('bg-file-input').click()">Choose File</button>
       <input type="file" id="bg-file-input" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none">
     </div>
 
@@ -1233,15 +1233,15 @@
         <div class="bg-preview-compare">
           <div class="bg-compare-row">
             <div class="bg-compare-item">
-              <span class="compare-label">Orijinal</span>
+              <span class="compare-label">Original</span>
               <div class="preview-wrapper">
-                <img id="bg-preview-original" alt="Orijinal">
+                <img id="bg-preview-original" alt="Original">
               </div>
             </div>
             <div class="bg-compare-item">
-              <span class="compare-label">Sonuç</span>
+              <span class="compare-label">Result</span>
               <div class="preview-wrapper">
-                <img id="bg-preview-result" alt="Sonuç" style="display:none">
+                <img id="bg-preview-result" alt="Result" style="display:none">
               </div>
             </div>
           </div>
@@ -1249,32 +1249,32 @@
         </div>
         <div class="bg-controls">
           <div class="bg-info-card">
-            <strong>AI Arka Plan Kaldırma</strong><br>
-            Kişi ve evcil hayvan fotoğraflarından arka planı otomatik olarak kaldırır.
+            <strong>AI Background Removal</strong><br>
+            Automatically removes backgrounds from people and pet photos.
           </div>
           <div class="bg-progress" id="bg-progress">
             <div class="bg-progress-bar">
               <div class="bg-progress-fill" id="bg-progress-fill"></div>
             </div>
-            <div class="bg-progress-text" id="bg-progress-text">Hazırlanıyor...</div>
+            <div class="bg-progress-text" id="bg-progress-text">Preparing...</div>
           </div>
           <div class="actions" id="bg-actions">
-            <button class="btn-primary" id="btn-bg-remove">Arka Planı Kaldır</button>
-            <button class="btn-secondary" id="btn-bg-reset">Sıfırla</button>
+            <button class="btn-primary" id="btn-bg-remove">Remove Background</button>
+            <button class="btn-secondary" id="btn-bg-reset">Reset</button>
           </div>
           <div class="actions" id="bg-actions-done" style="display:none">
-            <button class="btn-primary" id="btn-bg-new" style="width:100%">Yeni Arka Plan Kaldır</button>
+            <button class="btn-primary" id="btn-bg-new" style="width:100%">Remove Another Background</button>
           </div>
         </div>
       </div>
       <div class="result" id="bg-result">
         <div class="result-info">
           <div class="result-item">
-            <div class="label">Orijinal Boyut</div>
+            <div class="label">Original Size</div>
             <div class="value" id="bg-res-orig-size">-</div>
           </div>
           <div class="result-item">
-            <div class="label">Yeni Boyut</div>
+            <div class="label">New Size</div>
             <div class="value green" id="bg-res-new-size">-</div>
           </div>
           <div class="result-item">
@@ -1288,7 +1288,7 @@
             <polyline points="7 10 12 15 17 10"/>
             <line x1="12" y1="15" x2="12" y2="3"/>
           </svg>
-          İndir
+          Download
         </a>
       </div>
     </div>
@@ -1302,9 +1302,9 @@
         <polyline points="17 8 12 3 7 8"/>
         <line x1="12" y1="3" x2="12" y2="15"/>
       </svg>
-      <h2>Sıkıştırmak İçin Resim Seçin</h2>
-      <p>veya sürükleyip bırakın (PNG, JPG, WebP, GIF, BMP, AVIF)</p>
-      <button class="upload-btn" onclick="document.getElementById('comp-file-input').click()">Dosya Seç</button>
+      <h2>Select Image to Compress</h2>
+      <p>or drag and drop (PNG, JPG, WebP, GIF, BMP, AVIF)</p>
+      <button class="upload-btn" onclick="document.getElementById('comp-file-input').click()">Choose File</button>
       <input type="file" id="comp-file-input" accept="image/*" style="display:none">
     </div>
 
@@ -1318,7 +1318,7 @@
         </div>
         <div class="comp-controls">
           <div class="format-group">
-            <label for="comp-output-format">Çıkış Formatı</label>
+            <label for="comp-output-format">Output Format</label>
             <select id="comp-output-format">
               <option value="webp">WebP</option>
               <option value="avif">AVIF</option>
@@ -1327,7 +1327,7 @@
             </select>
           </div>
           <div class="quality-group" id="comp-quality-group">
-            <label>Kalite</label>
+            <label>Quality</label>
             <div class="quality-row">
               <input type="range" id="comp-quality-slider" min="10" max="100" value="75">
               <span class="quality-val" id="comp-quality-val">75</span>
@@ -1335,7 +1335,7 @@
           </div>
           <div class="comp-size-compare" id="comp-size-compare" style="display:none">
             <div class="comp-size-item">
-              <div class="label">Orijinal</div>
+              <div class="label">Original</div>
               <div class="value" id="comp-orig-size">-</div>
             </div>
             <div class="comp-size-arrow">
@@ -1345,17 +1345,17 @@
               </svg>
             </div>
             <div class="comp-size-item">
-              <div class="label">Sıkıştırılmış</div>
+              <div class="label">Compressed</div>
               <div class="value green" id="comp-new-size">-</div>
             </div>
           </div>
           <div class="comp-savings" id="comp-savings" style="display:none"></div>
           <div class="actions" id="comp-actions">
-            <button class="btn-primary" id="btn-compress">Sıkıştır</button>
-            <button class="btn-secondary" id="btn-comp-reset">Sıfırla</button>
+            <button class="btn-primary" id="btn-compress">Compress</button>
+            <button class="btn-secondary" id="btn-comp-reset">Reset</button>
           </div>
           <div class="actions" id="comp-actions-done" style="display:none">
-            <button class="btn-primary" id="btn-comp-new" style="width:100%">Yeni Sıkıştırma</button>
+            <button class="btn-primary" id="btn-comp-new" style="width:100%">New Compression</button>
           </div>
         </div>
       </div>
@@ -1366,7 +1366,7 @@
             <polyline points="7 10 12 15 17 10"/>
             <line x1="12" y1="15" x2="12" y2="3"/>
           </svg>
-          İndir
+          Download
         </a>
       </div>
     </div>
@@ -1437,7 +1437,7 @@ fileInput.addEventListener('change', () => {
 
 function handleFile(file) {
   if (!file.type.match(/^image\/(webp|png|jpeg|jpg)$/)) {
-    alert('Lütfen WebP, PNG veya JPG formatında bir resim seçin.');
+    alert('Please select a WebP, PNG, or JPG image.');
     return;
   }
   originalFileSize = file.size;
@@ -1509,7 +1509,7 @@ btnResize.addEventListener('click', async () => {
     newH = Math.round(origH * pct / 100);
   }
   if (newW < 1 || newH < 1 || newW > 10000 || newH > 10000) {
-    alert('Boyutlar 1-10000 px arasında olmalıdır.');
+    alert('Dimensions must be between 1-10000 px.');
     return;
   }
   canvas.width = newW;
@@ -1522,11 +1522,11 @@ btnResize.addEventListener('click', async () => {
   const quality = parseInt(qualitySlider.value);
   const ext = format === 'jpeg' ? 'jpg' : format;
   btnResize.disabled = true;
-  showLoading('Boyutlandırılıyor...');
+  showLoading('Resizing...');
   await yieldFrame();
   try {
     const blob = await encodeOptimized(canvas, format, quality);
-    if (!blob) { alert('Boyutlandırma başarısız oldu.'); return; }
+    if (!blob) { alert('Resizing failed.'); return; }
     const url = URL.createObjectURL(blob);
     btnDownload.href = url;
     btnDownload.download = `${originalFileName}_${newW}x${newH}.${ext}`;
@@ -1536,7 +1536,7 @@ btnResize.addEventListener('click', async () => {
     resultDiv.classList.add('active');
     resultDiv.scrollIntoView({ behavior: 'smooth' });
   } catch (e) {
-    alert('Boyutlandırma başarısız oldu: ' + e.message);
+    alert('Resizing failed: ' + e.message);
   } finally {
     hideLoading();
     btnResize.disabled = false;
@@ -1593,7 +1593,7 @@ convFileInput.addEventListener('change', () => {
 
 function handleConvFile(file) {
   if (!file.type.startsWith('image/')) {
-    alert('Lütfen bir resim dosyası seçin.');
+    alert('Please select an image file.');
     return;
   }
   convOriginalFileSize = file.size;
@@ -1638,11 +1638,11 @@ btnConvert.addEventListener('click', async () => {
   const quality = parseInt(convQualitySlider.value);
 
   btnConvert.disabled = true;
-  showLoading('Dönüştürülüyor...');
+  showLoading('Converting...');
   await yieldFrame();
   try {
     const blob = await encodeOptimized(convCanvas, format, quality);
-    if (!blob) { alert('Dönüştürme başarısız oldu.'); return; }
+    if (!blob) { alert('Conversion failed.'); return; }
     const url = URL.createObjectURL(blob);
     btnConvDownload.href = url;
     btnConvDownload.download = `${convOriginalFileName}.${ext}`;
@@ -1653,7 +1653,7 @@ btnConvert.addEventListener('click', async () => {
     convResult.classList.add('active');
     convResult.scrollIntoView({ behavior: 'smooth' });
   } catch (e) {
-    alert('Dönüştürme başarısız oldu: ' + e.message);
+    alert('Conversion failed: ' + e.message);
   } finally {
     hideLoading();
     btnConvert.disabled = false;
@@ -1709,7 +1709,7 @@ bgFileInput.addEventListener('change', () => {
 
 function handleBgFile(file) {
   if (!file.type.match(/^image\/(png|jpeg|jpg|webp)$/)) {
-    alert('Lütfen PNG, JPG veya WebP formatında bir resim seçin.');
+    alert('Please select a PNG, JPG, or WebP image.');
     return;
   }
   bgOriginalFile = file;
@@ -1738,31 +1738,31 @@ btnBgRemove.addEventListener('click', async () => {
   btnBgRemove.disabled = true;
   bgProgress.classList.add('active');
   bgProgressFill.style.width = '0%';
-  bgProgressText.textContent = 'AI modeli yükleniyor...';
-  showLoading('Arka plan kaldırılıyor...');
+  bgProgressText.textContent = 'Loading AI model...';
+  showLoading('Removing background...');
   await yieldFrame();
   try {
     const { removeBackground } = await import('https://esm.sh/@imgly/background-removal@1.5.3');
     bgProgressFill.style.width = '20%';
-    bgProgressText.textContent = 'Görsel işleniyor...';
-    loadingText.textContent = 'Arka plan kaldırılıyor...';
+    bgProgressText.textContent = 'Processing image...';
+    loadingText.textContent = 'Removing background...';
     const blob = await removeBackground(bgOriginalFile, {
       progress: (key, current, total) => {
         if (key === 'compute:inference') {
           const pct = Math.round((current / total) * 100);
           const overall = 20 + Math.round(pct * 0.7);
           bgProgressFill.style.width = overall + '%';
-          bgProgressText.textContent = `İşleniyor... %${pct}`;
+          bgProgressText.textContent = `Processing... ${pct}%`;
         } else if (key === 'fetch:model') {
           const pct = Math.round((current / total) * 100);
           bgProgressFill.style.width = Math.round(pct * 0.2) + '%';
-          bgProgressText.textContent = `Model indiriliyor... %${pct}`;
-          loadingText.textContent = `Model indiriliyor... %${pct}`;
+          bgProgressText.textContent = `Downloading model... ${pct}%`;
+          loadingText.textContent = `Downloading model... ${pct}%`;
         }
       }
     });
     bgProgressFill.style.width = '100%';
-    bgProgressText.textContent = 'Tamamlandı!';
+    bgProgressText.textContent = 'Done!';
     const resultUrl = URL.createObjectURL(blob);
     bgPreviewResult.src = resultUrl;
     bgPreviewResult.style.display = '';
@@ -1776,7 +1776,7 @@ btnBgRemove.addEventListener('click', async () => {
     bgResult.scrollIntoView({ behavior: 'smooth' });
   } catch (e) {
     console.error('BG removal error:', e);
-    alert('Arka plan kaldırma başarısız oldu: ' + e.message);
+    alert('Background removal failed: ' + e.message);
     bgProgress.classList.remove('active');
   } finally {
     hideLoading();
@@ -1804,7 +1804,7 @@ btnBgNew.addEventListener('click', resetBg);
 const loadingOverlay = document.getElementById('loading-overlay');
 const loadingText = document.getElementById('loading-text');
 function showLoading(text) {
-  loadingText.textContent = text || 'İşleniyor...';
+  loadingText.textContent = text || 'Processing...';
   loadingOverlay.classList.add('active');
 }
 function hideLoading() {
@@ -1921,7 +1921,7 @@ compUploadArea.addEventListener('click', e => { if (e.target.tagName !== 'BUTTON
 compFileInput.addEventListener('change', () => { if (compFileInput.files.length) handleCompFile(compFileInput.files[0]); });
 
 function handleCompFile(file) {
-  if (!file.type.startsWith('image/')) { alert('Lütfen bir görsel dosyası seçin.'); return; }
+  if (!file.type.startsWith('image/')) { alert('Please select an image file.'); return; }
   compOrigFileSize = file.size;
   compOrigFileName = file.name.replace(/\.[^.]+$/, '');
   const reader = new FileReader();
@@ -1960,7 +1960,7 @@ btnCompress.addEventListener('click', async () => {
   const format = compOutputFormat.value;
   const quality = parseInt(compQualitySlider.value);
 
-  showLoading('Sıkıştırılıyor...');
+  showLoading('Compressing...');
   await yieldFrame();
 
   compCanvas.width = compOrigImg.naturalWidth;
@@ -1981,12 +1981,12 @@ btnCompress.addEventListener('click', async () => {
     compSizeCompare.style.display = '';
 
     if (saving > 0) {
-      compSavings.textContent = `%${saving.toFixed(1)} küçüldü`;
+      compSavings.textContent = `${saving.toFixed(1)}% smaller`;
       compSavings.style.background = 'rgba(34, 197, 94, 0.1)';
       compSavings.style.borderColor = 'rgba(34, 197, 94, 0.2)';
       compSavings.style.color = '#22c55e';
     } else {
-      compSavings.textContent = `%${Math.abs(saving).toFixed(1)} büyüdü — farklı format veya düşük kalite deneyin`;
+      compSavings.textContent = `${Math.abs(saving).toFixed(1)}% larger — try a different format or lower quality`;
       compSavings.style.background = 'rgba(239, 68, 68, 0.1)';
       compSavings.style.borderColor = 'rgba(239, 68, 68, 0.2)';
       compSavings.style.color = '#ef4444';
@@ -2004,7 +2004,7 @@ btnCompress.addEventListener('click', async () => {
     compActions.style.display = 'none';
     compActionsDone.style.display = '';
   } catch (err) {
-    alert('Sıkıştırma sırasında hata: ' + err.message);
+    alert('Error during compression: ' + err.message);
   }
   hideLoading();
 });
