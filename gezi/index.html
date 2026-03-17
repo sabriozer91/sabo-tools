@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İstanbul → Çanakkale → Gökçeada | 19-22 Mart 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0EB;--bg-card:#FFF;--ink:#1A1A1A;--ink-light:#6B6560;--accent:#C45B3E;--accent-light:#E8D5C4;--accent-dark:#8B3A26;--sea:#2E6B7B;--sea-light:#D5E8EC;--gold:#B8963E;--border:#E0D9D1;--shadow:rgba(26,26,26,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem;overflow:hidden;background:linear-gradient(160deg,#1a3a4a 0%,#2E6B7B 40%,#C45B3E 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-content{position:relative;z-index:1;animation:fadeUp 1s ease-out}
+.hero-route{font-weight:300;font-size:.85rem;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1.5rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,7vw,5rem);font-weight:700;color:#fff;line-height:1.1;margin-bottom:.5rem}
+.hero h1 em{font-style:italic;color:var(--accent-light)}
+.hero-date{font-size:1.1rem;font-weight:300;color:rgba(255,255,255,.75);margin-top:1rem;letter-spacing:1px}
+.hero-arrow{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2s ease-in-out infinite;color:rgba(255,255,255,.4);font-size:1.5rem;cursor:pointer;text-decoration:none}
+.nav-bar{position:sticky;top:0;z-index:100;background:rgba(245,240,235,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:900px;margin:0 auto;display:flex}
+.nav-tab{flex:1;min-width:0;padding:.9rem .5rem;border:none;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;color:var(--ink-light);text-align:center;white-space:normal;line-height:1.35;transition:all .3s ease;position:relative}
+.nav-tab::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2.5px;background:var(--accent);border-radius:2px;transition:width .3s ease}
+.nav-tab.active{color:var(--accent);font-weight:600}
+.nav-tab.active::after{width:40px}
+.tab-day{display:block;font-size:.6rem;font-weight:300;letter-spacing:2px;text-transform:uppercase;opacity:.6;margin-bottom:3px}
+.tab-title{display:block;font-size:.72rem;margin-top:1px;opacity:.75}
+.day-section{display:none;max-width:900px;margin:0 auto;padding:2rem 1.5rem 4rem;animation:fadeUp .5s ease-out}
+.day-section.active{display:block}
+.day-header{text-align:center;margin-bottom:3rem;padding:2rem 0}
+.day-label{font-size:.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.day-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:var(--ink);line-height:1.2}
+.day-header .day-narrative{font-size:.95rem;color:var(--ink-light);max-width:500px;margin:.8rem auto 0;font-weight:300}
+.timeline{position:relative;padding-left:3rem}
+.timeline::before{content:'';position:absolute;left:.6rem;top:.5rem;bottom:.5rem;width:1.5px;background:linear-gradient(to bottom,var(--accent),var(--sea),transparent)}
+.timeline-item{position:relative;margin-bottom:2rem;opacity:0;transform:translateY(20px);animation:fadeUp .5s ease-out forwards}
+.timeline-item:nth-child(1){animation-delay:.05s}.timeline-item:nth-child(2){animation-delay:.1s}.timeline-item:nth-child(3){animation-delay:.15s}.timeline-item:nth-child(4){animation-delay:.2s}.timeline-item:nth-child(5){animation-delay:.25s}.timeline-item:nth-child(6){animation-delay:.3s}.timeline-item:nth-child(7){animation-delay:.35s}.timeline-item:nth-child(8){animation-delay:.4s}
+.timeline-dot{position:absolute;left:-2.65rem;top:1.2rem;width:11px;height:11px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 0 3px var(--accent-light)}
+.timeline-dot.sea{background:var(--sea);box-shadow:0 0 0 3px var(--sea-light)}
+.timeline-dot.gold{background:var(--gold);box-shadow:0 0 0 3px #E8DFC4}
+a.card-link{display:block;text-decoration:none;color:inherit;border-radius:14px;outline:none;-webkit-tap-highlight-color:transparent}
+.card{background:var(--bg-card);border-radius:14px;padding:1.5rem;box-shadow:0 1px 3px var(--shadow),0 8px 24px rgba(26,26,26,.04);transition:transform .25s ease,box-shadow .25s ease;border:1px solid rgba(0,0,0,.04);cursor:pointer}
+a.card-link:hover .card,a.card-link:active .card{transform:translateY(-2px);box-shadow:0 4px 12px var(--shadow),0 16px 40px rgba(26,26,26,.06);border-color:rgba(196,91,62,.15)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.3rem;gap:8px}
+.card-time{font-size:.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
+.card-time.sea{color:var(--sea)}
+.maps-badge{display:inline-flex;align-items:center;gap:4px;font-size:.62rem;font-weight:500;letter-spacing:.5px;color:var(--ink-light);opacity:.45;transition:opacity .25s ease,color .25s ease;white-space:nowrap;flex-shrink:0;padding:3px 8px;border-radius:20px;background:rgba(0,0,0,.03)}
+.maps-badge svg{width:12px;height:12px;flex-shrink:0}
+a.card-link:hover .maps-badge{opacity:1;color:var(--accent);background:var(--accent-light)}
+.card h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:.5rem;line-height:1.3}
+.card p{font-size:.88rem;color:var(--ink-light);line-height:1.65;font-weight:300}
+.card-tag{display:inline-block;margin-top:.8rem;padding:.25rem .7rem;background:var(--accent-light);color:var(--accent-dark);font-size:.7rem;font-weight:600;border-radius:20px;letter-spacing:.5px}
+.card-tag.food{background:#FCF0E4;color:#8B5E3C}.card-tag.culture{background:var(--sea-light);color:#1E5060}.card-tag.nature{background:#E4F0E4;color:#3B6B3B}.card-tag.transport{background:#F0ECF4;color:#5B4B7B}
+.info-box{max-width:900px;margin:0 auto 3rem;padding:0 1.5rem}
+.info-box-inner{background:linear-gradient(135deg,#2E6B7B 0%,#1a3a4a 100%);border-radius:16px;padding:2rem;color:#fff}
+.info-box h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:1rem}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.info-item{padding:.8rem;background:rgba(255,255,255,.08);border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+.info-item .label{font-size:.65rem;letter-spacing:1.5px;text-transform:uppercase;opacity:.6;margin-bottom:.3rem;font-weight:500}
+.info-item .value{font-size:.88rem;font-weight:400;line-height:1.4}
+.info-item a{color:var(--accent-light);text-decoration:none;border-bottom:1px dotted rgba(232,213,196,.4)}
+footer{text-align:center;padding:2rem;font-size:.75rem;color:var(--ink-light);opacity:.6;font-weight:300}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+@media(max-width:600px){.timeline{padding-left:2.2rem}.timeline-dot{left:-1.85rem}.card{padding:1.2rem}.nav-tab{padding:.7rem .3rem;font-size:.72rem}.tab-day{font-size:.55rem;letter-spacing:1px}.tab-title{font-size:.65rem}.info-grid{grid-template-columns:1fr}.maps-badge span{display:none}}
+</style>
+</head>
+<body>
+
+<section class="hero" id="top">
+  <div class="hero-content">
+    <div class="hero-route">İstanbul → Çanakkale → Gökçeada</div>
+    <h1>Şehitler Diyarı,<br><em>Ada Rüzgarı</em></h1>
+    <div class="hero-date">19 — 22 Mart 2026 &nbsp;·&nbsp; 4 Gün</div>
+  </div>
+  <a href="#days" class="hero-arrow" onclick="document.getElementById('days').scrollIntoView({behavior:'smooth'});return false;">↓</a>
+</section>
+
+<nav class="nav-bar" id="days">
+  <div class="nav-inner">
+    <button class="nav-tab active" onclick="showDay(0)"><span class="tab-day">Gün 1</span>19 Mart<span class="tab-title">Çanakkale</span></button>
+    <button class="nav-tab" onclick="showDay(1)"><span class="tab-day">Gün 2</span>20 Mart<span class="tab-title">Şehitlik & Ada</span></button>
+    <button class="nav-tab" onclick="showDay(2)"><span class="tab-day">Gün 3</span>21 Mart<span class="tab-title">Gökçeada</span></button>
+    <button class="nav-tab" onclick="showDay(3)"><span class="tab-day">Gün 4</span>22 Mart<span class="tab-title">Keşif & Dönüş</span></button>
+  </div>
+</nav>
+
+<!-- DAY 1 -->
+<section class="day-section active" id="day-0">
+  <div class="day-header"><div class="day-label">Perşembe · 19 Mart</div><h2>İstanbul'dan Çanakkale'ye</h2><p class="day-narrative">Sabah yola çıkıp öğleden sonra Çanakkale'de olacaksınız. Akşam şehri keşfe çıkın.</p></div>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-dot" style="background:var(--sea);box-shadow:0 0 0 3px var(--sea-light)"></div><a class="card-link" href="https://www.google.com/maps/dir/?api=1&origin=Istanbul&destination=40.1553,26.4142&travelmode=driving" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time sea">🚗 Sabah</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>İstanbul → Çanakkale Yolculuğu</h3><p>Yaklaşık 4-5 saat sürüş. Erken çıkarsanız öğleden sonra Çanakkale'desiniz. Otele yerleşin, biraz dinlenin.</p><span class="card-tag transport">Yolculuk · ~4-5 saat</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.1464565,26.3992059&query_place_id=ChIJM2FpUsapsRQRCiQsyH54pCM" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time">🏰 15:00</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Çimenlik Kalesi & Deniz Müzesi</h3><p>Fatih Sultan Mehmet tarafından yaptırılan kale, şimdi etkileyici bir müze. Nusret Mayın Gemisi'ne ve gerçek bir denizaltıya girme şansı kaçmaz.</p><span class="card-tag culture">Kültür · ~1.5 saat</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot gold"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=Truva+At%C4%B1+%C3%87anakkale" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time" style="color:var(--gold)">🌅 17:00</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Kordon Yürüyüşü & Truva Atı</h3><p>Sahil boyunca yürüyüş. Troy filminden kalan ünlü Truva Atı replikası burada. Boğaz'ın gün batımı manzarası eşsiz.</p><span class="card-tag nature">Keşif · ~1 saat</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot" style="background:#8B5E3C;box-shadow:0 0 0 3px #FCF0E4"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.1229311,26.4094045&query_place_id=ChIJRdudHeOpsRQRjYxBL1J4LhI" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time" style="color:#8B5E3C">🍽️ 19:30</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Bizim Yaka Restaurant</h3><p>Boğaz manzarasıyla akşam yemeği. Deniz ürünleri ve mezeleri çok başarılı. Canlı müzik de olabiliyor. Rezervasyon önerilir.</p><span class="card-tag food">Yemek · Deniz Ürünleri</span></div></a></div>
+  </div>
+</section>
+
+<!-- DAY 2 -->
+<section class="day-section" id="day-1">
+  <div class="day-header"><div class="day-label">Cuma · 20 Mart</div><h2>Şehitlik Turu & Gökçeada Geçişi</h2><p class="day-narrative">Gündüz Gelibolu Yarımadası'nda şehitleri ziyaret, akşam feribotla Gökçeada'ya geçiş.</p></div>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-dot sea"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=%C3%87anakkale+Eceabat+Feribot+%C4%B0skelesi" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time sea">⛴️ 08:00</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Çanakkale → Eceabat Feribotu</h3><p>Sabah erkenden Eceabat'a geçin. Feribot yaklaşık 25 dakika. Tur buluşma noktasına yetişmek için sabah ilk seferleri tercih edin.</p><span class="card-tag transport">Feribot · ~25 dk</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.2074105,26.281895&query_place_id=ChIJ93Hw7HSvsRQRRAmaLOhR-9Q" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time">🏛️ 09:30</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Kabatepe Tanıtma Merkezi & Müzesi</h3><p>Şehitlik turunun ilk durağı. Savaş kalıntıları, asker eşyaları ve etkileyici fotoğraflar sergileniyor.</p><span class="card-tag culture">Kültür · ~45 dk</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot" style="background:var(--accent-dark);box-shadow:0 0 0 3px var(--accent-light)"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.0508115,26.2192194&query_place_id=ChIJmUG1CXlNsBQRmr_q3gacMm0" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time" style="color:var(--accent-dark)">🇹🇷 11:00</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Çanakkale Şehitler Abidesi</h3><p>Yarımadanın en ikonik noktası. Boğaz'a ve Morto Koyu'na hakim muhteşem konumu var. 253.000 Türk askerinin anısına dikilmiş, son derece etkileyici bir anıt.</p><span class="card-tag culture">Kültür · ~1 saat</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot sea"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=Kabatepe+Liman%C4%B1+Eceabat" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time sea">⛴️ 17:30</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Kabatepe → Gökçeada Feribotu</h3><p>Tur bittikten sonra Kabatepe Limanı'na geçin. GESTAŞ ile ~1 saat 15 dk'lık feribot yolculuğu. Biletinizi online alabilirsiniz.</p><span class="card-tag transport">Feribot · ~1s 15dk</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot" style="background:#8B5E3C;box-shadow:0 0 0 3px #FCF0E4"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.1953449,25.9050728&query_place_id=ChIJ_4dCiiPNsRQRAwKRF2lwhds" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time" style="color:#8B5E3C">🍽️ 20:00</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Sokak 17.5 Restoran — Gökçeada</h3><p>Ada'ya varış akşamı sıcak bir ev yemeği. Oğlak tandır buranın efsanesi! Ev yapımı zeytinyağlılar ve çorbalar da harika.</p><span class="card-tag food">Yemek · Ev Yemekleri</span></div></a></div>
+  </div>
+</section>
+
+<!-- DAY 3 -->
+<section class="day-section" id="day-2">
+  <div class="day-header"><div class="day-label">Cumartesi · 21 Mart</div><h2>Gökçeada Tam Gün Keşif</h2><p class="day-narrative">Köyler, plajlar, doğa ve yerel lezzetler — adanın ruhunu keşfedin.</p></div>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-dot" style="background:#8B5E3C;box-shadow:0 0 0 3px #FCF0E4"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.1922685,25.8341769&query_place_id=ChIJ64okze7NsRQROeu6tSIQtDg" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time" style="color:#8B5E3C">☕ 09:00</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Louloudi — Geleneksel Kahvaltı (Tepeköy)</h3><p>Güne geleneksel Gökçeada kahvaltısıyla başlayın. El açması mantısı ve portakalopita tatlısı meşhur.</p><span class="card-tag food">Kahvaltı · ~1.5 saat</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot gold"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.2018047,25.8335587&query_place_id=ChIJl6nDXXwssBQRMfnIisv5IgQ" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time" style="color:var(--gold)">🌿 10:30</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Tepeköy Çınaraltı</h3><p>Kahvaltıdan sonra çay/kahve molası. Semadirek Adası manzarası efsane. Akşam gün batımı için tekrar uğrayacağız!</p><span class="card-tag nature">Doğa · ~30 dk</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.189872,25.871039&query_place_id=ChIJafig5kHNsRQRrY1OZ_fagQc" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time">🏘️ 11:30</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Zeytinliköy</h3><p>Adanın en otantik Rum köyü. Taş evler, dar sokaklar ve yüzlerce yıllık zeytin ağaçları. Fotoğraf çekmek için mükemmel.</p><span class="card-tag culture">Kültür · ~45 dk</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.231426,25.894969&query_place_id=ChIJv4rmWM3NsRQRdCUBMBYcsCM" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time">⚓ 12:30</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Kaleköy</h3><p>Adanın en pittoresk köyü. Liman manzarası, Peynir Kayalıkları efsanesi ve tarihi atmosfer. Öğle yemeğini burada yiyin.</p><span class="card-tag culture">Kültür · ~1 saat</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot" style="background:#8B5E3C;box-shadow:0 0 0 3px #FCF0E4"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.2332732,25.8970177&query_place_id=ChIJOykFfwnNsRQRfnZbvSCxYn8" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time" style="color:#8B5E3C">🍽️ 13:00</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>İmroz Poseidon — Kaleköy</h3><p>Tepeye tırmanış ama manzara buna değer! Ege Denizi'ne bakan muhteşem konum. Deniz ürünleri, kalamar ve ahtapot harika.</p><span class="card-tag food">Yemek · Deniz Ürünleri</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot sea"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.2351258,25.9045953&query_place_id=ChIJRc29xMHNsRQReQRkRG0Q3Ns" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time sea">🐠 15:00</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Yıldız Koyu — Sualtı Milli Parkı</h3><p>Berrak suları ve kayalık yapısıyla manzara bile görülmeye değer. Türkiye'nin ilk sualtı milli parkı.</p><span class="card-tag nature">Doğa · ~45 dk</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.1942262,25.9044116&query_place_id=ChIJSzsg9fzMsRQR9rm_EkqbrWc" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time">🖼️ 16:30</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Gökçeada Şehir Müzesi</h3><p>Adanın tarihini ve kültürel kimliğini öğrenmek için güzel bir müze. Küçük ama içerik açısından zengin.</p><span class="card-tag culture">Kültür · ~45 dk</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot gold"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.2018047,25.8335587&query_place_id=ChIJl6nDXXwssBQRMfnIisv5IgQ" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time" style="color:var(--gold)">🌅 18:00</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Tepeköy Çınaraltı — Gün Batımı</h3><p>Günün finali! Semadirek Adası'na bakan muhteşem gün batımı. Adanın en iyi sunset noktası.</p><span class="card-tag nature">Doğa · Gün Batımı</span></div></a></div>
+  </div>
+</section>
+
+<!-- DAY 4 -->
+<section class="day-section" id="day-3">
+  <div class="day-header"><div class="day-label">Pazar · 22 Mart</div><h2>Son Keşifler & Dönüş</h2><p class="day-narrative">Adanın geri kalanını keşfedip akşam 21:00 feribotuna yetişin.</p></div>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-dot" style="background:#8B5E3C;box-shadow:0 0 0 3px #FCF0E4"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.1954477,25.904836&query_place_id=ChIJq1ohDPzMsRQRXqu8QzKqiB0" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time" style="color:#8B5E3C">☕ 09:30</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Biyer Kafe Dükkan — Kahvaltı</h3><p>Merkezde rahat bir kahvaltı. Ev yapımı, organik lezzetler. Vejetaryen seçenekler de mevcut. Samimi atmosfer.</p><span class="card-tag food">Kahvaltı · ~1 saat</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot sea"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.0994173,25.7835502&query_place_id=ChIJi-13JrQvsBQRMrzikHxN-PM" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time sea">🏖️ 11:00</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Laz Koyu Plajı</h3><p>Adanın güneybatısında saklı bir koy. Mart'ta yüzme zor ama manzara harika, yürüyüş yapılabilir.</p><span class="card-tag nature">Doğa · ~1 saat</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot sea"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.1283836,25.9409617&query_place_id=ChIJe4mjmmMzsBQR0sp-F9mch2Q" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time sea">🏄 12:30</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Kefalos Plajı</h3><p>Adanın en ünlü plajı. Sörf için meşhur, kumsal çok geniş. Rüzgar güçlü olabilir ama atmosfer güzel.</p><span class="card-tag nature">Doğa · ~45 dk</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot" style="background:#8B5E3C;box-shadow:0 0 0 3px #FCF0E4"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.1926719,25.9040084&query_place_id=ChIJaUsAMgDNsRQRDHa0hNhQdHw" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time" style="color:#8B5E3C">🍕 14:00</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>VENTO by Kapari — Öğle Yemeği</h3><p>Merkezde İtalyan mutfağı. İncecik pizzaları ve hamburgeri çok başarılı. Servis hızlı ve samimi.</p><span class="card-tag food">Yemek · İtalyan</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot gold"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.2334326,25.8987163&query_place_id=ChIJJ_-R0NLNsRQR_os8kSMUQ-A" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time" style="color:var(--gold)">☕ 16:00</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Mustafa'nın Kahvesi — Kaleköy</h3><p>Son kahve molası. Dev ağaçların altında oturup ada havasının tadını çıkarın. Veda anı olarak güzel bir nokta.</p><span class="card-tag food">Kafe · ~1 saat</span></div></a></div>
+    <div class="timeline-item"><div class="timeline-dot" style="background:var(--accent-dark);box-shadow:0 0 0 3px var(--accent-light)"></div><a class="card-link" href="https://www.google.com/maps/search/?api=1&query=40.2247155,25.9506894&query_place_id=ChIJq_JiJgPLsRQRwTrdVyrHyQs" target="_blank" rel="noopener"><div class="card"><div class="card-top"><div class="card-time" style="color:var(--accent-dark)">⛴️ 20:30 — LİMANDA OL</div><div class="maps-badge mi"><span>Haritada aç</span></div></div><h3>Gökçeada Kuzu Limanı — 21:00 Feribotu</h3><p>En az 30 dakika önceden limanda olun. Biletinizi online alabilirsiniz: <strong>online.gdu.com.tr</strong></p><span class="card-tag transport">Feribot · Dönüş</span></div></a></div>
+  </div>
+</section>
+
+<div class="info-box"><div class="info-box-inner"><h3>📋 Önemli Bilgiler</h3><div class="info-grid">
+  <div class="info-item"><div class="label">Feribot Bileti</div><div class="value"><a href="https://online.gdu.com.tr/bilet-al#bilet" target="_blank">online.gdu.com.tr</a> — Online alın, sıra beklemeyin</div></div>
+  <div class="info-item"><div class="label">GESTAŞ İletişim</div><div class="value">444 0 752 — Sefer değişiklikleri için arayın</div></div>
+  <div class="info-item"><div class="label">Dikkat!</div><div class="value">18-23 Mart arası özel sefer tarifesi uygulanıyor. Saatleri mutlaka kontrol edin.</div></div>
+  <div class="info-item"><div class="label">Hava Durumu</div><div class="value">Mart ayında serin ve rüzgarlı olabilir. Kat kat giyinin, rüzgarlık şart!</div></div>
+  <div class="info-item"><div class="label">Ulaşım</div><div class="value">Gökçeada'da araç olması çok büyük avantaj. Dolmuş seçenekleri sınırlı olabilir.</div></div>
+  <div class="info-item"><div class="label">Sefer Tarifeleri</div><div class="value"><a href="https://gdu.com.tr/sefer-tarifeleri" target="_blank">gdu.com.tr/sefer-tarifeleri</a></div></div>
+</div></div></div>
+
+<footer>Hazırlayan: Claude · Mart 2026 · İyi yolculuklar! 🌊</footer>
+
+<script>
+document.querySelectorAll('.maps-badge.mi').forEach(el=>{el.insertAdjacentHTML('afterbegin','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>')});
+function showDay(i){document.querySelectorAll('.day-section').forEach((s,j)=>s.classList.toggle('active',j===i));document.querySelectorAll('.nav-tab').forEach((t,j)=>t.classList.toggle('active',j===i));const a=document.querySelector('.day-section.active');if(a)a.querySelectorAll('.timeline-item').forEach(item=>{item.style.animation='none';item.offsetHeight;item.style.animation=''})}
+</script>
+</body>
+</html>
