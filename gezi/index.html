@@ -60,6 +60,20 @@ a.card-link:hover .maps-badge{opacity:1;color:var(--accent);background:var(--acc
 .info-item .value{font-size:.88rem;font-weight:400;line-height:1.4}
 .info-item a{color:var(--accent-light);text-decoration:none;border-bottom:1px dotted rgba(232,213,196,.4)}
 footer{text-align:center;padding:2rem;font-size:.75rem;color:var(--ink-light);opacity:.6;font-weight:300}
+.weather-bar{max-width:900px;margin:0 auto;padding:1rem 1.5rem 0}
+.weather-inner{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.weather-card{background:var(--bg-card);border-radius:12px;padding:1rem 1.2rem;box-shadow:0 1px 3px var(--shadow);border:1px solid rgba(0,0,0,.04);display:flex;align-items:center;gap:1rem;transition:transform .2s ease}
+.weather-card:hover{transform:translateY(-1px)}
+.weather-icon{font-size:2rem;line-height:1}
+.weather-info{flex:1;min-width:0}
+.weather-city{font-size:.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:.15rem}
+.weather-city.sea{color:var(--sea)}
+.weather-temp{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;line-height:1.1}
+.weather-desc{font-size:.78rem;color:var(--ink-light);font-weight:300;margin-top:.1rem;text-transform:capitalize}
+.weather-details{display:flex;gap:.6rem;margin-top:.4rem;flex-wrap:wrap}
+.weather-detail{font-size:.65rem;color:var(--ink-light);opacity:.7;display:flex;align-items:center;gap:3px}
+.weather-loading{text-align:center;padding:.5rem;font-size:.75rem;color:var(--ink-light);opacity:.5}
+@media(max-width:600px){.weather-inner{grid-template-columns:1fr}.weather-card{padding:.8rem 1rem}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 @media(max-width:600px){.timeline{padding-left:2.2rem}.timeline-dot{left:-1.85rem}.card{padding:1.2rem}.nav-tab{padding:.7rem .3rem;font-size:.72rem}.tab-day{font-size:.55rem;letter-spacing:1px}.tab-title{font-size:.65rem}.info-grid{grid-template-columns:1fr}.maps-badge span{display:none}}
@@ -75,6 +89,13 @@ footer{text-align:center;padding:2rem;font-size:.75rem;color:var(--ink-light);op
   </div>
   <a href="#days" class="hero-arrow" onclick="document.getElementById('days').scrollIntoView({behavior:'smooth'});return false;">↓</a>
 </section>
+
+<div class="weather-bar" id="weather-bar">
+  <div class="weather-inner" id="weather-container">
+    <div class="weather-card"><div class="weather-loading">Hava durumu yükleniyor...</div></div>
+    <div class="weather-card"><div class="weather-loading">Hava durumu yükleniyor...</div></div>
+  </div>
+</div>
 
 <nav class="nav-bar" id="days">
   <div class="nav-inner">
@@ -149,6 +170,46 @@ footer{text-align:center;padding:2rem;font-size:.75rem;color:var(--ink-light);op
 
 <script>
 document.querySelectorAll('.maps-badge.mi').forEach(el=>{el.insertAdjacentHTML('afterbegin','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>')});
+// Live Weather via Open-Meteo (free, no API key)
+const weatherCities=[
+  {name:'Çanakkale',lat:40.1553,lon:26.4142,cls:''},
+  {name:'Gökçeada',lat:40.1954,lon:25.9051,cls:'sea'}
+];
+const wmoIcons={0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',56:'🌧️',57:'🌧️',61:'🌧️',63:'🌧️',65:'🌧️',66:'🌧️',67:'🌧️',71:'🌨️',73:'🌨️',75:'🌨️',77:'🌨️',80:'🌦️',81:'🌧️',82:'🌧️',85:'🌨️',86:'🌨️',95:'⛈️',96:'⛈️',99:'⛈️'};
+const wmoDesc={0:'Açık',1:'Az bulutlu',2:'Parçalı bulutlu',3:'Bulutlu',45:'Sisli',48:'Kırağılı sis',51:'Hafif çisenti',53:'Çisenti',55:'Yoğun çisenti',61:'Hafif yağmur',63:'Yağmurlu',65:'Şiddetli yağmur',71:'Hafif kar',73:'Kar yağışlı',75:'Yoğun kar',80:'Sağanak',81:'Kuvvetli sağanak',82:'Şiddetli sağanak',95:'Gök gürültülü fırtına',96:'Dolu ile fırtına',99:'Şiddetli dolu'};
+
+async function fetchWeather(){
+  const container=document.getElementById('weather-container');
+  try{
+    const promises=weatherCities.map(c=>
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m&timezone=Europe%2FIstanbul`).then(r=>r.json())
+    );
+    const results=await Promise.all(promises);
+    container.innerHTML=results.map((data,i)=>{
+      const cur=data.current;
+      const icon=wmoIcons[cur.weather_code]||'🌡️';
+      const desc=wmoDesc[cur.weather_code]||'Bilinmiyor';
+      const city=weatherCities[i];
+      return `<div class="weather-card">
+        <div class="weather-icon">${icon}</div>
+        <div class="weather-info">
+          <div class="weather-city ${city.cls}">${city.name}</div>
+          <div class="weather-temp">${Math.round(cur.temperature_2m)}°C</div>
+          <div class="weather-desc">${desc}</div>
+          <div class="weather-details">
+            <span class="weather-detail">🌡️ Hissedilen ${Math.round(cur.apparent_temperature)}°</span>
+            <span class="weather-detail">💨 ${Math.round(cur.wind_speed_10m)} km/s</span>
+            <span class="weather-detail">💧 %${cur.relative_humidity_2m}</span>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }catch(e){
+    container.innerHTML='<div class="weather-card" style="grid-column:1/-1"><div class="weather-loading">Hava durumu yüklenemedi</div></div>';
+  }
+}
+fetchWeather();
+
 function showDay(i){document.querySelectorAll('.day-section').forEach((s,j)=>s.classList.toggle('active',j===i));document.querySelectorAll('.nav-tab').forEach((t,j)=>t.classList.toggle('active',j===i));const a=document.querySelector('.day-section.active');if(a)a.querySelectorAll('.timeline-item').forEach(item=>{item.style.animation='none';item.offsetHeight;item.style.animation=''})}
 </script>
 </body>
