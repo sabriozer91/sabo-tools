@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sabo Tools</title>
-  <meta name="description" content="Easily resize, convert between formats, or remove backgrounds with AI. Free, fast, and runs entirely in your browser.">
+  <title>Sabri Özer | Teknoloji Araçları</title>
+  <meta name="description" content="Teknoloji ile ilgili her türlü soruyu sorabileceğiniz, güçlü araçlarla zenginleştirilmiş tek platform. Ücretsiz, hızlı ve tamamen tarayıcınızda çalışır.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Sabo Tools">
-  <meta property="og:description" content="Easily resize, convert between formats, or remove backgrounds with AI.">
+  <meta property="og:title" content="Sabri Özer | Teknoloji Araçları">
+  <meta property="og:description" content="Teknoloji ile ilgili her türlü soruyu sorabileceğiniz, güçlü araçlarla zenginleştirilmiş tek platform.">
   <meta property="og:image" content="https://sabriozer.com/og-image.png">
   <meta property="og:url" content="https://sabriozer.com">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sabo Tools">
-  <meta name="twitter:description" content="Easily resize, convert between formats, or remove backgrounds with AI.">
+  <meta name="twitter:title" content="Sabri Özer | Teknoloji Araçları">
+  <meta name="twitter:description" content="Teknoloji ile ilgili her türlü soruyu sorabileceğiniz, güçlü araçlarla zenginleştirilmiş tek platform.">
   <meta name="twitter:image" content="https://sabriozer.com/og-image.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -91,18 +91,28 @@
 
     header .brand-text {
       font-family: 'Raleway', sans-serif;
-      font-weight: 900;
-      font-size: 22px;
+      font-weight: 700;
+      font-size: 16px;
       letter-spacing: 2px;
       line-height: 1;
     }
 
-    header .brand-sabo {
-      color: #E8650A;
+    header .brand-sabri {
+      color: #ea580c;
     }
 
-    header .brand-tools {
-      color: #9E3F08;
+    header .brand-ozer {
+      color: #ea580c;
+    }
+
+    .header-brand img {
+      height: 25px;
+      width: auto;
+    }
+
+    .header-brand h1 {
+      margin: 0;
+      padding: 0;
     }
 
     .header-nav {
@@ -117,7 +127,7 @@
       border-radius: 8px;
       font-size: 14px;
       font-weight: 500;
-      color: #9ca3af;
+      color: #ffffff;
       cursor: pointer;
       border: none;
       background: none;
@@ -263,10 +273,10 @@
       display: flex;
       align-items: flex-end;
       gap: 0;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(18, 18, 26, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
       padding: 8px 8px 8px 20px;
       transition: border-color 0.2s;
@@ -322,7 +332,15 @@
 
     .ask-success {
       text-align: center;
-      padding: 40px 20px;
+      padding: 40px 32px;
+      background: rgba(18, 18, 26, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      max-width: 480px;
+      margin: 0 auto;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     }
 
     .ask-success h3 {
@@ -1165,7 +1183,8 @@
 <header>
   <div class="header-inner">
     <a class="header-brand" onclick="navigateTo('home')">
-      <span class="brand-text"><span class="brand-sabo">SABO</span> <span class="brand-tools">TOOLS</span></span>
+      <img src="sabriozeronlylogo.png" alt="Sabri Özer">
+      <h1 class="brand-text"><span class="brand-sabri">SABRİ</span> <span class="brand-ozer">ÖZER</span></h1>
     </a>
     <nav class="header-nav">
       <div class="tools-dropdown">
@@ -1693,7 +1712,7 @@ function sendWithEmail() {
   formData.append('email', email);
   formData.append('message', pendingMessage);
   formData.append('_captcha', 'false');
-  formData.append('_subject', 'New message from Sabo Tools');
+  formData.append('_subject', 'New message from sabriozer.com');
 
   fetch('https://formsubmit.co/ajax/sabriozer91@gmail.com', {
     method: 'POST',

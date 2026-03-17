@@ -1,14 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@900&amp;display=swap');
-    </style>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="#0a0a0f"/>
-  <text x="32" y="48"
-    text-anchor="middle"
-    font-family="'Raleway', 'Segoe UI', 'Helvetica Neue', sans-serif"
-    font-weight="900"
-    font-size="48"
-    fill="#E8650A">S</text>
+  <rect width="64" height="64" rx="12" ry="12" fill="#0a0a0f"/>
+  <!--
+    SO Monogram - infinity symbol where S flows into O.
+    Single continuous cubic bezier path forming a figure-8.
+    Left lobe is taller (S character), right lobe is rounder (O character).
+  -->
+  <path d="
+    M 32 32
+    C 26 20, 10 18, 10 30
+    C 10 42, 26 44, 32 32
+    C 38 20, 54 18, 54 32
+    C 54 46, 38 46, 32 32
+  " fill="none" stroke="#f97316" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
