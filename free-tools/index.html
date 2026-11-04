@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CK5CVQYGZ5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CK5CVQYGZ5');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Tools | Online Image Tools</title>
+  <meta name="description" content="Free online image tools — resize, convert, remove backgrounds, and compress images. Fast, private, and runs entirely in your browser.">
+  <link rel="canonical" href="https://sabriozer.com/free-tools/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Tools | Online Image Tools">
+  <meta property="og:description" content="Free online image tools — resize, convert, remove backgrounds, and compress images. Runs entirely in your browser.">
+  <meta property="og:image" content="https://sabriozer.com/og-image.png">
+  <meta property="og:url" content="https://sabriozer.com/free-tools/">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Tools | Online Image Tools">
+  <meta name="twitter:description" content="Free online image tools — resize, convert, remove backgrounds, and compress images. Runs entirely in your browser.">
+  <meta name="twitter:image" content="https://sabriozer.com/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Raleway:wght@800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0f;
+      color: #e2e2e8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Spline 3D BG */
+    #spline-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    #spline-bg spline-viewer {
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      #spline-bg {
+        touch-action: none;
+        overflow: hidden;
+      }
+    }
+
+    #spline-bg spline-viewer::part(logo) {
+      display: none;
+    }
+
+    /* Header */
+    header {
+      background: rgba(12, 12, 18, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(249, 115, 22, 0.15);
+      position: relative;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    header .brand-text {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+
+    header .brand-sabri {
+      color: #ea580c;
+    }
+
+    header .brand-ozer {
+      color: #ea580c;
+    }
+
+    .header-brand h1 {
+      margin: 0;
+      padding: 0;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+    }
+
+    .nav-link {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #ffffff;
+      cursor: pointer;
+      border: none;
+      background: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: #e2e2e8;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
+      color: #f97316;
+      background: rgba(249, 115, 22, 0.1);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 0 16px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ===== TOOL TITLE ===== */
+    .tool-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 24px 0;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.8), 0 0 24px rgba(0,0,0,0.6);
+    }
+
+    /* ===== TOOLS DROPDOWN ===== */
+    .tools-dropdown {
+      position: relative;
+    }
+
+    .dropdown-trigger {
+      display: flex;
+      align-items: center;
+    }
+
+    .tools-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 220px;
+      background: rgba(18, 18, 26, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      z-index: 100;
+    }
+
+    .tools-dropdown-menu.active {
+      display: block;
+      animation: dropdownIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes dropdownIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #d1d5db;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+    }
+
+    .dropdown-item svg {
+      pointer-events: none;
+      flex-shrink: 0;
+    }
+
+    .dropdown-item:hover {
+      background: rgba(249, 115, 22, 0.1);
+      color: #f97316;
+    }
+
+    .dropdown-item.active {
+      background: rgba(249, 115, 22, 0.15);
+      color: #f97316;
+    }
+
+    /* ===== HOME VIEW — TOOL CARDS ===== */
+    .home-view { display: block; }
+
+    .tools-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px 40px;
+      min-height: calc(100vh - 200px);
+    }
+
+    .tools-hero-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      text-align: center;
+      text-shadow: 0 0 12px rgba(0, 0, 0, 0.9), 0 0 24px rgba(0, 0, 0, 0.7);
+    }
+
+    .tools-hero-desc {
+      font-size: 16px;
+      color: #9ca3af;
+      text-align: center;
+      margin-bottom: 48px;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .tool-card {
+      position: relative;
+      background: rgba(18, 18, 26, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 28px 24px;
+      cursor: pointer;
+      transition:
+        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    /* Only the hovered card grows by 10%; the other cards stay as they are.
+       Mouse/trackpad only, so a tap on a phone doesn't leave a card stuck enlarged. */
+    @media (hover: hover) {
+      .tool-card:hover {
+        z-index: 1;
+        transform: scale(1.1);
+        border-color: rgba(249, 115, 22, 0.4);
+        box-shadow: 0 8px 32px rgba(249, 115, 22, 0.1);
+      }
+    }
+
+    .tool-card-icon {
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .tool-card-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .tool-card-desc {
+      font-size: 13px;
+      color: #9ca3af;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 700px) {
+      .tools-hero-title { font-size: 28px; }
+      .tools-grid { grid-template-columns: 1fr; max-width: 400px; }
+    }
+
+    /* ===== VIEWS ===== */
+    .view { display: none; }
+    .view.active {
+      display: block;
+      animation: viewFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes viewFadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .view.active > * {
+      animation: viewSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .view.active > *:nth-child(1) { animation-delay: 0s; }
+    .view.active > *:nth-child(2) { animation-delay: 0.06s; }
+    .view.active > *:nth-child(3) { animation-delay: 0.12s; }
+    .view.active > *:nth-child(4) { animation-delay: 0.18s; }
+    .view.active > *:nth-child(5) { animation-delay: 0.24s; }
+
+    @keyframes viewSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== UPLOAD AREA (shared style) ===== */
+    .upload-area {
+      border: 2px dashed rgba(249, 115, 22, 0.3);
+      border-radius: 16px;
+      padding: 60px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: rgba(18, 18, 26, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .upload-area:hover, .upload-area.drag-over {
+      border-color: #f97316;
+      background: rgba(12, 12, 20, 0.8);
+    }
+
+    .upload-area svg { margin-bottom: 16px; }
+
+    .upload-area h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .upload-area p {
+      color: #9ca3af;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .upload-btn {
+      display: inline-block;
+      background: #f97316;
+      color: #fff;
+      padding: 10px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .upload-btn:hover { background: #ea580c; }
+
+    /* ===== EDITOR (resizer) ===== */
+    .editor {
+      display: none;
+      background: rgba(18, 18, 26, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .editor.active { display: block; }
+
+    .editor-top {
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      flex-wrap: wrap;
+    }
+
+    .preview-panel {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .preview-wrapper {
+      width: 100%;
+      max-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: repeating-conic-gradient(#1a1a24 0% 25%, #12121a 0% 50%) 50% / 16px 16px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .preview-wrapper img {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+    }
+
+    .file-info {
+      font-size: 13px;
+      color: #9ca3af;
+      text-align: center;
+    }
+
+    .file-info span { font-weight: 600; color: #f97316; }
+
+    .controls-panel {
+      width: 300px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .editor-top { flex-direction: column; }
+      .controls-panel { width: 100%; }
+      .header-nav { gap: 0; }
+      .nav-link { padding: 8px 10px; font-size: 13px; }
+      .tools-dropdown-menu { right: -8px; min-width: 200px; }
+    }
+
+    /* Mode Tabs */
+    .mode-tabs {
+      display: flex;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mode-tab {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: rgba(255, 255, 255, 0.03);
+      color: #9ca3af;
+      transition: all 0.2s;
+    }
+
+    .mode-tab.active {
+      background: #f97316;
+      color: #fff;
+    }
+
+    /* Dimension inputs */
+    .dim-group { display: flex; flex-direction: column; gap: 12px; }
+
+    .dim-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dim-row label {
+      width: 56px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #d1d5db;
+    }
+
+    .dim-row input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      transition: border 0.2s;
+      background: rgba(255, 255, 255, 0.04);
+      color: #e2e2e8;
+    }
+
+    .dim-row input:focus { border-color: #f97316; }
+
+    .dim-row .unit {
+      font-size: 13px;
+      color: #6b7280;
+      width: 24px;
+    }
+
+    /* Aspect ratio toggle */
+    .aspect-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #d1d5db;
+      user-select: none;
+    }
+
+    .aspect-toggle input { display: none; }
+
+    .lock-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.2s;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .aspect-toggle input:checked ~ .lock-icon {
+      background: #f97316;
+      border-color: #f97316;
+    }
+
+    .aspect-toggle input:checked ~ .lock-icon svg { stroke: #fff; }
+
+    /* Percentage input */
+    .pct-group { display: flex; flex-direction: column; gap: 12px; }
+
+    .pct-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pct-row input[type="range"] {
+      flex: 1;
+      accent-color: #f97316;
+    }
+
+    .pct-row input[type="number"] {
+      width: 70px;
+      padding: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      font-size: 14px;
+      text-align: center;
+      outline: none;
+      background: rgba(255, 255, 255, 0.04);
+      color: #e2e2e8;
+    }
+
+    .pct-row input[type="number"]:focus { border-color: #f97316; }
+
+    .pct-row .unit { font-size: 13px; color: #6b7280; }
+
+    .new-dimensions {
+      font-size: 13px;
+      color: #9ca3af;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 6px;
+    }
+
+    .new-dimensions span { font-weight: 600; color: #f97316; }
+
+    /* Format select */
+    .format-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .format-group label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #d1d5db;
+    }
+
+    .format-group select {
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.04);
+      color: #e2e2e8;
+      cursor: pointer;
+    }
+
+    .format-group select:focus { border-color: #f97316; }
+
+    /* Quality slider */
+    .quality-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .quality-group label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #d1d5db;
+    }
+
+    .quality-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quality-row input[type="range"] {
+      flex: 1;
+      accent-color: #f97316;
+    }
+
+    .quality-val {
+      font-size: 14px;
+      font-weight: 600;
+      color: #f97316;
+      width: 36px;
+      text-align: center;
+    }
+
+    /* Action buttons */
+    .actions {
+      display: flex;
+      gap: 12px;
+      padding-top: 4px;
+    }
+
+    .btn-primary {
+      flex: 1;
+      padding: 12px;
+      background: #f97316;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: #ea580c; }
+
+    .btn-secondary {
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #d1d5db;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
+
+    /* Result */
+    .result {
+      display: none;
+      padding: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: center;
+    }
+
+    .result.active { display: block; }
+
+    .result-info {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .result-item { text-align: center; }
+
+    .result-item .label {
+      font-size: 12px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .result-item .value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e2e2e8;
+    }
+
+    .result-item .value.green { color: #f97316; }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 32px;
+      background: #f97316;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-download:hover { background: #ea580c; }
+
+    /* Canvas hidden */
+    #resize-canvas, #convert-canvas, #comp-canvas { display: none; }
+
+    /* Compressor */
+    .comp-editor {
+      display: none;
+      background: rgba(18, 18, 26, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .comp-editor.active { display: block; }
+
+    .comp-editor-inner {
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      flex-wrap: wrap;
+    }
+
+    .comp-controls {
+      width: 300px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .comp-size-compare {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .comp-size-item {
+      flex: 1;
+      text-align: center;
+    }
+
+    .comp-size-item .label {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .comp-size-item .value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e2e2e8;
+    }
+
+    .comp-size-item .value.green { color: #22c55e; }
+
+    .comp-size-arrow {
+      color: #f97316;
+      flex-shrink: 0;
+    }
+
+    .comp-savings {
+      text-align: center;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      font-weight: 600;
+      color: #22c55e;
+      font-size: 15px;
+    }
+
+    @media (max-width: 700px) {
+      .comp-editor-inner { flex-direction: column; }
+      .comp-controls { width: 100%; }
+    }
+
+    /* ===== CONVERTER ===== */
+    .conv-editor {
+      display: none;
+      background: rgba(18, 18, 26, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .conv-editor.active { display: block; }
+
+    .conv-editor-inner {
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      flex-wrap: wrap;
+    }
+
+    .conv-controls {
+      width: 300px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .conv-editor-inner { flex-direction: column; }
+      .conv-controls { width: 100%; }
+    }
+
+    .conv-format-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      background: rgba(249, 115, 22, 0.12);
+      color: #f97316;
+      border: 1px solid rgba(249, 115, 22, 0.2);
+    }
+
+    .conv-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      font-size: 20px;
+      padding: 8px 0;
+    }
+
+    /* ===== BG REMOVER ===== */
+    .bg-editor {
+      display: none;
+      background: rgba(18, 18, 26, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .bg-editor.active { display: block; }
+
+    .bg-editor-inner {
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      flex-wrap: wrap;
+    }
+
+    .bg-preview-compare {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .bg-compare-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .bg-compare-item {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bg-compare-item .compare-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .bg-compare-item .preview-wrapper {
+      width: 100%;
+      max-height: 350px;
+    }
+
+    .bg-controls {
+      width: 300px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .bg-info-card {
+      padding: 16px;
+      background: rgba(249, 115, 22, 0.06);
+      border: 1px solid rgba(249, 115, 22, 0.15);
+      border-radius: 10px;
+      font-size: 13px;
+      color: #d1d5db;
+      line-height: 1.6;
+    }
+
+    .bg-info-card strong {
+      color: #f97316;
+    }
+
+    .bg-progress {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bg-progress.active { display: flex; }
+
+    .bg-progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .bg-progress-fill {
+      height: 100%;
+      background: #f97316;
+      border-radius: 3px;
+      transition: width 0.3s;
+      width: 0%;
+    }
+
+    .bg-progress-text {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .bg-editor-inner { flex-direction: column; }
+      .bg-controls { width: 100%; }
+      .bg-compare-row { flex-direction: column; }
+    }
+
+    /* ===== ARCHIVED: Email popup modal CSS =====
+    .email-modal-overlay { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); align-items: center; justify-content: center; }
+    .email-modal-overlay.active { display: flex; }
+    .email-modal { background: rgba(18,18,26,0.95); backdrop-filter: blur(24px) saturate(1.4); -webkit-backdrop-filter: blur(24px) saturate(1.4); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 32px; width: 90%; max-width: 420px; box-shadow: 0 16px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06); animation: modalIn 0.3s cubic-bezier(0.16,1,0.3,1) both; }
+    @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    .email-modal h3 { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+    .email-modal p { font-size: 14px; color: #9ca3af; margin-bottom: 20px; }
+    .email-modal-input { width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #e2e2e8; font-size: 15px; font-family: inherit; outline: none; transition: border-color 0.2s; margin-bottom: 16px; }
+    .email-modal-input:focus { border-color: rgba(249,115,22,0.5); }
+    .email-modal-input::placeholder { color: #6b7280; }
+    .email-modal-actions { display: flex; gap: 10px; }
+    .email-modal-actions .btn-primary { flex: 1; }
+    .email-modal-actions .btn-cancel { padding: 12px 20px; background: rgba(255,255,255,0.05); color: #9ca3af; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; font-size: 14px; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .email-modal-actions .btn-cancel:hover { background: rgba(255,255,255,0.1); color: #e2e2e8; }
+    ===== END ARCHIVED ===== */
+
+    /* Loading overlay */
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .loading-overlay.active {
+      display: flex;
+    }
+    .loading-overlay dotlottie-player {
+      width: 180px;
+      height: 180px;
+    }
+    .loading-overlay .loading-text {
+      font-size: 16px;
+      font-weight: 500;
+      color: #e2e2e8;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Spline 3D Background -->
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+<!-- Lottie Player -->
+<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loading-overlay">
+  <dotlottie-player src="cat-loading.json" background="transparent" speed="1" loop autoplay></dotlottie-player>
+  <div class="loading-text" id="loading-text">Converting...</div>
+</div>
+<div id="spline-bg">
+  <spline-viewer url="https://prod.spline.design/IGqPp9Ljk3J69L10/scene.splinecode" loading-anim-type="none" events-target="none"></spline-viewer>
+</div>
+
+<header>
+  <div class="header-inner">
+    <a class="header-brand" href="/">
+      <h1 class="brand-text"><span class="brand-sabri">SABRİ</span> <span class="brand-ozer">ÖZER</span></h1>
+    </a>
+    <nav class="header-nav">
+      <div class="tools-dropdown">
+        <button class="nav-link dropdown-trigger" onclick="toggleDropdown(event)">
+          Tools
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px;vertical-align:middle"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="tools-dropdown-menu" id="tools-dropdown-menu">
+          <div class="dropdown-item" data-nav="resizer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M15 3v18"/><path d="M3 15h18"/></svg>
+            <span>Image Resizer</span>
+          </div>
+          <div class="dropdown-item" data-nav="converter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+            <span>Image Converter</span>
+          </div>
+          <div class="dropdown-item" data-nav="bgremover">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1" width="14" height="14" rx="2"/><rect x="9" y="9" width="14" height="14" rx="2"/></svg>
+            <span>BG Remover</span>
+          </div>
+          <div class="dropdown-item" data-nav="compressor">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12"/><path d="M6 21h12"/><rect x="5" y="7" width="14" height="10" rx="2"/><path d="M9 12h6"/></svg>
+            <span>Compressor</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ===== HOME VIEW ===== -->
+  <div class="view home-view active" id="view-home">
+    <div class="tools-hero">
+      <h1 class="tools-hero-title">Choose your Tool</h1>
+      <p class="tools-hero-desc">Free, fast, and runs entirely in your browser.</p>
+      <div class="tools-grid">
+        <div class="tool-card" onclick="navigateTo('resizer')">
+          <div class="tool-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M15 3v18"/><path d="M3 15h18"/></svg>
+          </div>
+          <h3 class="tool-card-title">Image Resizer</h3>
+          <p class="tool-card-desc">Resize your images to any dimension you need.</p>
+        </div>
+        <div class="tool-card" onclick="navigateTo('converter')">
+          <div class="tool-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+          </div>
+          <h3 class="tool-card-title">Image Converter</h3>
+          <p class="tool-card-desc">Convert images to WebP, AVIF, PNG, or JPEG formats.</p>
+        </div>
+        <div class="tool-card" onclick="navigateTo('bgremover')">
+          <div class="tool-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1" width="14" height="14" rx="2"/><rect x="9" y="9" width="14" height="14" rx="2"/></svg>
+          </div>
+          <h3 class="tool-card-title">BG Remover</h3>
+          <p class="tool-card-desc">Automatically remove backgrounds from your images.</p>
+        </div>
+        <div class="tool-card" onclick="navigateTo('compressor')">
+          <div class="tool-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12"/><path d="M6 21h12"/><rect x="5" y="7" width="14" height="10" rx="2"/><path d="M9 12h6"/></svg>
+          </div>
+          <h3 class="tool-card-title">Compressor</h3>
+          <p class="tool-card-desc">Compress your images while preserving quality.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ARCHIVED: ASK FORM (What can I help with?) =====
+  <div class="view home-view active" id="view-home">
+    <div class="ask-container">
+      <h2 class="ask-title">What can I help with?</h2>
+      <form id="ask-form" class="ask-form">
+        <div class="ask-input-row">
+          <textarea name="message" id="ask-message" class="ask-input" placeholder="Ask anything..." rows="1" required></textarea>
+          <button type="submit" class="ask-submit" id="ask-submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </form>
+      <div class="ask-success" id="ask-success" style="display:none">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h3>Message sent!</h3>
+        <p>Thank you for reaching out. I'll get back to you soon.</p>
+        <button class="btn-secondary" onclick="resetAskForm()" style="margin-top:16px">Send another message</button>
+      </div>
+    </div>
+  </div>
+  ===== END ARCHIVED ===== -->
+
+  <!-- ===== RESIZER VIEW ===== -->
+  <div class="view" id="view-resizer">
+    <h1 class="tool-title">Image Resizer</h1>
+    <div class="upload-area" id="upload-area">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      <h2>Select Image</h2>
+      <p>or drag and drop (WebP, PNG, JPG)</p>
+      <button class="upload-btn" onclick="document.getElementById('file-input').click()">Choose File</button>
+      <input type="file" id="file-input" accept="image/webp,image/png,image/jpeg,image/jpg" style="display:none">
+    </div>
+
+    <div class="editor" id="editor">
+      <div class="editor-top">
+        <div class="preview-panel">
+          <div class="preview-wrapper">
+            <img id="preview-img" alt="Preview">
+          </div>
+          <div class="file-info" id="file-info"></div>
+        </div>
+        <div class="controls-panel">
+          <div class="mode-tabs">
+            <button class="mode-tab active" data-mode="dimensions">Dimensions</button>
+            <button class="mode-tab" data-mode="percentage">Percentage (%)</button>
+          </div>
+          <div class="dim-group" id="dim-mode">
+            <div class="dim-row">
+              <label for="input-w">Width</label>
+              <input type="number" id="input-w" min="1" max="10000">
+              <span class="unit">px</span>
+            </div>
+            <div class="dim-row">
+              <label for="input-h">Height</label>
+              <input type="number" id="input-h" min="1" max="10000">
+              <span class="unit">px</span>
+            </div>
+            <label class="aspect-toggle">
+              <input type="checkbox" id="lock-ratio" checked>
+              <div class="lock-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              Keep aspect ratio
+            </label>
+          </div>
+          <div class="pct-group" id="pct-mode" style="display:none">
+            <div class="pct-row">
+              <input type="range" id="pct-slider" min="1" max="500" value="100">
+              <input type="number" id="pct-input" min="1" max="500" value="100">
+              <span class="unit">%</span>
+            </div>
+            <div class="new-dimensions" id="new-dims">
+              New size: <span id="pct-dims-text">-</span>
+            </div>
+          </div>
+          <div class="format-group">
+            <label for="output-format">Output Format</label>
+            <select id="output-format">
+              <option value="webp">WebP</option>
+              <option value="avif">AVIF</option>
+              <option value="png">PNG</option>
+              <option value="jpeg">JPEG</option>
+            </select>
+          </div>
+          <div class="quality-group" id="quality-group">
+            <label>Quality</label>
+            <div class="quality-row">
+              <input type="range" id="quality-slider" min="10" max="100" value="90">
+              <span class="quality-val" id="quality-val">90</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn-primary" id="btn-resize">Resize</button>
+            <button class="btn-secondary" id="btn-reset">Reset</button>
+          </div>
+        </div>
+      </div>
+      <div class="result" id="result">
+        <div class="result-info">
+          <div class="result-item">
+            <div class="label">Original</div>
+            <div class="value" id="res-original">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">New Size</div>
+            <div class="value" id="res-new">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">File Size</div>
+            <div class="value green" id="res-size">-</div>
+          </div>
+        </div>
+        <a class="btn-download" id="btn-download" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONVERTER VIEW ===== -->
+  <div class="view" id="view-converter">
+    <h1 class="tool-title">Image Converter</h1>
+    <div class="upload-area" id="conv-upload-area">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      <h2>Select Image to Convert</h2>
+      <p>or drag and drop (WebP, PNG, JPG, GIF, BMP, AVIF, TIFF, SVG)</p>
+      <button class="upload-btn" onclick="document.getElementById('conv-file-input').click()">Choose File</button>
+      <input type="file" id="conv-file-input" accept="image/*" style="display:none">
+    </div>
+
+    <div class="conv-editor" id="conv-editor">
+      <div class="conv-editor-inner">
+        <div class="preview-panel">
+          <div class="preview-wrapper">
+            <img id="conv-preview-img" alt="Preview">
+          </div>
+          <div class="file-info" id="conv-file-info"></div>
+        </div>
+        <div class="conv-controls">
+          <div style="text-align:center">
+            <div class="conv-format-badge" id="conv-source-format">PNG</div>
+            <div class="conv-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <polyline points="19 12 12 19 5 12"/>
+              </svg>
+            </div>
+          </div>
+          <div class="format-group">
+            <label for="conv-output-format">Target Format</label>
+            <select id="conv-output-format">
+              <option value="webp">WebP</option>
+              <option value="avif">AVIF</option>
+              <option value="png">PNG</option>
+              <option value="jpeg">JPEG</option>
+            </select>
+          </div>
+          <div class="quality-group" id="conv-quality-group">
+            <label>Quality</label>
+            <div class="quality-row">
+              <input type="range" id="conv-quality-slider" min="10" max="100" value="85">
+              <span class="quality-val" id="conv-quality-val">85</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn-primary" id="btn-convert">Convert</button>
+            <button class="btn-secondary" id="btn-conv-reset">Reset</button>
+          </div>
+        </div>
+      </div>
+      <div class="result" id="conv-result">
+        <div class="result-info">
+          <div class="result-item">
+            <div class="label">Original Format</div>
+            <div class="value" id="conv-res-original">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">New Format</div>
+            <div class="value" id="conv-res-new">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">Original Size</div>
+            <div class="value" id="conv-res-orig-size">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">New Size</div>
+            <div class="value green" id="conv-res-new-size">-</div>
+          </div>
+        </div>
+        <a class="btn-download" id="btn-conv-download" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BG REMOVER VIEW ===== -->
+  <div class="view" id="view-bgremover">
+    <h1 class="tool-title">BG Remover</h1>
+    <div class="upload-area" id="bg-upload-area">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      <h2>Select Image to Remove Background</h2>
+      <p>or drag and drop (PNG, JPG, WebP)</p>
+      <button class="upload-btn" onclick="document.getElementById('bg-file-input').click()">Choose File</button>
+      <input type="file" id="bg-file-input" accept="image/png,image/jpeg,image/jpg,image/webp" style="display:none">
+    </div>
+
+    <div class="bg-editor" id="bg-editor">
+      <div class="bg-editor-inner">
+        <div class="bg-preview-compare">
+          <div class="bg-compare-row">
+            <div class="bg-compare-item">
+              <span class="compare-label">Original</span>
+              <div class="preview-wrapper">
+                <img id="bg-preview-original" alt="Original">
+              </div>
+            </div>
+            <div class="bg-compare-item">
+              <span class="compare-label">Result</span>
+              <div class="preview-wrapper">
+                <img id="bg-preview-result" alt="Result" style="display:none">
+              </div>
+            </div>
+          </div>
+          <div class="file-info" id="bg-file-info"></div>
+        </div>
+        <div class="bg-controls">
+          <div class="bg-info-card">
+            <strong>AI Background Removal</strong><br>
+            Automatically removes backgrounds from people and pet photos.
+          </div>
+          <div class="bg-progress" id="bg-progress">
+            <div class="bg-progress-bar">
+              <div class="bg-progress-fill" id="bg-progress-fill"></div>
+            </div>
+            <div class="bg-progress-text" id="bg-progress-text">Preparing...</div>
+          </div>
+          <div class="actions" id="bg-actions">
+            <button class="btn-primary" id="btn-bg-remove">Remove Background</button>
+            <button class="btn-secondary" id="btn-bg-reset">Reset</button>
+          </div>
+          <div class="actions" id="bg-actions-done" style="display:none">
+            <button class="btn-primary" id="btn-bg-new" style="width:100%">Remove Another Background</button>
+          </div>
+        </div>
+      </div>
+      <div class="result" id="bg-result">
+        <div class="result-info">
+          <div class="result-item">
+            <div class="label">Original Size</div>
+            <div class="value" id="bg-res-orig-size">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">New Size</div>
+            <div class="value green" id="bg-res-new-size">-</div>
+          </div>
+          <div class="result-item">
+            <div class="label">Format</div>
+            <div class="value" id="bg-res-format">PNG</div>
+          </div>
+        </div>
+        <a class="btn-download" id="btn-bg-download" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== COMPRESSOR VIEW ===== -->
+  <div class="view" id="view-compressor">
+    <h1 class="tool-title">Compressor</h1>
+    <div class="upload-area" id="comp-upload-area">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      <h2>Select Image to Compress</h2>
+      <p>or drag and drop (PNG, JPG, WebP, GIF, BMP, AVIF)</p>
+      <button class="upload-btn" onclick="document.getElementById('comp-file-input').click()">Choose File</button>
+      <input type="file" id="comp-file-input" accept="image/*" style="display:none">
+    </div>
+
+    <div class="comp-editor" id="comp-editor">
+      <div class="comp-editor-inner">
+        <div class="preview-panel">
+          <div class="preview-wrapper">
+            <img id="comp-preview-img" alt="Preview">
+          </div>
+          <div class="file-info" id="comp-file-info"></div>
+        </div>
+        <div class="comp-controls">
+          <div class="format-group">
+            <label for="comp-output-format">Output Format</label>
+            <select id="comp-output-format">
+              <option value="webp">WebP</option>
+              <option value="avif">AVIF</option>
+              <option value="jpeg">JPEG</option>
+              <option value="png">PNG</option>
+            </select>
+          </div>
+          <div class="quality-group" id="comp-quality-group">
+            <label>Quality</label>
+            <div class="quality-row">
+              <input type="range" id="comp-quality-slider" min="10" max="100" value="75">
+              <span class="quality-val" id="comp-quality-val">75</span>
+            </div>
+          </div>
+          <div class="comp-size-compare" id="comp-size-compare" style="display:none">
+            <div class="comp-size-item">
+              <div class="label">Original</div>
+              <div class="value" id="comp-orig-size">-</div>
+            </div>
+            <div class="comp-size-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+            <div class="comp-size-item">
+              <div class="label">Compressed</div>
+              <div class="value green" id="comp-new-size">-</div>
+            </div>
+          </div>
+          <div class="comp-savings" id="comp-savings" style="display:none"></div>
+          <div class="actions" id="comp-actions">
+            <button class="btn-primary" id="btn-compress">Compress</button>
+            <button class="btn-secondary" id="btn-comp-reset">Reset</button>
+          </div>
+          <div class="actions" id="comp-actions-done" style="display:none">
+            <button class="btn-primary" id="btn-comp-new" style="width:100%">New Compression</button>
+          </div>
+        </div>
+      </div>
+      <div class="result" id="comp-result">
+        <a class="btn-download" id="btn-comp-download" download>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== ARCHIVED: Email Modal =====
+<div class="email-modal-overlay" id="email-modal">
+  <div class="email-modal">
+    <h3>Almost there!</h3>
+    <p>Enter your email so I can get back to you.</p>
+    <input type="email" class="email-modal-input" id="email-modal-input" placeholder="your@email.com" autofocus>
+    <div class="email-modal-actions">
+      <button class="btn-cancel" id="email-modal-cancel">Cancel</button>
+      <button class="btn-primary" id="email-modal-send">Send</button>
+    </div>
+  </div>
+</div>
+===== END ARCHIVED ===== -->
+
+<canvas id="resize-canvas"></canvas>
+<canvas id="convert-canvas"></canvas>
+<canvas id="comp-canvas"></canvas>
+
+<script>
+/* ===== TOOLS DROPDOWN ===== */
+function toggleDropdown(e) {
+  e.stopPropagation();
+  const menu = document.getElementById('tools-dropdown-menu');
+  menu.classList.toggle('active');
+}
+
+// Dropdown item clicks — event delegation
+document.getElementById('tools-dropdown-menu').addEventListener('click', function(e) {
+  e.stopPropagation();
+  const item = e.target.closest('.dropdown-item');
+  if (item && item.dataset.nav) {
+    navigateTo(item.dataset.nav);
+  }
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('tools-dropdown-menu');
+  if (menu && !e.target.closest('.tools-dropdown')) {
+    menu.classList.remove('active');
+  }
+});
+
+/* ===== SPA NAVIGATION ===== */
+function navigateTo(view) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + view).classList.add('active');
+  // highlight active dropdown item
+  document.querySelectorAll('.dropdown-item').forEach(n => n.classList.remove('active'));
+  const navBtn = document.querySelector(`.dropdown-item[data-nav="${view}"]`);
+  if (navBtn) navBtn.classList.add('active');
+  // close dropdown
+  const menu = document.getElementById('tools-dropdown-menu');
+  if (menu) menu.classList.remove('active');
+}
+
+/* ===== ARCHIVED: ASK FORM JS =====
+const askForm = document.getElementById('ask-form');
+const askMessage = document.getElementById('ask-message');
+const askSuccess = document.getElementById('ask-success');
+const askSubmit = document.getElementById('ask-submit');
+const emailModal = document.getElementById('email-modal');
+const emailModalInput = document.getElementById('email-modal-input');
+const emailModalSend = document.getElementById('email-modal-send');
+const emailModalCancel = document.getElementById('email-modal-cancel');
+let pendingMessage = '';
+if (askMessage) {
+  askMessage.addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 150) + 'px';
+  });
+}
+if (askForm) {
+  askForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const msg = askMessage.value.trim();
+    if (!msg) return;
+    pendingMessage = msg;
+    emailModalInput.value = '';
+    emailModal.classList.add('active');
+    setTimeout(() => emailModalInput.focus(), 100);
+  });
+}
+emailModalCancel.addEventListener('click', () => { emailModal.classList.remove('active'); });
+emailModal.addEventListener('click', (e) => { if (e.target === emailModal) emailModal.classList.remove('active'); });
+emailModalSend.addEventListener('click', sendWithEmail);
+emailModalInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendWithEmail(); } });
+function sendWithEmail() {
+  const email = emailModalInput.value.trim();
+  if (!email || !email.includes('@')) { emailModalInput.style.borderColor = '#ef4444'; emailModalInput.focus(); return; }
+  emailModalSend.disabled = true; emailModalSend.textContent = 'Sending...';
+  const formData = new FormData();
+  formData.append('email', email); formData.append('message', pendingMessage);
+  formData.append('_captcha', 'false'); formData.append('_subject', 'New message from sabriozer.com');
+  fetch('https://formsubmit.co/ajax/sabriozer91@gmail.com', { method: 'POST', body: formData })
+  .then(r => r.json()).then(d => { emailModal.classList.remove('active'); askForm.style.display = 'none'; askSuccess.style.display = 'block'; })
+  .catch(e => { alert('Failed to send message. Please try again.'); })
+  .finally(() => { emailModalSend.disabled = false; emailModalSend.textContent = 'Send'; });
+}
+function resetAskForm() { askForm.reset(); askForm.style.display = 'flex'; askSuccess.style.display = 'none'; askSubmit.disabled = false; if (askMessage) askMessage.style.height = 'auto'; }
+===== END ARCHIVED ===== */
+
+/* ===== RESIZER ===== */
+const uploadArea = document.getElementById('upload-area');
+const editor = document.getElementById('editor');
+const fileInput = document.getElementById('file-input');
+const previewImg = document.getElementById('preview-img');
+const fileInfo = document.getElementById('file-info');
+const inputW = document.getElementById('input-w');
+const inputH = document.getElementById('input-h');
+const lockRatio = document.getElementById('lock-ratio');
+const pctSlider = document.getElementById('pct-slider');
+const pctInput = document.getElementById('pct-input');
+const pctDimsText = document.getElementById('pct-dims-text');
+const outputFormat = document.getElementById('output-format');
+const qualitySlider = document.getElementById('quality-slider');
+const qualityVal = document.getElementById('quality-val');
+const qualityGroup = document.getElementById('quality-group');
+const btnResize = document.getElementById('btn-resize');
+const btnReset = document.getElementById('btn-reset');
+const btnDownload = document.getElementById('btn-download');
+const resultDiv = document.getElementById('result');
+const canvas = document.getElementById('resize-canvas');
+const ctx = canvas.getContext('2d');
+
+let originalImg = null;
+let origW = 0, origH = 0;
+let aspectRatio = 1;
+let currentMode = 'dimensions';
+let originalFileSize = 0;
+let originalFileName = '';
+
+uploadArea.addEventListener('dragover', e => {
+  e.preventDefault();
+  uploadArea.classList.add('drag-over');
+});
+uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
+uploadArea.addEventListener('drop', e => {
+  e.preventDefault();
+  uploadArea.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+});
+uploadArea.addEventListener('click', e => {
+  if (e.target.tagName !== 'BUTTON') fileInput.click();
+});
+fileInput.addEventListener('change', () => {
+  if (fileInput.files.length) handleFile(fileInput.files[0]);
+});
+
+function handleFile(file) {
+  if (!file.type.match(/^image\/(webp|png|jpeg|jpg)$/)) {
+    alert('Please select a WebP, PNG, or JPG image.');
+    return;
+  }
+  originalFileSize = file.size;
+  originalFileName = file.name.replace(/\.[^.]+$/, '');
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      originalImg = img;
+      origW = img.naturalWidth;
+      origH = img.naturalHeight;
+      aspectRatio = origW / origH;
+      previewImg.src = e.target.result;
+      fileInfo.innerHTML = `<span>${file.name}</span> &mdash; ${origW} x ${origH} &mdash; ${formatSize(originalFileSize)}`;
+      inputW.value = origW;
+      inputH.value = origH;
+      pctSlider.value = 100;
+      pctInput.value = 100;
+      updatePctDims();
+      uploadArea.style.display = 'none';
+      editor.classList.add('active');
+      resultDiv.classList.remove('active');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+document.querySelectorAll('.mode-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentMode = tab.dataset.mode;
+    document.getElementById('dim-mode').style.display = currentMode === 'dimensions' ? '' : 'none';
+    document.getElementById('pct-mode').style.display = currentMode === 'percentage' ? '' : 'none';
+  });
+});
+
+inputW.addEventListener('input', () => {
+  if (lockRatio.checked && origW > 0) inputH.value = Math.round(inputW.value / aspectRatio);
+});
+inputH.addEventListener('input', () => {
+  if (lockRatio.checked && origH > 0) inputW.value = Math.round(inputH.value * aspectRatio);
+});
+
+pctSlider.addEventListener('input', () => { pctInput.value = pctSlider.value; updatePctDims(); });
+pctInput.addEventListener('input', () => { pctSlider.value = pctInput.value; updatePctDims(); });
+
+function updatePctDims() {
+  const pct = parseInt(pctInput.value) || 100;
+  pctDimsText.textContent = `${Math.round(origW * pct / 100)} x ${Math.round(origH * pct / 100)} px`;
+}
+
+qualitySlider.addEventListener('input', () => { qualityVal.textContent = qualitySlider.value; });
+
+outputFormat.addEventListener('change', () => {
+  qualityGroup.style.display = outputFormat.value === 'png' ? 'none' : '';
+});
+
+btnResize.addEventListener('click', async () => {
+  if (!originalImg) return;
+  let newW, newH;
+  if (currentMode === 'dimensions') {
+    newW = parseInt(inputW.value) || origW;
+    newH = parseInt(inputH.value) || origH;
+  } else {
+    const pct = parseInt(pctInput.value) || 100;
+    newW = Math.round(origW * pct / 100);
+    newH = Math.round(origH * pct / 100);
+  }
+  if (newW < 1 || newH < 1 || newW > 10000 || newH > 10000) {
+    alert('Dimensions must be between 1-10000 px.');
+    return;
+  }
+  canvas.width = newW;
+  canvas.height = newH;
+  ctx.clearRect(0, 0, newW, newH);
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(originalImg, 0, 0, newW, newH);
+  const format = outputFormat.value;
+  const quality = parseInt(qualitySlider.value);
+  const ext = format === 'jpeg' ? 'jpg' : format;
+  btnResize.disabled = true;
+  showLoading('Resizing...');
+  await yieldFrame();
+  try {
+    const blob = await encodeOptimized(canvas, format, quality);
+    if (!blob) { alert('Resizing failed.'); return; }
+    const url = URL.createObjectURL(blob);
+    btnDownload.href = url;
+    btnDownload.download = `${originalFileName}_${newW}x${newH}.${ext}`;
+    document.getElementById('res-original').textContent = `${origW} x ${origH}`;
+    document.getElementById('res-new').textContent = `${newW} x ${newH}`;
+    document.getElementById('res-size').textContent = formatSize(blob.size);
+    resultDiv.classList.add('active');
+    resultDiv.scrollIntoView({ behavior: 'smooth' });
+  } catch (e) {
+    alert('Resizing failed: ' + e.message);
+  } finally {
+    hideLoading();
+    btnResize.disabled = false;
+  }
+});
+
+btnReset.addEventListener('click', () => {
+  originalImg = null;
+  fileInput.value = '';
+  editor.classList.remove('active');
+  resultDiv.classList.remove('active');
+  uploadArea.style.display = '';
+});
+
+/* ===== CONVERTER ===== */
+const convUploadArea = document.getElementById('conv-upload-area');
+const convEditor = document.getElementById('conv-editor');
+const convFileInput = document.getElementById('conv-file-input');
+const convPreviewImg = document.getElementById('conv-preview-img');
+const convFileInfo = document.getElementById('conv-file-info');
+const convSourceFormat = document.getElementById('conv-source-format');
+const convOutputFormat = document.getElementById('conv-output-format');
+const convQualitySlider = document.getElementById('conv-quality-slider');
+const convQualityVal = document.getElementById('conv-quality-val');
+const convQualityGroup = document.getElementById('conv-quality-group');
+const btnConvert = document.getElementById('btn-convert');
+const btnConvReset = document.getElementById('btn-conv-reset');
+const btnConvDownload = document.getElementById('btn-conv-download');
+const convResult = document.getElementById('conv-result');
+const convCanvas = document.getElementById('convert-canvas');
+const convCtx = convCanvas.getContext('2d');
+
+let convOriginalImg = null;
+let convOriginalFileSize = 0;
+let convOriginalFileName = '';
+let convOriginalExt = '';
+
+convUploadArea.addEventListener('dragover', e => {
+  e.preventDefault();
+  convUploadArea.classList.add('drag-over');
+});
+convUploadArea.addEventListener('dragleave', () => convUploadArea.classList.remove('drag-over'));
+convUploadArea.addEventListener('drop', e => {
+  e.preventDefault();
+  convUploadArea.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) handleConvFile(e.dataTransfer.files[0]);
+});
+convUploadArea.addEventListener('click', e => {
+  if (e.target.tagName !== 'BUTTON') convFileInput.click();
+});
+convFileInput.addEventListener('change', () => {
+  if (convFileInput.files.length) handleConvFile(convFileInput.files[0]);
+});
+
+function handleConvFile(file) {
+  if (!file.type.startsWith('image/')) {
+    alert('Please select an image file.');
+    return;
+  }
+  convOriginalFileSize = file.size;
+  convOriginalFileName = file.name.replace(/\.[^.]+$/, '');
+  convOriginalExt = file.name.split('.').pop().toUpperCase();
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      convOriginalImg = img;
+      convPreviewImg.src = e.target.result;
+      convFileInfo.innerHTML = `<span>${file.name}</span> &mdash; ${img.naturalWidth} x ${img.naturalHeight} &mdash; ${formatSize(convOriginalFileSize)}`;
+      convSourceFormat.textContent = convOriginalExt;
+      convUploadArea.style.display = 'none';
+      convEditor.classList.add('active');
+      convResult.classList.remove('active');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+convOutputFormat.addEventListener('change', () => {
+  convQualityGroup.style.display = convOutputFormat.value === 'png' ? 'none' : '';
+});
+
+convQualitySlider.addEventListener('input', () => {
+  convQualityVal.textContent = convQualitySlider.value;
+});
+
+btnConvert.addEventListener('click', async () => {
+  if (!convOriginalImg) return;
+  const w = convOriginalImg.naturalWidth;
+  const h = convOriginalImg.naturalHeight;
+  convCanvas.width = w;
+  convCanvas.height = h;
+  convCtx.clearRect(0, 0, w, h);
+  convCtx.drawImage(convOriginalImg, 0, 0, w, h);
+
+  const format = convOutputFormat.value;
+  const ext = format === 'jpeg' ? 'jpg' : format;
+  const quality = parseInt(convQualitySlider.value);
+
+  btnConvert.disabled = true;
+  showLoading('Converting...');
+  await yieldFrame();
+  try {
+    const blob = await encodeOptimized(convCanvas, format, quality);
+    if (!blob) { alert('Conversion failed.'); return; }
+    const url = URL.createObjectURL(blob);
+    btnConvDownload.href = url;
+    btnConvDownload.download = `${convOriginalFileName}.${ext}`;
+    document.getElementById('conv-res-original').textContent = convOriginalExt;
+    document.getElementById('conv-res-new').textContent = ext.toUpperCase();
+    document.getElementById('conv-res-orig-size').textContent = formatSize(convOriginalFileSize);
+    document.getElementById('conv-res-new-size').textContent = formatSize(blob.size);
+    convResult.classList.add('active');
+    convResult.scrollIntoView({ behavior: 'smooth' });
+  } catch (e) {
+    alert('Conversion failed: ' + e.message);
+  } finally {
+    hideLoading();
+    btnConvert.disabled = false;
+  }
+});
+
+btnConvReset.addEventListener('click', () => {
+  convOriginalImg = null;
+  convFileInput.value = '';
+  convEditor.classList.remove('active');
+  convResult.classList.remove('active');
+  convUploadArea.style.display = '';
+});
+
+/* ===== BG REMOVER ===== */
+const bgUploadArea = document.getElementById('bg-upload-area');
+const bgEditor = document.getElementById('bg-editor');
+const bgFileInput = document.getElementById('bg-file-input');
+const bgPreviewOriginal = document.getElementById('bg-preview-original');
+const bgPreviewResult = document.getElementById('bg-preview-result');
+const bgFileInfo = document.getElementById('bg-file-info');
+const bgProgress = document.getElementById('bg-progress');
+const bgProgressFill = document.getElementById('bg-progress-fill');
+const bgProgressText = document.getElementById('bg-progress-text');
+const btnBgRemove = document.getElementById('btn-bg-remove');
+const btnBgReset = document.getElementById('btn-bg-reset');
+const btnBgDownload = document.getElementById('btn-bg-download');
+const bgResult = document.getElementById('bg-result');
+const bgActions = document.getElementById('bg-actions');
+const bgActionsDone = document.getElementById('bg-actions-done');
+const btnBgNew = document.getElementById('btn-bg-new');
+
+let bgOriginalFile = null;
+let bgOriginalFileSize = 0;
+let bgOriginalFileName = '';
+
+bgUploadArea.addEventListener('dragover', e => {
+  e.preventDefault();
+  bgUploadArea.classList.add('drag-over');
+});
+bgUploadArea.addEventListener('dragleave', () => bgUploadArea.classList.remove('drag-over'));
+bgUploadArea.addEventListener('drop', e => {
+  e.preventDefault();
+  bgUploadArea.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) handleBgFile(e.dataTransfer.files[0]);
+});
+bgUploadArea.addEventListener('click', e => {
+  if (e.target.tagName !== 'BUTTON') bgFileInput.click();
+});
+bgFileInput.addEventListener('change', () => {
+  if (bgFileInput.files.length) handleBgFile(bgFileInput.files[0]);
+});
+
+function handleBgFile(file) {
+  if (!file.type.match(/^image\/(png|jpeg|jpg|webp)$/)) {
+    alert('Please select a PNG, JPG, or WebP image.');
+    return;
+  }
+  bgOriginalFile = file;
+  bgOriginalFileSize = file.size;
+  bgOriginalFileName = file.name.replace(/\.[^.]+$/, '');
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      bgPreviewOriginal.src = e.target.result;
+      bgPreviewResult.style.display = 'none';
+      bgPreviewResult.src = '';
+      bgFileInfo.innerHTML = `<span>${file.name}</span> &mdash; ${img.naturalWidth} x ${img.naturalHeight} &mdash; ${formatSize(bgOriginalFileSize)}`;
+      bgUploadArea.style.display = 'none';
+      bgEditor.classList.add('active');
+      bgResult.classList.remove('active');
+      bgProgress.classList.remove('active');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+btnBgRemove.addEventListener('click', async () => {
+  if (!bgOriginalFile) return;
+  btnBgRemove.disabled = true;
+  bgProgress.classList.add('active');
+  bgProgressFill.style.width = '0%';
+  bgProgressText.textContent = 'Loading AI model...';
+  showLoading('Removing background...');
+  await yieldFrame();
+  try {
+    const { removeBackground } = await import('https://esm.sh/@imgly/background-removal@1.5.3');
+    bgProgressFill.style.width = '20%';
+    bgProgressText.textContent = 'Processing image...';
+    loadingText.textContent = 'Removing background...';
+    const blob = await removeBackground(bgOriginalFile, {
+      progress: (key, current, total) => {
+        if (key === 'compute:inference') {
+          const pct = Math.round((current / total) * 100);
+          const overall = 20 + Math.round(pct * 0.7);
+          bgProgressFill.style.width = overall + '%';
+          bgProgressText.textContent = `Processing... ${pct}%`;
+        } else if (key === 'fetch:model') {
+          const pct = Math.round((current / total) * 100);
+          bgProgressFill.style.width = Math.round(pct * 0.2) + '%';
+          bgProgressText.textContent = `Downloading model... ${pct}%`;
+          loadingText.textContent = `Downloading model... ${pct}%`;
+        }
+      }
+    });
+    bgProgressFill.style.width = '100%';
+    bgProgressText.textContent = 'Done!';
+    const resultUrl = URL.createObjectURL(blob);
+    bgPreviewResult.src = resultUrl;
+    bgPreviewResult.style.display = '';
+    btnBgDownload.href = resultUrl;
+    btnBgDownload.download = `${bgOriginalFileName}_nobg.png`;
+    document.getElementById('bg-res-orig-size').textContent = formatSize(bgOriginalFileSize);
+    document.getElementById('bg-res-new-size').textContent = formatSize(blob.size);
+    bgActions.style.display = 'none';
+    bgActionsDone.style.display = '';
+    bgResult.classList.add('active');
+    bgResult.scrollIntoView({ behavior: 'smooth' });
+  } catch (e) {
+    console.error('BG removal error:', e);
+    alert('Background removal failed: ' + e.message);
+    bgProgress.classList.remove('active');
+  } finally {
+    hideLoading();
+    btnBgRemove.disabled = false;
+  }
+});
+
+function resetBg() {
+  bgOriginalFile = null;
+  bgFileInput.value = '';
+  bgEditor.classList.remove('active');
+  bgResult.classList.remove('active');
+  bgProgress.classList.remove('active');
+  bgUploadArea.style.display = '';
+  bgPreviewResult.style.display = 'none';
+  bgPreviewResult.src = '';
+  bgActions.style.display = '';
+  bgActionsDone.style.display = 'none';
+}
+
+btnBgReset.addEventListener('click', resetBg);
+btnBgNew.addEventListener('click', resetBg);
+
+/* ===== LOADING OVERLAY ===== */
+const loadingOverlay = document.getElementById('loading-overlay');
+const loadingText = document.getElementById('loading-text');
+function showLoading(text) {
+  loadingText.textContent = text || 'Processing...';
+  loadingOverlay.classList.add('active');
+}
+function hideLoading() {
+  loadingOverlay.classList.remove('active');
+}
+// Yield to let the overlay render before heavy work
+function yieldFrame() {
+  return new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+}
+
+/* ===== OPTIMIZED WASM ENCODER (Web Worker) ===== */
+const encoderWorkerBlob = new Blob([`
+  let wasmModules = {};
+  async function loadWasmEncoder(format) {
+    if (wasmModules[format]) return wasmModules[format];
+    if (format === 'webp') {
+      wasmModules.webp = await import('https://esm.sh/@jsquash/webp@1.5.0');
+    } else if (format === 'avif') {
+      wasmModules.avif = await import('https://esm.sh/@jsquash/avif@2.1.1');
+    }
+    return wasmModules[format];
+  }
+  self.onmessage = async (e) => {
+    const { imageData, format, quality } = e.data;
+    try {
+      const mod = await loadWasmEncoder(format);
+      let opts;
+      if (format === 'webp') {
+        opts = { quality, method: 6, use_sharp_yuv: 1, sns_strength: 50, filter_strength: 60 };
+      } else {
+        opts = { quality, speed: 3, chromaDeltaQ: true, subsample: 1, sharpness: 0 };
+      }
+      const buffer = await mod.encode(imageData, opts);
+      self.postMessage({ ok: true, buffer }, [buffer]);
+    } catch (err) {
+      self.postMessage({ ok: false, error: err.message });
+    }
+  };
+`], { type: 'text/javascript' });
+const encoderWorkerUrl = URL.createObjectURL(encoderWorkerBlob);
+
+function encodeInWorker(imageData, format, quality) {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker(encoderWorkerUrl, { type: 'module' });
+    worker.onmessage = (e) => {
+      worker.terminate();
+      if (e.data.ok) {
+        resolve(new Blob([e.data.buffer], { type: 'image/' + format }));
+      } else {
+        reject(new Error(e.data.error));
+      }
+    };
+    worker.onerror = (err) => {
+      worker.terminate();
+      reject(err);
+    };
+    worker.postMessage({ imageData, format, quality });
+  });
+}
+
+async function encodeOptimized(canvasEl, format, quality) {
+  if (format === 'webp' || format === 'avif') {
+    const ctx2d = canvasEl.getContext('2d');
+    const imageData = ctx2d.getImageData(0, 0, canvasEl.width, canvasEl.height);
+    try {
+      return await encodeInWorker(imageData, format, quality);
+    } catch (e) {
+      console.warn('Worker encoder failed, falling back to canvas:', e);
+    }
+  }
+  // Fallback: canvas.toBlob for JPEG, PNG, or if Worker failed
+  return new Promise(resolve => {
+    const mimeType = format === 'jpeg' ? 'image/jpeg' : format === 'png' ? 'image/png' : 'image/' + format;
+    const q = format === 'png' ? undefined : quality / 100;
+    canvasEl.toBlob(resolve, mimeType, q);
+  });
+}
+
+/* ===== COMPRESSOR ===== */
+const compUploadArea = document.getElementById('comp-upload-area');
+const compEditor = document.getElementById('comp-editor');
+const compFileInput = document.getElementById('comp-file-input');
+const compPreviewImg = document.getElementById('comp-preview-img');
+const compFileInfo = document.getElementById('comp-file-info');
+const compOutputFormat = document.getElementById('comp-output-format');
+const compQualitySlider = document.getElementById('comp-quality-slider');
+const compQualityVal = document.getElementById('comp-quality-val');
+const compQualityGroup = document.getElementById('comp-quality-group');
+const compSizeCompare = document.getElementById('comp-size-compare');
+const compOrigSize = document.getElementById('comp-orig-size');
+const compNewSize = document.getElementById('comp-new-size');
+const compSavings = document.getElementById('comp-savings');
+const compActions = document.getElementById('comp-actions');
+const compActionsDone = document.getElementById('comp-actions-done');
+const btnCompress = document.getElementById('btn-compress');
+const btnCompReset = document.getElementById('btn-comp-reset');
+const btnCompNew = document.getElementById('btn-comp-new');
+const btnCompDownload = document.getElementById('btn-comp-download');
+const compResult = document.getElementById('comp-result');
+const compCanvas = document.getElementById('comp-canvas');
+const compCtx = compCanvas.getContext('2d');
+
+let compOrigImg = null;
+let compOrigFileSize = 0;
+let compOrigFileName = '';
+
+compUploadArea.addEventListener('dragover', e => { e.preventDefault(); compUploadArea.classList.add('drag-over'); });
+compUploadArea.addEventListener('dragleave', () => compUploadArea.classList.remove('drag-over'));
+compUploadArea.addEventListener('drop', e => {
+  e.preventDefault(); compUploadArea.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) handleCompFile(e.dataTransfer.files[0]);
+});
+compUploadArea.addEventListener('click', e => { if (e.target.tagName !== 'BUTTON') compFileInput.click(); });
+compFileInput.addEventListener('change', () => { if (compFileInput.files.length) handleCompFile(compFileInput.files[0]); });
+
+function handleCompFile(file) {
+  if (!file.type.startsWith('image/')) { alert('Please select an image file.'); return; }
+  compOrigFileSize = file.size;
+  compOrigFileName = file.name.replace(/\.[^.]+$/, '');
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      compOrigImg = img;
+      compPreviewImg.src = e.target.result;
+      compFileInfo.textContent = `${img.naturalWidth} × ${img.naturalHeight} • ${formatSize(compOrigFileSize)} • ${file.name}`;
+      compUploadArea.style.display = 'none';
+      compEditor.classList.add('active');
+      compResult.classList.remove('active');
+      compSizeCompare.style.display = 'none';
+      compSavings.style.display = 'none';
+      compActions.style.display = '';
+      compActionsDone.style.display = 'none';
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// Quality slider update
+compQualitySlider.addEventListener('input', () => {
+  compQualityVal.textContent = compQualitySlider.value;
+});
+
+// Toggle quality visibility for PNG (lossless)
+compOutputFormat.addEventListener('change', () => {
+  compQualityGroup.style.display = compOutputFormat.value === 'png' ? 'none' : '';
+});
+
+// Compress
+btnCompress.addEventListener('click', async () => {
+  if (!compOrigImg) return;
+  const format = compOutputFormat.value;
+  const quality = parseInt(compQualitySlider.value);
+
+  showLoading('Compressing...');
+  await yieldFrame();
+
+  compCanvas.width = compOrigImg.naturalWidth;
+  compCanvas.height = compOrigImg.naturalHeight;
+  compCtx.clearRect(0, 0, compCanvas.width, compCanvas.height);
+  compCtx.imageSmoothingEnabled = true;
+  compCtx.imageSmoothingQuality = 'high';
+  compCtx.drawImage(compOrigImg, 0, 0);
+
+  try {
+    const blob = await encodeOptimized(compCanvas, format, quality);
+    const newSize = blob.size;
+    const saving = ((1 - newSize / compOrigFileSize) * 100);
+
+    // Show size comparison
+    compOrigSize.textContent = formatSize(compOrigFileSize);
+    compNewSize.textContent = formatSize(newSize);
+    compSizeCompare.style.display = '';
+
+    if (saving > 0) {
+      compSavings.textContent = `${saving.toFixed(1)}% smaller`;
+      compSavings.style.background = 'rgba(34, 197, 94, 0.1)';
+      compSavings.style.borderColor = 'rgba(34, 197, 94, 0.2)';
+      compSavings.style.color = '#22c55e';
+    } else {
+      compSavings.textContent = `${Math.abs(saving).toFixed(1)}% larger — try a different format or lower quality`;
+      compSavings.style.background = 'rgba(239, 68, 68, 0.1)';
+      compSavings.style.borderColor = 'rgba(239, 68, 68, 0.2)';
+      compSavings.style.color = '#ef4444';
+    }
+    compSavings.style.display = '';
+
+    // Download link
+    const ext = format === 'jpeg' ? 'jpg' : format;
+    const url = URL.createObjectURL(blob);
+    btnCompDownload.href = url;
+    btnCompDownload.download = `${compOrigFileName}_compressed.${ext}`;
+    compResult.classList.add('active');
+
+    // Swap buttons
+    compActions.style.display = 'none';
+    compActionsDone.style.display = '';
+  } catch (err) {
+    alert('Error during compression: ' + err.message);
+  }
+  hideLoading();
+});
+
+function resetComp() {
+  compOrigImg = null;
+  compOrigFileSize = 0;
+  compOrigFileName = '';
+  compPreviewImg.src = '';
+  compFileInfo.textContent = '';
+  compEditor.classList.remove('active');
+  compUploadArea.style.display = '';
+  compResult.classList.remove('active');
+  compSizeCompare.style.display = 'none';
+  compSavings.style.display = 'none';
+  compActions.style.display = '';
+  compActionsDone.style.display = 'none';
+  compQualitySlider.value = 75;
+  compQualityVal.textContent = '75';
+  compOutputFormat.value = 'webp';
+  compQualityGroup.style.display = '';
+  compFileInput.value = '';
+  if (btnCompDownload.href) URL.revokeObjectURL(btnCompDownload.href);
+}
+
+btnCompReset.addEventListener('click', resetComp);
+btnCompNew.addEventListener('click', resetComp);
+
+/* ===== UTILS ===== */
+function formatSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+}
+</script>
+
+</body>
+</html>
