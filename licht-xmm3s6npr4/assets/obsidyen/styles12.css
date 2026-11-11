@@ -1,0 +1,162 @@
+.cc_57zhho0j_TGtCwFHcog .ugc {
+  overflow: hidden;
+  color: var(--wyLeI2Gkwa);
+  background: var(--bkf9Pptudo);
+}
+
+.cc_57zhho0j_TGtCwFHcog .ugc-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.cc_57zhho0j_TGtCwFHcog .ugc-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+}
+
+.cc_57zhho0j_TGtCwFHcog .ugc-title {
+  margin: 0;
+}
+
+.cc_57zhho0j_TGtCwFHcog .ugc-desc {
+  max-width: 56ch;
+  margin: 0;
+  color: var(--iigo9Iys2H);
+  text-wrap: pretty;
+}
+
+/* Oklar: tema karusel dili (ProductCarousel / BlogSlider) — iki ayrı
+   yuvarlak buton, ince çerçeve, hover'da Metin dolgu. Başlık bloğu yoksa
+   da sağ kenarda kalır. */
+.cc_57zhho0j_TGtCwFHcog .ugc-arrows {
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+  margin-inline-start: auto;
+}
+
+.cc_57zhho0j_TGtCwFHcog .ugc-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--7P6Gqwghpo);
+  border-radius: 50%;
+  background: var(--7LydJvXvGj);
+  color: var(--wyLeI2Gkwa);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    opacity var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.cc_57zhho0j_TGtCwFHcog .ugc-arrow:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.cc_57zhho0j_TGtCwFHcog .ugc-arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.cc_57zhho0j_TGtCwFHcog .ugc-arrow-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Şerit: container kenar boşluğunu taşar, kartlar ekran kenarına kadar akar;
+   ilk kart yine container hizasında durur (scroll-padding) */
+.cc_57zhho0j_TGtCwFHcog .ugc-track {
+  display: flex;
+  gap: 20px;
+  margin: 0 -40px;
+  padding: 0 40px 12px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 40px;
+  scrollbar-width: none;
+}
+
+.cc_57zhho0j_TGtCwFHcog .ugc-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* IkasComponentRenderer'ın olası sarmalayıcıları flex akışını bozmasın */
+.cc_57zhho0j_TGtCwFHcog .ugc-track > :not(.ugcc) {
+  display: contents;
+}
+
+.cc_57zhho0j_TGtCwFHcog .ugc-track .ugcc {
+  flex: 0 0 clamp(220px, 22vw, 300px);
+  scroll-snap-align: start;
+}
+
+.cc_57zhho0j_TGtCwFHcog .ugc--wide .ugc-track .ugcc {
+  flex-basis: clamp(300px, 38vw, 520px);
+}
+
+.cc_57zhho0j_TGtCwFHcog .ugc-empty {
+  margin: 0;
+  color: var(--jq4Z0Bq66E);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cc_57zhho0j_TGtCwFHcog .ugc-arrow:hover:not(:disabled) {
+    border-color: var(--wyLeI2Gkwa);
+    background: var(--wyLeI2Gkwa);
+    color: var(--7LydJvXvGj);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc_57zhho0j_TGtCwFHcog .ugc-track {
+    scroll-behavior: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cc_57zhho0j_TGtCwFHcog .ugc-track {
+    margin: 0 -24px;
+    padding: 0 24px 12px;
+    scroll-padding-inline: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cc_57zhho0j_TGtCwFHcog .ugc-top {
+    margin-bottom: 32px;
+  }
+
+  /* mobilde parmakla kaydırılır */
+  .cc_57zhho0j_TGtCwFHcog .ugc-arrows {
+    display: none;
+  }
+
+  .cc_57zhho0j_TGtCwFHcog .ugc-track {
+    gap: 12px;
+    margin: 0 -16px;
+    padding: 0 16px 12px;
+    scroll-padding-inline: 16px;
+  }
+
+  .cc_57zhho0j_TGtCwFHcog .ugc-track .ugcc {
+    flex-basis: 70vw;
+  }
+
+  .cc_57zhho0j_TGtCwFHcog .ugc--wide .ugc-track .ugcc {
+    flex-basis: 86vw;
+  }
+}

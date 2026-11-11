@@ -1,0 +1,58 @@
+.cc_57zhho0j_3wLfHNB1Uj .lgrid {
+  color: var(--wyLeI2Gkwa);
+  background: var(--7LydJvXvGj);
+}
+
+.cc_57zhho0j_3wLfHNB1Uj .lgrid-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.cc_57zhho0j_3wLfHNB1Uj .lgrid-title {
+  margin: 0;
+}
+
+.cc_57zhho0j_3wLfHNB1Uj .lgrid-desc {
+  max-width: 56ch;
+  margin: 0;
+  color: var(--iigo9Iys2H);
+  text-wrap: pretty;
+}
+
+/* Tek kolonda görünümler arası geniş nefes; iki kolonda ızgara */
+.cc_57zhho0j_3wLfHNB1Uj .lgrid-list {
+  display: grid;
+  grid-template-columns: repeat(var(--lgrid-cols, 1), minmax(0, 1fr));
+  gap: 96px 40px;
+  align-items: start;
+}
+
+/* IkasComponentRenderer'ın olası sarmalayıcıları ızgara hücresini bozmasın */
+.cc_57zhho0j_3wLfHNB1Uj .lgrid-list > :not(.lookc) {
+  display: contents;
+}
+
+.cc_57zhho0j_3wLfHNB1Uj .lgrid-empty {
+  margin: 0;
+  color: var(--jq4Z0Bq66E);
+}
+
+@media (max-width: 1024px) {
+  .cc_57zhho0j_3wLfHNB1Uj .lgrid-head {
+    margin-bottom: 40px;
+  }
+
+  .cc_57zhho0j_3wLfHNB1Uj .lgrid-list {
+    gap: 72px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cc_57zhho0j_3wLfHNB1Uj .lgrid-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 56px;
+  }
+}

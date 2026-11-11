@@ -1,0 +1,546 @@
+
+/* Imported from: ../ProductCard/styles.css */
+.cc_57zhho0j_lOR1DPbFNu .pcard, .cc_57zhho0j_VD8DT0bBWE .pcard, .cc_57zhho0j_nDisEtloxu .pcard {
+  display: flex;
+  flex-direction: column;
+  /* kapsayıcı (grid/slider) kartları eşit yüksekliğe çekince kart da uzar —
+     ürün adı 1 veya 2 satır olsun, fiyat ve buton hizası bozulmaz */
+  height: 100%;
+  color: var(--wyLeI2Gkwa);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Görsel + sepete ekle sarmalayıcısı: masaüstünde hap buton görselin alt
+   kenarında belirir. Mobilde display:contents ile kutusu kalkar, buton kart
+   akışına girer. */
+.cc_57zhho0j_lOR1DPbFNu .pcard-visual, .cc_57zhho0j_VD8DT0bBWE .pcard-visual, .cc_57zhho0j_nDisEtloxu .pcard-visual {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Takı görseli yüzey zemininde, yuvarlak köşe. isolation: Safari'de
+   radius + transform altındaki görselin köşeden taşmasını önler. */
+.cc_57zhho0j_lOR1DPbFNu .pcard-media, .cc_57zhho0j_VD8DT0bBWE .pcard-media, .cc_57zhho0j_nDisEtloxu .pcard-media {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  aspect-ratio: var(--o-product-ratio, 1 / 1);
+  border-radius: var(--radius-md);
+  background: var(--rByxa8MJ1Z);
+}
+
+/* Görselin kenarı açık zeminde kaybolmasın: saf siyah %6 iç çizgi */
+.cc_57zhho0j_lOR1DPbFNu .pcard-media::after, .cc_57zhho0j_VD8DT0bBWE .pcard-media::after, .cc_57zhho0j_nDisEtloxu .pcard-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wyLeI2Gkwa) 4%, transparent);
+  pointer-events: none;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-strip, .cc_57zhho0j_VD8DT0bBWE .pcard-strip, .cc_57zhho0j_nDisEtloxu .pcard-strip {
+  display: flex;
+  height: 100%;
+  transition: transform 320ms var(--ease-in-out);
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-img, .cc_57zhho0j_VD8DT0bBWE .pcard-img, .cc_57zhho0j_nDisEtloxu .pcard-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  transition: transform 400ms var(--ease-out), opacity 400ms var(--ease-out);
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-img--empty, .cc_57zhho0j_VD8DT0bBWE .pcard-img--empty, .cc_57zhho0j_nDisEtloxu .pcard-img--empty {
+  background: var(--rByxa8MJ1Z);
+}
+
+/* hover görseli kapağın tam üstünde, görünmez bekler */
+.cc_57zhho0j_lOR1DPbFNu .pcard-img--alt, .cc_57zhho0j_VD8DT0bBWE .pcard-img--alt, .cc_57zhho0j_nDisEtloxu .pcard-img--alt {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-badges, .cc_57zhho0j_VD8DT0bBWE .pcard-badges, .cc_57zhho0j_nDisEtloxu .pcard-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  /* sağ üstteki favori butonuna binmesin */
+  max-width: calc(100% - 72px);
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-fav, .cc_57zhho0j_VD8DT0bBWE .pcard-fav, .cc_57zhho0j_nDisEtloxu .pcard-fav {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+}
+
+/* indirim rozeti: Marka/Dolgu + beyaz (5.8:1) */
+.cc_57zhho0j_lOR1DPbFNu .pcard-badge--sale, .cc_57zhho0j_VD8DT0bBWE .pcard-badge--sale, .cc_57zhho0j_nDisEtloxu .pcard-badge--sale {
+  background: var(--4TWc2Wr5Et);
+  color: var(--7LydJvXvGj);
+}
+
+/* slider modunun okları: küçük beyaz daireler, yalnız hover'da */
+.cc_57zhho0j_lOR1DPbFNu .pcard-arrow, .cc_57zhho0j_VD8DT0bBWE .pcard-arrow, .cc_57zhho0j_nDisEtloxu .pcard-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  margin-top: -16px;
+  border: none;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--7LydJvXvGj) 92%, transparent);
+  color: var(--wyLeI2Gkwa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-arrow:active, .cc_57zhho0j_VD8DT0bBWE .pcard-arrow:active, .cc_57zhho0j_nDisEtloxu .pcard-arrow:active {
+  transform: scale(0.96);
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-arrow--prev, .cc_57zhho0j_VD8DT0bBWE .pcard-arrow--prev, .cc_57zhho0j_nDisEtloxu .pcard-arrow--prev {
+  left: 10px;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-arrow--next, .cc_57zhho0j_VD8DT0bBWE .pcard-arrow--next, .cc_57zhho0j_nDisEtloxu .pcard-arrow--next {
+  right: 10px;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-arrow-icon, .cc_57zhho0j_VD8DT0bBWE .pcard-arrow-icon, .cc_57zhho0j_nDisEtloxu .pcard-arrow-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Hızlı ekle: görselin alt kenarında yüzen hap */
+.cc_57zhho0j_lOR1DPbFNu .pcard-atc, .cc_57zhho0j_VD8DT0bBWE .pcard-atc, .cc_57zhho0j_nDisEtloxu .pcard-atc {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-atc-btn, .cc_57zhho0j_VD8DT0bBWE .pcard-atc-btn, .cc_57zhho0j_nDisEtloxu .pcard-atc-btn {
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--wyLeI2Gkwa) 6%, transparent),
+    0 8px 24px color-mix(in srgb, var(--wyLeI2Gkwa) 6%, transparent);
+}
+
+/* tükendi: basılabilir buton gibi durmasın — soluk metin, gölgesiz.
+   çift sınıf, o-btn:disabled opaklığını geçmek için */
+.cc_57zhho0j_lOR1DPbFNu .pcard-atc-btn.pcard-atc-btn--oos, .cc_57zhho0j_VD8DT0bBWE .pcard-atc-btn.pcard-atc-btn--oos, .cc_57zhho0j_nDisEtloxu .pcard-atc-btn.pcard-atc-btn--oos {
+  background: color-mix(in srgb, var(--7LydJvXvGj) 88%, transparent);
+  color: var(--jq4Z0Bq66E);
+  box-shadow: none;
+  opacity: 1;
+}
+
+/* klavye kullanıcısı da butona ulaşınca onu görsün */
+.cc_57zhho0j_lOR1DPbFNu .pcard:focus-within .pcard-atc, .cc_57zhho0j_VD8DT0bBWE .pcard:focus-within .pcard-atc, .cc_57zhho0j_nDisEtloxu .pcard:focus-within .pcard-atc, .cc_57zhho0j_lOR1DPbFNu .pcard:focus-within .pcard-arrow, .cc_57zhho0j_VD8DT0bBWE .pcard:focus-within .pcard-arrow, .cc_57zhho0j_nDisEtloxu .pcard:focus-within .pcard-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-info, .cc_57zhho0j_VD8DT0bBWE .pcard-info, .cc_57zhho0j_nDisEtloxu .pcard-info {
+  display: flex;
+  flex-direction: column;
+  /* artan yüksekliği bilgi bloğu yutar, fiyat aşağıya yaslanır */
+  flex: 1;
+  gap: 2px;
+  padding-top: 14px;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-name, .cc_57zhho0j_VD8DT0bBWE .pcard-name, .cc_57zhho0j_nDisEtloxu .pcard-name {
+  margin: 0;
+  color: var(--wyLeI2Gkwa);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color var(--dur-fast) ease;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-desc, .cc_57zhho0j_VD8DT0bBWE .pcard-desc, .cc_57zhho0j_nDisEtloxu .pcard-desc {
+  margin: 0;
+  color: var(--jq4Z0Bq66E);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ad/açıklama üstte kalır, fiyat kartın altına yaslanır. Alta yaslama ve
+   boşluk sarmalayıcıda — TYPO class'lı p'nin margin'i token tarafından sıfırlanır. */
+.cc_57zhho0j_lOR1DPbFNu .pcard-price-row, .cc_57zhho0j_VD8DT0bBWE .pcard-price-row, .cc_57zhho0j_nDisEtloxu .pcard-price-row {
+  margin-top: auto;
+  padding: 8px 0 4px;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-price, .cc_57zhho0j_VD8DT0bBWE .pcard-price, .cc_57zhho0j_nDisEtloxu .pcard-price {
+  margin: 0;
+  /* indirimli + eski fiyat yan yana; dar kartta alt satıra sarar */
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  row-gap: 2px;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-price--right, .cc_57zhho0j_VD8DT0bBWE .pcard-price--right, .cc_57zhho0j_nDisEtloxu .pcard-price--right {
+  justify-content: flex-end;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-price.is-sale .pcard-price-final, .cc_57zhho0j_VD8DT0bBWE .pcard-price.is-sale .pcard-price-final, .cc_57zhho0j_nDisEtloxu .pcard-price.is-sale .pcard-price-final {
+  color: var(--4TWc2Wr5Et);
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcard-price-old, .cc_57zhho0j_VD8DT0bBWE .pcard-price-old, .cc_57zhho0j_nDisEtloxu .pcard-price-old {
+  color: var(--jq4Z0Bq66E);
+  font-weight: 400;
+  text-decoration-thickness: from-font;
+}
+
+/* ===== Hover (yalnız fare) ===== */
+
+@media (hover: hover) and (pointer: fine) {
+  .cc_57zhho0j_lOR1DPbFNu .pcard:hover .pcard-atc, .cc_57zhho0j_VD8DT0bBWE .pcard:hover .pcard-atc, .cc_57zhho0j_nDisEtloxu .pcard:hover .pcard-atc, .cc_57zhho0j_lOR1DPbFNu .pcard:hover .pcard-arrow, .cc_57zhho0j_VD8DT0bBWE .pcard:hover .pcard-arrow, .cc_57zhho0j_nDisEtloxu .pcard:hover .pcard-arrow {
+    opacity: 1;
+    transform: none;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcard:hover .pcard-name, .cc_57zhho0j_VD8DT0bBWE .pcard:hover .pcard-name, .cc_57zhho0j_nDisEtloxu .pcard:hover .pcard-name {
+    color: var(--4TWc2Wr5Et);
+  }
+
+  /* ikinci görsele geçiş + tek görselde hafif yakınlaşma */
+  .cc_57zhho0j_lOR1DPbFNu .pcard--swap:hover .pcard-img--alt, .cc_57zhho0j_VD8DT0bBWE .pcard--swap:hover .pcard-img--alt, .cc_57zhho0j_nDisEtloxu .pcard--swap:hover .pcard-img--alt {
+    opacity: 1;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcard:not(.pcard--swap):hover .pcard-media > .pcard-img, .cc_57zhho0j_VD8DT0bBWE .pcard:not(.pcard--swap):hover .pcard-media > .pcard-img, .cc_57zhho0j_nDisEtloxu .pcard:not(.pcard--swap):hover .pcard-media > .pcard-img {
+    transform: scale(1.03);
+  }
+}
+
+/* dokunmatik cihazlarda hover yok: buton ve oklar hep görünür */
+@media (hover: none) {
+  .cc_57zhho0j_lOR1DPbFNu .pcard-arrow, .cc_57zhho0j_VD8DT0bBWE .pcard-arrow, .cc_57zhho0j_nDisEtloxu .pcard-arrow, .cc_57zhho0j_lOR1DPbFNu .pcard-atc, .cc_57zhho0j_VD8DT0bBWE .pcard-atc, .cc_57zhho0j_nDisEtloxu .pcard-atc {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* azaltılmış hareket: kayma ve ölçek kalkar, opaklık geçişi kalır */
+@media (prefers-reduced-motion: reduce) {
+  .cc_57zhho0j_lOR1DPbFNu .pcard-strip, .cc_57zhho0j_VD8DT0bBWE .pcard-strip, .cc_57zhho0j_nDisEtloxu .pcard-strip {
+    transition: none;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcard-atc, .cc_57zhho0j_VD8DT0bBWE .pcard-atc, .cc_57zhho0j_nDisEtloxu .pcard-atc {
+    transform: none;
+    transition: opacity var(--dur-fast) ease;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcard-img, .cc_57zhho0j_VD8DT0bBWE .pcard-img, .cc_57zhho0j_nDisEtloxu .pcard-img {
+    transition: opacity var(--dur-base) ease;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcard:not(.pcard--swap):hover .pcard-media > .pcard-img, .cc_57zhho0j_VD8DT0bBWE .pcard:not(.pcard--swap):hover .pcard-media > .pcard-img, .cc_57zhho0j_nDisEtloxu .pcard:not(.pcard--swap):hover .pcard-media > .pcard-img {
+    transform: none;
+  }
+}
+
+/* ===== Mobil ===== */
+
+@media (max-width: 768px) {
+  /* sarmalayıcının kutusu kalkar; görsel, bilgi ve buton kartın doğrudan
+     flex çocuğu olur — order ile buton fiyatın altına iner */
+  .cc_57zhho0j_lOR1DPbFNu .pcard-visual, .cc_57zhho0j_VD8DT0bBWE .pcard-visual, .cc_57zhho0j_nDisEtloxu .pcard-visual {
+    display: contents;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcard-media, .cc_57zhho0j_VD8DT0bBWE .pcard-media, .cc_57zhho0j_nDisEtloxu .pcard-media {
+    order: 1;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcard-info, .cc_57zhho0j_VD8DT0bBWE .pcard-info, .cc_57zhho0j_nDisEtloxu .pcard-info {
+    order: 2;
+    padding-top: 10px;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcard-badges, .cc_57zhho0j_VD8DT0bBWE .pcard-badges, .cc_57zhho0j_nDisEtloxu .pcard-badges {
+    top: 8px;
+    left: 8px;
+    max-width: calc(100% - 56px);
+  }
+
+  /* buton artık görselin üzerinde değil, akışta: çerçeveli hap */
+  .cc_57zhho0j_lOR1DPbFNu .pcard-atc, .cc_57zhho0j_VD8DT0bBWE .pcard-atc, .cc_57zhho0j_nDisEtloxu .pcard-atc {
+    order: 3;
+    position: static;
+    padding-top: 8px;
+    opacity: 1;
+    transform: none;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcard-atc-btn, .cc_57zhho0j_VD8DT0bBWE .pcard-atc-btn, .cc_57zhho0j_nDisEtloxu .pcard-atc-btn {
+    min-height: 44px;
+    border-color: var(--wyLeI2Gkwa);
+    box-shadow: none;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcard-atc-btn.pcard-atc-btn--oos, .cc_57zhho0j_VD8DT0bBWE .pcard-atc-btn.pcard-atc-btn--oos, .cc_57zhho0j_nDisEtloxu .pcard-atc-btn.pcard-atc-btn--oos {
+    border-color: var(--7P6Gqwghpo);
+    background: var(--rByxa8MJ1Z);
+  }
+
+  /* mobil kartta görsel okları yok */
+  .cc_57zhho0j_lOR1DPbFNu .pcard-arrow, .cc_57zhho0j_VD8DT0bBWE .pcard-arrow, .cc_57zhho0j_nDisEtloxu .pcard-arrow {
+    display: none;
+  }
+}
+
+/* End import: ../ProductCard/styles.css */
+
+/* Şerit, o-container'ın içerik kenarıyla hizalı başlar ama sağa taşar:
+   yan boşluk container'ın kenar boşluğuyla aynı hesaplanır. */
+.cc_57zhho0j_lOR1DPbFNu .pcar, .cc_57zhho0j_VD8DT0bBWE .pcar, .cc_57zhho0j_nDisEtloxu .pcar {
+  --pcar-gutter: max(40px, calc((100% - 1440px) / 2 + 40px));
+  --pcar-gap: 24px;
+}
+
+/* Başlık bloğu solda, oklar sağda; ikisi de alt kenara yaslanır */
+.cc_57zhho0j_lOR1DPbFNu .pcar-head, .cc_57zhho0j_VD8DT0bBWE .pcar-head, .cc_57zhho0j_nDisEtloxu .pcar-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcar-head-text, .cc_57zhho0j_VD8DT0bBWE .pcar-head-text, .cc_57zhho0j_nDisEtloxu .pcar-head-text {
+  min-width: 0;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcar-arrows, .cc_57zhho0j_VD8DT0bBWE .pcar-arrows, .cc_57zhho0j_nDisEtloxu .pcar-arrows {
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+/* yuvarlak hap oklar: ince çizgi çerçeve, hover'da Metin zemini */
+.cc_57zhho0j_lOR1DPbFNu .pcar-arrow, .cc_57zhho0j_VD8DT0bBWE .pcar-arrow, .cc_57zhho0j_nDisEtloxu .pcar-arrow {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--7P6Gqwghpo);
+  border-radius: 50%;
+  background: var(--7LydJvXvGj);
+  color: var(--wyLeI2Gkwa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    opacity var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcar-arrow:active:not(:disabled), .cc_57zhho0j_VD8DT0bBWE .pcar-arrow:active:not(:disabled), .cc_57zhho0j_nDisEtloxu .pcar-arrow:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcar-arrow:disabled, .cc_57zhho0j_VD8DT0bBWE .pcar-arrow:disabled, .cc_57zhho0j_nDisEtloxu .pcar-arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcar-arrow-icon, .cc_57zhho0j_VD8DT0bBWE .pcar-arrow-icon, .cc_57zhho0j_nDisEtloxu .pcar-arrow-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcar-track, .cc_57zhho0j_VD8DT0bBWE .pcar-track, .cc_57zhho0j_nDisEtloxu .pcar-track {
+  display: flex;
+  margin-top: 40px;
+  padding: 0 var(--pcar-gutter);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* snapport padding'i saymaz — kartların kenara yapışmaması için padding kadar kaydır */
+  scroll-padding-left: var(--pcar-gutter);
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcar-track::-webkit-scrollbar, .cc_57zhho0j_VD8DT0bBWE .pcar-track::-webkit-scrollbar, .cc_57zhho0j_nDisEtloxu .pcar-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* content-box: adım (offsetWidth) kart + boşluk olarak ölçülür */
+.cc_57zhho0j_lOR1DPbFNu .pcar-card, .cc_57zhho0j_VD8DT0bBWE .pcar-card, .cc_57zhho0j_nDisEtloxu .pcar-card {
+  flex: 0 0 clamp(232px, 21vw, 320px);
+  padding-right: var(--pcar-gap);
+  scroll-snap-align: start;
+  box-sizing: content-box;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcar-foot, .cc_57zhho0j_VD8DT0bBWE .pcar-foot, .cc_57zhho0j_nDisEtloxu .pcar-foot {
+  padding-top: 32px;
+}
+
+/* İlerleme çubuğu: ince çizgi üstünde konumu gösteren hap */
+.cc_57zhho0j_lOR1DPbFNu .pcar-progress, .cc_57zhho0j_VD8DT0bBWE .pcar-progress, .cc_57zhho0j_nDisEtloxu .pcar-progress {
+  position: relative;
+  height: 2px;
+  max-width: 320px;
+  border-radius: var(--radius-pill);
+  background: var(--7P6Gqwghpo);
+  overflow: hidden;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcar-progress-thumb, .cc_57zhho0j_VD8DT0bBWE .pcar-progress-thumb, .cc_57zhho0j_nDisEtloxu .pcar-progress-thumb {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--pcar-thumb, 100%);
+  border-radius: inherit;
+  background: var(--wyLeI2Gkwa);
+  transform: translateX(var(--pcar-pos, 0));
+  transition: transform var(--dur-panel) var(--ease-out);
+}
+
+/* Nokta göstergesi yalnızca mobilde, mobileDots açıkken çubuğun yerine geçer */
+.cc_57zhho0j_lOR1DPbFNu .pcar-dots, .cc_57zhho0j_VD8DT0bBWE .pcar-dots, .cc_57zhho0j_nDisEtloxu .pcar-dots {
+  display: none;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* 44px dokunma hedefi, görünen hap 6px; aktif olan uzar ve koyulaşır.
+   Genişlik anında değişir (layout animasyonu yok), yalnız renk geçer. */
+.cc_57zhho0j_lOR1DPbFNu .pcar-dot, .cc_57zhho0j_VD8DT0bBWE .pcar-dot, .cc_57zhho0j_nDisEtloxu .pcar-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 44px;
+  padding: 0 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcar-dot-pill, .cc_57zhho0j_VD8DT0bBWE .pcar-dot-pill, .cc_57zhho0j_nDisEtloxu .pcar-dot-pill {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--n97TjqOtaK);
+  transition: background-color var(--dur-fast) ease;
+}
+
+.cc_57zhho0j_lOR1DPbFNu .pcar-dot.is-active .pcar-dot-pill, .cc_57zhho0j_VD8DT0bBWE .pcar-dot.is-active .pcar-dot-pill, .cc_57zhho0j_nDisEtloxu .pcar-dot.is-active .pcar-dot-pill {
+  width: 20px;
+  background: var(--wyLeI2Gkwa);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cc_57zhho0j_lOR1DPbFNu .pcar-arrow:hover:not(:disabled), .cc_57zhho0j_VD8DT0bBWE .pcar-arrow:hover:not(:disabled), .cc_57zhho0j_nDisEtloxu .pcar-arrow:hover:not(:disabled) {
+    background: var(--wyLeI2Gkwa);
+    border-color: var(--wyLeI2Gkwa);
+    color: var(--7LydJvXvGj);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc_57zhho0j_lOR1DPbFNu .pcar-track, .cc_57zhho0j_VD8DT0bBWE .pcar-track, .cc_57zhho0j_nDisEtloxu .pcar-track {
+    scroll-behavior: auto;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcar-progress-thumb, .cc_57zhho0j_VD8DT0bBWE .pcar-progress-thumb, .cc_57zhho0j_nDisEtloxu .pcar-progress-thumb, .cc_57zhho0j_lOR1DPbFNu .pcar-dot-pill, .cc_57zhho0j_VD8DT0bBWE .pcar-dot-pill, .cc_57zhho0j_nDisEtloxu .pcar-dot-pill {
+    transition: none;
+  }
+}
+
+/* ===== Tablet ===== */
+
+@media (max-width: 1024px) {
+  .cc_57zhho0j_lOR1DPbFNu .pcar, .cc_57zhho0j_VD8DT0bBWE .pcar, .cc_57zhho0j_nDisEtloxu .pcar {
+    --pcar-gutter: 24px;
+    --pcar-gap: 16px;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcar-card, .cc_57zhho0j_VD8DT0bBWE .pcar-card, .cc_57zhho0j_nDisEtloxu .pcar-card {
+    flex-basis: clamp(200px, 30vw, 280px);
+  }
+}
+
+/* ===== Mobil ===== */
+
+@media (max-width: 768px) {
+  .cc_57zhho0j_lOR1DPbFNu .pcar, .cc_57zhho0j_VD8DT0bBWE .pcar, .cc_57zhho0j_nDisEtloxu .pcar {
+    --pcar-gutter: 16px;
+    --pcar-gap: 12px;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcar-track, .cc_57zhho0j_VD8DT0bBWE .pcar-track, .cc_57zhho0j_nDisEtloxu .pcar-track {
+    margin-top: 28px;
+  }
+
+  /* Görünen alanda 2 tam kart + 3. kartın ~46px'lik ipucu:
+     16px sol boşluk + 2 × 12px boşluk + 46px ipucu = 86px, kalanı iki kart paylaşır. */
+  .cc_57zhho0j_lOR1DPbFNu .pcar-card, .cc_57zhho0j_VD8DT0bBWE .pcar-card, .cc_57zhho0j_nDisEtloxu .pcar-card {
+    flex-basis: calc((100vw - 86px) / 2);
+  }
+
+  /* mobilde parmakla kaydırılır — ok navigasyonu yok */
+  .cc_57zhho0j_lOR1DPbFNu .pcar-arrows, .cc_57zhho0j_VD8DT0bBWE .pcar-arrows, .cc_57zhho0j_nDisEtloxu .pcar-arrows {
+    display: none;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcar-foot, .cc_57zhho0j_VD8DT0bBWE .pcar-foot, .cc_57zhho0j_nDisEtloxu .pcar-foot {
+    padding-top: 24px;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcar-progress, .cc_57zhho0j_VD8DT0bBWE .pcar-progress, .cc_57zhho0j_nDisEtloxu .pcar-progress {
+    max-width: none;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcar--dots .pcar-progress, .cc_57zhho0j_VD8DT0bBWE .pcar--dots .pcar-progress, .cc_57zhho0j_nDisEtloxu .pcar--dots .pcar-progress {
+    display: none;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcar--dots .pcar-dots, .cc_57zhho0j_VD8DT0bBWE .pcar--dots .pcar-dots, .cc_57zhho0j_nDisEtloxu .pcar--dots .pcar-dots {
+    display: flex;
+  }
+
+  .cc_57zhho0j_lOR1DPbFNu .pcar--dots .pcar-foot, .cc_57zhho0j_VD8DT0bBWE .pcar--dots .pcar-foot, .cc_57zhho0j_nDisEtloxu .pcar--dots .pcar-foot {
+    padding-top: 12px;
+  }
+}

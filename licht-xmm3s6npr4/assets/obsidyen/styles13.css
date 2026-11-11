@@ -1,0 +1,169 @@
+/* Alt bileşen stilleri — build yalnızca bu @import üzerinden toplar */
+/* Skipped (covered by shared chunk CSS): ../../sub-components/LookProductCard/styles.css */
+
+.cc_57zhho0j_5U2RiNtvHJ .ugcc {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  color: var(--wyLeI2Gkwa);
+}
+
+/* Medya: oran parent'tan (Ugc → --ugc-ratio), büyük kart köşesi */
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-frame {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  aspect-ratio: var(--ugc-ratio, 9 / 16);
+  border-radius: var(--radius-lg);
+  background: var(--rByxa8MJ1Z);
+}
+
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  outline: 1px solid color-mix(in srgb, var(--wyLeI2Gkwa) 10%, transparent);
+  outline-offset: -1px;
+  pointer-events: none;
+}
+
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--rByxa8MJ1Z);
+  transition: transform 400ms var(--ease-out);
+}
+
+/* Üst kenar okunurluğu: paylaşan adı ve ses butonu için hafif gölge geçişi */
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 96px;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--wyLeI2Gkwa) 32%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-author {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  max-width: calc(100% - 88px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--7LydJvXvGj);
+  pointer-events: none;
+}
+
+/* Ses: 44px yuvarlak, yarı saydam koyu zemin */
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-mute {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--wyLeI2Gkwa) 45%, transparent);
+  color: var(--7LydJvXvGj);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-mute:active {
+  transform: scale(0.96);
+}
+
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-mute:focus-visible {
+  outline: 2px solid var(--7LydJvXvGj);
+  outline-offset: 2px;
+}
+
+/* ikon çapraz geçişi: ikisi de DOM'da, biri görünür */
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-mute-icon {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: scale(0.25);
+  filter: blur(4px);
+  transition:
+    opacity 300ms cubic-bezier(0.2, 0, 0, 1),
+    transform 300ms cubic-bezier(0.2, 0, 0, 1),
+    filter 300ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-mute-icon.is-on {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-mute-svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Ürün etiketi: medyanın altında yüzen kart */
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-tag {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+.cc_57zhho0j_5U2RiNtvHJ .ugcc-caption {
+  margin: 0;
+  color: var(--iigo9Iys2H);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-wrap: pretty;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cc_57zhho0j_5U2RiNtvHJ .ugcc-mute:hover {
+    background: color-mix(in srgb, var(--wyLeI2Gkwa) 65%, transparent);
+  }
+
+  .cc_57zhho0j_5U2RiNtvHJ .ugcc-link:hover .ugcc-media {
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc_57zhho0j_5U2RiNtvHJ .ugcc-mute-icon {
+    transform: none;
+    filter: none;
+  }
+
+  .cc_57zhho0j_5U2RiNtvHJ .ugcc-link:hover .ugcc-media {
+    transform: none;
+  }
+}

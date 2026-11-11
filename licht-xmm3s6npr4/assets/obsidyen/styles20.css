@@ -1,0 +1,237 @@
+/* Alt bileşen stilleri — build yalnızca bu @import'lar üzerinden
+   toplar; import edilmeyen sub-component CSS'i çıktıya girmez. */
+/* Skipped (covered by shared chunk CSS): ../../sub-components/BlogCard/styles.css */
+
+/* Dikey ritim o-section'dan, başlık genişliği o-container'dan gelir. Şerit
+   ise kenardan kenara kayar; iç boşluğu container'ın sol hizasına eşitlenir
+   (geniş ekranda 1440px kolonun kenarı + 40px). */
+.cc_57zhho0j_7xAztb2hYt .bslider {
+  --bslider-gutter: max(40px, calc((100% - 1440px) / 2 + 40px));
+  color: var(--wyLeI2Gkwa);
+  background: var(--7LydJvXvGj);
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-title {
+  margin: 0;
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+  margin-inline-start: auto;
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-view-all-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cc_57zhho0j_7xAztb2hYt .bslider-view-all:hover .bslider-view-all-icon {
+    transform: translateX(3px);
+  }
+}
+
+/* ===== Şerit ===== */
+
+.cc_57zhho0j_7xAztb2hYt .bslider-track {
+  display: flex;
+  padding: 40px var(--bslider-gutter) 4px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* snapport padding'i saymaz — kartların sola yapışmaması için padding kadar kaydır */
+  scroll-padding-left: var(--bslider-gutter);
+  scrollbar-width: none;
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Kart arası boşluk padding-right ile: useCarouselTrack adımı kartın
+   offsetWidth'inden ölçüyor, boşluk adımın içinde kalmalı. */
+.cc_57zhho0j_7xAztb2hYt .bslider-card {
+  flex: 0 0 420px;
+  padding-right: 32px;
+  scroll-snap-align: start;
+  box-sizing: content-box;
+}
+
+/* ===== Ok navigasyonu (yuvarlak, beyaz zemin, hover'da Metin dolgu) ===== */
+
+.cc_57zhho0j_7xAztb2hYt .bslider-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--7P6Gqwghpo);
+  border-radius: 50%;
+  background: var(--7LydJvXvGj);
+  color: var(--wyLeI2Gkwa);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    opacity var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-arrow:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cc_57zhho0j_7xAztb2hYt .bslider-arrow:hover:not(:disabled) {
+    border-color: var(--wyLeI2Gkwa);
+    background: var(--wyLeI2Gkwa);
+    color: var(--7LydJvXvGj);
+  }
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-arrow-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Nokta göstergesi yalnızca mobilde açılır (bkz. mobil blok) */
+.cc_57zhho0j_7xAztb2hYt .bslider-dots {
+  display: none;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-dot {
+  padding: 12px 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
+}
+
+/* Genişlik yerine scaleX: aktif çizgi uzarken layout yeniden hesaplanmaz */
+.cc_57zhho0j_7xAztb2hYt .bslider-dot-line {
+  display: block;
+  width: 28px;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--wyLeI2Gkwa);
+  opacity: 0.25;
+  transform: scaleX(0.55);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    opacity var(--dur-base) ease,
+    background-color var(--dur-base) ease;
+}
+
+.cc_57zhho0j_7xAztb2hYt .bslider-dot.is-active .bslider-dot-line {
+  background: var(--4TWc2Wr5Et);
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc_57zhho0j_7xAztb2hYt .bslider-track {
+    scroll-behavior: auto;
+  }
+
+  .cc_57zhho0j_7xAztb2hYt .bslider-view-all-icon, .cc_57zhho0j_7xAztb2hYt .bslider-dot-line {
+    transition: opacity var(--dur-base) ease;
+  }
+
+  .cc_57zhho0j_7xAztb2hYt .bslider-dot-line, .cc_57zhho0j_7xAztb2hYt .bslider-dot.is-active .bslider-dot-line {
+    transform: none;
+  }
+}
+
+/* ===== Tablet ===== */
+
+@media (max-width: 1024px) {
+  .cc_57zhho0j_7xAztb2hYt .bslider {
+    --bslider-gutter: 24px;
+  }
+
+  .cc_57zhho0j_7xAztb2hYt .bslider-track {
+    padding-top: 32px;
+  }
+
+  .cc_57zhho0j_7xAztb2hYt .bslider-card {
+    flex-basis: 340px;
+    padding-right: 24px;
+  }
+}
+
+/* ===== Mobil ===== */
+
+@media (max-width: 768px) {
+  .cc_57zhho0j_7xAztb2hYt .bslider {
+    --bslider-gutter: 16px;
+  }
+
+  .cc_57zhho0j_7xAztb2hYt .bslider-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .cc_57zhho0j_7xAztb2hYt .bslider-actions {
+    margin-inline-start: 0;
+  }
+
+  .cc_57zhho0j_7xAztb2hYt .bslider-track {
+    padding-top: 24px;
+  }
+
+  /* Görünen alanda 1 tam kart + sonrakinin ipucu: 16px sol padding +
+     12px boşluk + ~46px ipucu = 74px, kalanı kart alır. */
+  .cc_57zhho0j_7xAztb2hYt .bslider-card {
+    flex-basis: calc(100vw - 74px);
+    padding-right: 12px;
+  }
+
+  /* mobilde parmakla kaydırılır — tema konvansiyonu: ok yerine nokta */
+  .cc_57zhho0j_7xAztb2hYt .bslider-arrows {
+    display: none;
+  }
+
+  .cc_57zhho0j_7xAztb2hYt .bslider-dots {
+    display: flex;
+  }
+}

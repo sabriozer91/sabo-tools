@@ -1,0 +1,25 @@
+
+/* Yıldızlar metin değil UI grafiği: Marka/Ana 3:1 yeter. Boş yıldız Çizgi
+   tonunda — dolu/boş ayrımı renk + doluluk sayısıyla, puan yanında metinle. */
+.cc_57zhho0j_tBvswKkyRG .rvs, .cc_57zhho0j_EZGzvA9Dc3 .rvs, .cc_57zhho0j_aCYCR9TJoK .rvs, .cc_57zhho0j_U9Bb9bg6Fl .rvs {
+  --rvs-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  line-height: 0;
+}
+
+.cc_57zhho0j_tBvswKkyRG .rvs__star, .cc_57zhho0j_EZGzvA9Dc3 .rvs__star, .cc_57zhho0j_aCYCR9TJoK .rvs__star, .cc_57zhho0j_U9Bb9bg6Fl .rvs__star {
+  display: block;
+  color: var(--7P6Gqwghpo);
+}
+
+.cc_57zhho0j_tBvswKkyRG .rvs__icon, .cc_57zhho0j_EZGzvA9Dc3 .rvs__icon, .cc_57zhho0j_aCYCR9TJoK .rvs__icon, .cc_57zhho0j_U9Bb9bg6Fl .rvs__icon {
+  display: block;
+  width: var(--rvs-size);
+  height: var(--rvs-size);
+}
+
+.cc_57zhho0j_tBvswKkyRG .rvs__star.is-filled, .cc_57zhho0j_EZGzvA9Dc3 .rvs__star.is-filled, .cc_57zhho0j_aCYCR9TJoK .rvs__star.is-filled, .cc_57zhho0j_U9Bb9bg6Fl .rvs__star.is-filled {
+  color: var(--wNn0QTzGnT);
+}

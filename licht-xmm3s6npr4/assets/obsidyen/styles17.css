@@ -1,0 +1,100 @@
+/* Alt bileşen stilleri — build yalnızca bu @import'lar üzerinden toplar */
+/* Skipped (covered by shared chunk CSS): ../../sub-components/ReviewStars/styles.css */
+/* Skipped (covered by shared chunk CSS): ../../sub-components/LookProductCard/styles.css */
+
+/* Beyaz kart: pembe section zemininde kenarlıksız durur. Fotoğraf varsa
+   üstte, metin ortada; ürün satırı en altta kendi Yüzey panelinde —
+   yorumdan çizgiyle değil zemin şekliyle ayrılır. */
+.cc_57zhho0j_tBvswKkyRG .tsc {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--7LydJvXvGj);
+  color: var(--wyLeI2Gkwa);
+}
+
+.cc_57zhho0j_tBvswKkyRG .tsc-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--rByxa8MJ1Z);
+}
+
+.cc_57zhho0j_tBvswKkyRG .tsc-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cc_57zhho0j_tBvswKkyRG .tsc-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+}
+
+.cc_57zhho0j_tBvswKkyRG .tsc-stars {
+  --rvs-size: 16px;
+}
+
+.cc_57zhho0j_tBvswKkyRG .tsc-quote {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+}
+
+.cc_57zhho0j_tBvswKkyRG .tsc-title {
+  margin: 0;
+}
+
+.cc_57zhho0j_tBvswKkyRG .tsc-text {
+  margin: 0;
+  color: var(--iigo9Iys2H);
+  text-wrap: pretty;
+}
+
+/* Ad + alt bilgi kartın dibine yaslanır; kart yükseklikleri eşitlenir */
+.cc_57zhho0j_tBvswKkyRG .tsc-author {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.cc_57zhho0j_tBvswKkyRG .tsc-meta {
+  color: var(--jq4Z0Bq66E);
+}
+
+.cc_57zhho0j_tBvswKkyRG .tsc-product {
+  margin: 0 8px 8px;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--rByxa8MJ1Z);
+}
+
+/* Panel içinde küçük ürün görseli: kart dar, yorum metni baş rolde kalsın */
+.cc_57zhho0j_tBvswKkyRG .tsc-product .lpc-thumb {
+  width: 56px;
+  border-radius: var(--radius-sm);
+  background: var(--7LydJvXvGj);
+}
+
+/* LookProductCard satırının vurgu/hover zemini panelin kendisiyle çakışmasın */
+.cc_57zhho0j_tBvswKkyRG .tsc-product .lpc--row {
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .cc_57zhho0j_tBvswKkyRG .tsc-body {
+    padding: 20px;
+  }
+}

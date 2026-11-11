@@ -1,0 +1,116 @@
+/* Zemin token'a bağlı: bölüm renk alanı boşken genel renk ayarı geçer */
+.cc_57zhho0j_QoFyAsLKfz .ipair {
+  background: var(--7LydJvXvGj);
+}
+
+.cc_57zhho0j_QoFyAsLKfz .ipair-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* Tek görsel doluysa tam genişlik yerine yarım kalmasın */
+.cc_57zhho0j_QoFyAsLKfz .ipair-card:only-child {
+  grid-column: 1 / -1;
+}
+
+.cc_57zhho0j_QoFyAsLKfz .ipair-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-lg);
+  background: var(--rByxa8MJ1Z);
+  color: var(--7LydJvXvGj);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  /* Fraunces vurgusu koyu karartma üstünde açık pembe */
+  --o-em-color: var(--bdbApXcZOr);
+}
+
+.cc_57zhho0j_QoFyAsLKfz .ipair-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform 400ms var(--ease-out);
+}
+
+.cc_57zhho0j_QoFyAsLKfz .ipair-card:only-child .ipair-img {
+  aspect-ratio: 16 / 9;
+}
+
+/* Alt bant: başlık + hap etiket, okunurluk için alttan karartma */
+.cc_57zhho0j_QoFyAsLKfz .ipair-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 96px 32px 32px;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--wyLeI2Gkwa) 50%, transparent) 0%,
+    transparent 100%
+  );
+}
+
+.cc_57zhho0j_QoFyAsLKfz .ipair-label {
+  max-width: 18ch;
+}
+
+/* Görsel kenarı açık zeminde kaybolmasın: saf siyah ince iç çizgi */
+.cc_57zhho0j_QoFyAsLKfz .ipair-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wyLeI2Gkwa) 4%, transparent);
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cc_57zhho0j_QoFyAsLKfz .ipair-card:hover .ipair-img {
+    transform: scale(1.03);
+  }
+
+  .cc_57zhho0j_QoFyAsLKfz .ipair-card:hover .ipair-cta {
+    background: var(--bkf9Pptudo);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc_57zhho0j_QoFyAsLKfz .ipair-img {
+    transition: none;
+  }
+
+  .cc_57zhho0j_QoFyAsLKfz .ipair-card:hover .ipair-img {
+    transform: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cc_57zhho0j_QoFyAsLKfz .ipair-grid {
+    gap: 16px;
+  }
+
+  .cc_57zhho0j_QoFyAsLKfz .ipair-caption {
+    padding: 72px 24px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cc_57zhho0j_QoFyAsLKfz .ipair-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cc_57zhho0j_QoFyAsLKfz .ipair-card:only-child .ipair-img {
+    aspect-ratio: 4 / 5;
+  }
+
+  .cc_57zhho0j_QoFyAsLKfz .ipair-caption {
+    gap: 12px;
+    padding: 64px 20px 20px;
+  }
+}

@@ -1,0 +1,361 @@
+/* Yumuşak pembe zemin, Metin rengi. Dört grup yukarıdan aşağı önem
+   sırasıyla: A bülten bandı → B link kolonları → C büyük logo → D telif.
+   Gruplar çizgiyle değil boşlukla ayrılır (gruplar arası ≥ 2× grup içi).
+   İkincil metinler currentColor'dan karışım: merchant metin rengini
+   değiştirirse hiyerarşi de onunla gelir. */
+.cc_57zhho0j_ZjIJCWOcNU .ftr {
+  --ftr-muted: color-mix(in srgb, currentColor 72%, transparent);
+  --ftr-line: color-mix(in srgb, currentColor 14%, transparent);
+  background: var(--bdbApXcZOr);
+  color: var(--wyLeI2Gkwa);
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-inner {
+  padding-top: 88px;
+  padding-bottom: 32px;
+}
+
+/* ===== A — bülten bandı ===== */
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-news {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
+  align-items: end;
+  gap: 32px 64px;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-news-head h2 {
+  max-width: 16ch;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-news-text {
+  margin: 0;
+  padding-top: 16px;
+  max-width: 48ch;
+  color: var(--ftr-muted);
+  text-wrap: pretty;
+}
+
+/* Hap alan: input ve birincil buton tek kabukta. Kenar metin renginin
+   %40'ı — açık zeminde ≥3:1. Odak halkası kabuğa çizilir. */
+.cc_57zhho0j_ZjIJCWOcNU .ftr-news-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+  border-radius: var(--radius-pill);
+  background: var(--7LydJvXvGj);
+  transition: border-color var(--dur-fast) ease;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-news-field:focus-within {
+  border-color: currentColor;
+  outline: 2px solid var(--4TWc2Wr5Et);
+  outline-offset: 2px;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-news-input {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  padding: 0 0 0 18px;
+  border: none;
+  background: transparent;
+  color: inherit;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-news-input::placeholder {
+  color: var(--ftr-muted);
+}
+
+/* Odak kabukta gösteriliyor */
+.cc_57zhho0j_ZjIJCWOcNU .ftr-news-input:focus-visible {
+  outline: none;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-news-submit {
+  flex-shrink: 0;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-news-status {
+  margin: 0;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-news-error {
+  margin: 0;
+  padding: 8px 0 0 18px;
+  color: var(--mRhWpYdzbu);
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-privacy {
+  margin: 0;
+  padding: 12px 0 0 18px;
+  color: var(--ftr-muted);
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-privacy-link {
+  color: inherit;
+}
+
+/* ===== B — link kolonları ===== */
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-cols {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px 32px;
+  margin-top: 80px;
+}
+
+/* Bülten kapalıysa kolonlar ilk grup: üst boşluğu .ftr-inner padding'i verir */
+.cc_57zhho0j_ZjIJCWOcNU .ftr-inner > .ftr-cols:first-child {
+  margin-top: 0;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-col {
+  min-width: 0;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-col-title {
+  margin: 0;
+  padding-bottom: 16px;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-col-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-col-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: var(--ftr-muted);
+  text-decoration: none;
+  transition: color var(--dur-fast) ease;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-social {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: var(--7LydJvXvGj);
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-social-link--text {
+  padding: 0 16px;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-social-link:active {
+  transform: scale(0.96);
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ===== C — büyük logo ===== */
+
+/* Kabın tam genişliği; Marka/Ana tek dekoratif vurgu. Metin değil
+   grafik olduğu için kontrast eşiği 3:1. */
+.cc_57zhho0j_ZjIJCWOcNU .ftr-mark {
+  display: block;
+  margin-top: 96px;
+  color: var(--wNn0QTzGnT);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-mark-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-mark-svg.is-fitted {
+  opacity: 1;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-mark-svg text {
+  fill: currentColor;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-mark-logo {
+  display: block;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-mark-logo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ===== D — telif ve yasal ===== */
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 32px;
+  margin-top: 64px;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-mark + .ftr-bottom {
+  margin-top: 24px;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-logo {
+  display: inline-flex;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-logo-text {
+  margin: 0;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-logo-svg {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-logo-svg svg {
+  height: 100%;
+  width: auto;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-copyright {
+  margin: 0;
+  color: var(--ftr-muted);
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-legal {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-legal-item {
+  display: flex;
+  align-items: center;
+}
+
+/* Ayırıcı: küçük nokta */
+.cc_57zhho0j_ZjIJCWOcNU .ftr-legal-item + .ftr-legal-item::before {
+  content: "";
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--ftr-muted);
+  margin: 0 12px;
+}
+
+.cc_57zhho0j_ZjIJCWOcNU .ftr-legal-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: var(--ftr-muted);
+  text-decoration: none;
+  transition: color var(--dur-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-col-link:hover, .cc_57zhho0j_ZjIJCWOcNU .ftr-legal-link:hover {
+    color: var(--4TWc2Wr5Et);
+  }
+
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-social-link:hover {
+    background: var(--4TWc2Wr5Et);
+    color: var(--7LydJvXvGj);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-mark-svg {
+    transition: none;
+  }
+
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-social-link {
+    transition-property: background-color, color;
+  }
+}
+
+/* ===== responsive ===== */
+
+@media (max-width: 1024px) {
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-inner {
+    padding-top: 64px;
+  }
+
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-news {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 24px;
+  }
+
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-news-action {
+    max-width: 460px;
+  }
+
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 64px;
+  }
+
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-mark {
+    margin-top: 72px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-inner {
+    padding-top: 56px;
+    padding-bottom: 24px;
+  }
+
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-cols {
+    gap: 32px 24px;
+    margin-top: 48px;
+  }
+
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-mark {
+    margin-top: 56px;
+  }
+
+  .cc_57zhho0j_ZjIJCWOcNU .ftr-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

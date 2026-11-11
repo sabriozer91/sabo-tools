@@ -1,0 +1,86 @@
+/* Rozet görünümü BadgeItem'da — build yalnızca @import edilenleri toplar. */
+/* Skipped (covered by shared chunk CSS): ../../sub-components/BadgeItem/styles.css */
+
+/* Şerit bir bant: tam section ritmi yerine sıkı dikey boşluk. Zemin
+   varsayılanı Marka/Açık (prop ile ezilir). */
+.cc_57zhho0j_j79KNKRHAj .vstrip {
+  padding: 48px 0;
+  background: var(--bkf9Pptudo);
+  color: var(--wyLeI2Gkwa);
+}
+
+.cc_57zhho0j_j79KNKRHAj .vstrip-head {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.cc_57zhho0j_j79KNKRHAj .vstrip-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--vst-cols, 4), minmax(0, 1fr));
+  gap: 32px;
+}
+
+/* IkasComponentRenderer'ın olası sarmalayıcıları grid öğesi olmasın */
+.cc_57zhho0j_j79KNKRHAj .vstrip-grid > :not(.obadge) {
+  display: contents;
+}
+
+/* Ayraçlı düzen: her rozetin solunda ince çizgi; satır başındaki çizgi
+   grid'in taşma kırpmasıyla gizlenir, böylece kolon sayısından bağımsız. */
+.cc_57zhho0j_j79KNKRHAj .vstrip-grid--divided {
+  column-gap: 0;
+  overflow: hidden;
+}
+
+.cc_57zhho0j_j79KNKRHAj .vstrip-grid--divided .obadge {
+  justify-content: center;
+  margin-inline-start: -1px;
+  padding-inline: 24px;
+  border-inline-start: 1px solid var(--7P6Gqwghpo);
+}
+
+@media (max-width: 1024px) {
+  .cc_57zhho0j_j79KNKRHAj .vstrip-grid {
+    grid-template-columns: repeat(var(--vst-cols-tablet, 2), minmax(0, 1fr));
+    gap: 32px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cc_57zhho0j_j79KNKRHAj .vstrip {
+    padding: 40px 0;
+  }
+
+  .cc_57zhho0j_j79KNKRHAj .vstrip-head {
+    margin-bottom: 24px;
+  }
+
+  .cc_57zhho0j_j79KNKRHAj .vstrip-grid {
+    gap: 28px 16px;
+  }
+
+  /* Mobilde ikon üstte, metin altta — ayraç yerine boşluk yeter */
+  .cc_57zhho0j_j79KNKRHAj .vstrip-grid--divided {
+    column-gap: 16px;
+  }
+
+  .cc_57zhho0j_j79KNKRHAj .vstrip-grid--divided .obadge {
+    justify-content: flex-start;
+    margin-inline-start: 0;
+    padding-inline: 0;
+    border-inline-start: 0;
+  }
+
+  /* Tek sayıda rozet: 2'li grid yerine tek kolon liste, ikon solda —
+     son satırda yalnız kalan rozet olmaz */
+  .cc_57zhho0j_j79KNKRHAj .vstrip-grid--stack {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .cc_57zhho0j_j79KNKRHAj .vstrip-grid--stack .obadge {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+}

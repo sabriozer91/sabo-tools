@@ -1,0 +1,46 @@
+.cc_57zhho0j_16tH1LbcWO .txtb {
+  color: var(--wyLeI2Gkwa);
+  background: var(--bkf9Pptudo);
+}
+
+/* Ortalı dar ölçü: başlık ve paragraf 60ch'yi aşmaz. Boşluklar sarmalayıcı
+   div'lerde — token class'lı h2/p/a margin'i sıfırladığı için onlara verilmez.
+   Ritim: başlık bloğu→paragraf 20, paragraf→link 28. */
+.cc_57zhho0j_16tH1LbcWO .txtb-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.cc_57zhho0j_16tH1LbcWO .txtb-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.cc_57zhho0j_16tH1LbcWO .txtb-heading {
+  margin: 0;
+  max-width: 22ch;
+}
+
+.cc_57zhho0j_16tH1LbcWO .txtb-paragraph {
+  margin: 0;
+  max-width: 60ch;
+  /* metin rengi prop'tan gelirse ikincil ton onun soluğu olur */
+  color: color-mix(in srgb, currentColor 82%, transparent);
+  text-wrap: pretty;
+}
+
+.cc_57zhho0j_16tH1LbcWO .txtb-actions {
+  padding-top: 8px;
+}
+
+/* bağlantı: 44px hedef, alt çizgi fonttan (o-link) */
+.cc_57zhho0j_16tH1LbcWO .txtb-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}

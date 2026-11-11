@@ -1,0 +1,87 @@
+/* Alt bileşen stilleri — build yalnızca bu @import'lar üzerinden
+   toplar; import edilmeyen sub-component CSS'i çıktıya girmez.
+   (ProductCard stilleri ProductCarousel içinden gelir.) */
+/* Skipped (covered by shared chunk CSS): ../../sub-components/ProductCarousel/styles.css */
+
+.cc_57zhho0j_VD8DT0bBWE .ptabs {
+  color: var(--wyLeI2Gkwa);
+  background: var(--7LydJvXvGj);
+}
+
+/* Başlık bloğu + sekmeler: karuselin başlık satırında, okların solunda */
+.cc_57zhho0j_VD8DT0bBWE .ptabs-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cc_57zhho0j_VD8DT0bBWE .ptabs-title {
+  margin: 0;
+  max-width: 20ch;
+}
+
+.cc_57zhho0j_VD8DT0bBWE .ptabs-desc {
+  margin: 0;
+  max-width: 56ch;
+  color: var(--iigo9Iys2H);
+  text-wrap: pretty;
+}
+
+.cc_57zhho0j_VD8DT0bBWE .ptabs-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* Hap sekmeler: pasif = çizgi çerçeve, aktif = Metin zemini + beyaz.
+   Renk tek başına taşımasın diye aktifte çerçeve de kalınlaşmış görünür
+   (dolgu) ve aria-selected ekran okuyucuya söyler. */
+.cc_57zhho0j_VD8DT0bBWE .ptabs-tab {
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--7P6Gqwghpo);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--iigo9Iys2H);
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.cc_57zhho0j_VD8DT0bBWE .ptabs-tab:active {
+  transform: scale(0.96);
+}
+
+.cc_57zhho0j_VD8DT0bBWE .ptabs-tab.is-active {
+  border-color: var(--wyLeI2Gkwa);
+  background: var(--wyLeI2Gkwa);
+  color: var(--7LydJvXvGj);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cc_57zhho0j_VD8DT0bBWE .ptabs-tab:not(.is-active):hover {
+    border-color: var(--wyLeI2Gkwa);
+    color: var(--wyLeI2Gkwa);
+  }
+}
+
+@media (max-width: 768px) {
+  /* dar ekranda sekmeler yatay kayar, satır kırılmaz */
+  .cc_57zhho0j_VD8DT0bBWE .ptabs-tabs {
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .cc_57zhho0j_VD8DT0bBWE .ptabs-tabs::-webkit-scrollbar {
+    display: none;
+  }
+}

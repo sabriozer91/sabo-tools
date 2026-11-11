@@ -1,0 +1,26 @@
+/* ============================================================
+   Licht × Obsidyen — İçerik modu > Global Değerler > Renkler
+   Sadece temanın kendi 15 renk token'ının DEĞERİ değişti.
+   Yazı tipleri (Fraunces + Manrope) temanın varsayılanı.
+   ============================================================ */
+html:root {
+  --wNn0QTzGnT: #D45A90; /* Marka/Ana      → Licht pembe (koyu ton): italik vurgu, yıldız, ikon, favori */
+  --4TWc2Wr5Et: #294B32; /* Marka/Dolgu    → Licht yeşili: ana buton, aktif durumlar, indirimli fiyat */
+  --r8NfUdc5Vm: #1C3524; /* Marka/Koyu     → buton hover, rozet metni */
+  --ckIysxzNu0: #294B32; /* Marka/Derin    → duyuru bandı zemini */
+  --bkf9Pptudo: #FDF1F5; /* Marka/Açık     → açık pembe bölüm zemini, duyuru metni */
+  --bdbApXcZOr: #FBDDE9; /* Marka/Yumuşak  → rozet zemini, kart zemini (Licht logo pembesinin açığı) */
+  --rByxa8MJ1Z: #FAF7F4; /* Nötr/Yüzey     → sıcak kırık beyaz */
+  --7P6Gqwghpo: #ECE5E1; /* Nötr/Çizgi */
+}
+
+/* ------------------------------------------------------------
+   TEK KOD MÜDAHALESİ (Eklentiler > Scriptler'e eklenecek <style>):
+   Obsidyen header/footer'da logo görseli alanı yok, sadece "logoText" var.
+   Licht'in çizim logosu için yazı logonun yerine görsel basıyoruz.
+   ------------------------------------------------------------ */
+.licht-logo { display: block; height: 30px; width: auto; }
+.hdr-logo .licht-logo { height: 40px; }
+.ftr-mark .licht-logo { height: auto; width: min(100%, 980px); margin: 0 auto; }
+
+/* POC gezinme çubuğunun (tema + sayfa geçişi) stili licht-core.js içinde. */

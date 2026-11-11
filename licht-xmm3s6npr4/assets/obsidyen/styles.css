@@ -1,0 +1,101 @@
+
+.cc_57zhho0j_oraFcLaWLK .bcard, .cc_57zhho0j_7xAztb2hYt .bcard {
+  display: flex;
+  flex-direction: column;
+  /* kapsayıcı (grid/karusel) kartları eşit yüksekliğe çekince kart da uzar —
+     başlık 1 veya 2 satır olsun, kartların üst hizası bozulmaz */
+  height: 100%;
+  color: var(--wyLeI2Gkwa);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+}
+
+/* Blog kapağı editoryal: ürün kartının 4/5'inden bilerek ayrışır. */
+.cc_57zhho0j_oraFcLaWLK .bcard-media, .cc_57zhho0j_7xAztb2hYt .bcard-media {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-md);
+  background: var(--rByxa8MJ1Z);
+}
+
+/* görsel kenarı açık zeminde kaybolmasın — diğer görsel karolarıyla aynı */
+.cc_57zhho0j_oraFcLaWLK .bcard-media::after, .cc_57zhho0j_7xAztb2hYt .bcard-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  outline: 1px solid color-mix(in srgb, var(--wyLeI2Gkwa) 10%, transparent);
+  outline-offset: -1px;
+  pointer-events: none;
+}
+
+.cc_57zhho0j_oraFcLaWLK .bcard-img, .cc_57zhho0j_7xAztb2hYt .bcard-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms var(--ease-out);
+}
+
+.cc_57zhho0j_oraFcLaWLK .bcard-img--empty, .cc_57zhho0j_7xAztb2hYt .bcard-img--empty {
+  background: var(--rByxa8MJ1Z);
+}
+
+.cc_57zhho0j_oraFcLaWLK .bcard-body, .cc_57zhho0j_7xAztb2hYt .bcard-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.cc_57zhho0j_oraFcLaWLK .bcard-meta, .cc_57zhho0j_7xAztb2hYt .bcard-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.cc_57zhho0j_oraFcLaWLK .bcard-date, .cc_57zhho0j_7xAztb2hYt .bcard-date {
+  color: var(--jq4Z0Bq66E);
+}
+
+/* Başlık iki satırda kesilir — kart yükseklikleri satır içinde tutarlı kalsın.
+   Tam başlık kapak görselinin alt metninde ve yazı sayfasında. */
+.cc_57zhho0j_oraFcLaWLK .bcard-title, .cc_57zhho0j_7xAztb2hYt .bcard-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color var(--dur-fast) ease;
+}
+
+.cc_57zhho0j_oraFcLaWLK .bcard-summary, .cc_57zhho0j_7xAztb2hYt .bcard-summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--iigo9Iys2H);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cc_57zhho0j_oraFcLaWLK .bcard:hover .bcard-img, .cc_57zhho0j_7xAztb2hYt .bcard:hover .bcard-img {
+    transform: scale(1.03);
+  }
+
+  .cc_57zhho0j_oraFcLaWLK .bcard:hover .bcard-title, .cc_57zhho0j_7xAztb2hYt .bcard:hover .bcard-title {
+    color: var(--4TWc2Wr5Et);
+  }
+}
+
+.cc_57zhho0j_oraFcLaWLK .bcard:focus-visible, .cc_57zhho0j_7xAztb2hYt .bcard:focus-visible {
+  outline: 2px solid var(--4TWc2Wr5Et);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc_57zhho0j_oraFcLaWLK .bcard-img, .cc_57zhho0j_7xAztb2hYt .bcard-img {
+    transition: none;
+  }
+}

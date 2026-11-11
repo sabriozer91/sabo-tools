@@ -1,0 +1,188 @@
+/* MediaTrio — masaüstünde eşit kolonlu grid, mobilde tek slaytlık karusel.
+   Tek DOM; yerleşimi yalnızca bu dosya değiştirir. Kolon sayısı dolu kart
+   sayısından (`--mtrio-cols`), medya oranı tek prop'tan (`--mtrio-ratio`) gelir. */
+.cc_57zhho0j_mdANG1uCic .mtrio {
+  color: var(--wyLeI2Gkwa);
+  background: var(--7LydJvXvGj);
+}
+
+/* Başlık bloğu: Fraunces başlık → açıklama */
+.cc_57zhho0j_mdANG1uCic .mtrio-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 48px;
+}
+
+.cc_57zhho0j_mdANG1uCic .mtrio-heading {
+  margin: 0;
+  max-width: 20ch;
+}
+
+.cc_57zhho0j_mdANG1uCic .mtrio-description {
+  max-width: 56ch;
+  color: var(--iigo9Iys2H);
+  text-wrap: pretty;
+}
+
+.cc_57zhho0j_mdANG1uCic .mtrio-track {
+  display: grid;
+  grid-template-columns: repeat(var(--mtrio-cols, 3), minmax(0, 1fr));
+  gap: 32px;
+}
+
+/* Medya çerçevesi: yuvarlak köşe, yüzey zemini; hover yakınlaşması
+   çerçevenin içinde kırpılır */
+.cc_57zhho0j_mdANG1uCic .mtrio-frame {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-lg);
+  background: var(--rByxa8MJ1Z);
+}
+
+/* Görsel ve video aynı çerçeveyi paylaşır: oran üç karta birlikte iner, taşan kırpılır */
+.cc_57zhho0j_mdANG1uCic .mtrio-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--mtrio-ratio, 1/1);
+  object-fit: cover;
+  transition: transform 400ms var(--ease-out);
+}
+
+/* Tema reset'i h1-h6'yı `unset`'e çekip inline'a düşürüyor: inline kutuda dikey
+   margin hiç işlemez — display:block başlığı akışa geri sokar. */
+.cc_57zhho0j_mdANG1uCic .mtrio-title {
+  display: block;
+  margin: 0;
+  padding-top: 20px;
+}
+
+.cc_57zhho0j_mdANG1uCic .mtrio-text {
+  padding-top: 8px;
+  max-width: 48ch;
+  color: var(--iigo9Iys2H);
+  text-wrap: pretty;
+}
+
+/* Zengin metin paragrafları arasında bir satırlık boşluk */
+.cc_57zhho0j_mdANG1uCic .mtrio-description p, .cc_57zhho0j_mdANG1uCic .mtrio-text p {
+  margin: 0 0 1em;
+}
+
+.cc_57zhho0j_mdANG1uCic .mtrio-description :last-child, .cc_57zhho0j_mdANG1uCic .mtrio-text :last-child {
+  margin-bottom: 0;
+}
+
+.cc_57zhho0j_mdANG1uCic .mtrio-description a, .cc_57zhho0j_mdANG1uCic .mtrio-text a {
+  color: inherit;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.2em;
+}
+
+/* Nokta göstergesi yalnızca mobilde açılır (bkz. mobil blok) */
+.cc_57zhho0j_mdANG1uCic .mtrio-dots {
+  display: none;
+  justify-content: center;
+}
+
+/* 44px dokunma hedefi, görünen hap 6px; aktif olan uzar ve koyulaşır */
+.cc_57zhho0j_mdANG1uCic .mtrio-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 44px;
+  padding: 0 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cc_57zhho0j_mdANG1uCic .mtrio-dot-pill {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--n97TjqOtaK);
+  transition:
+    width var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) ease;
+}
+
+.cc_57zhho0j_mdANG1uCic .mtrio-dot.is-active .mtrio-dot-pill {
+  width: 20px;
+  background: var(--wyLeI2Gkwa);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cc_57zhho0j_mdANG1uCic .mtrio-frame:hover img.mtrio-media {
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc_57zhho0j_mdANG1uCic .mtrio-track {
+    scroll-behavior: auto;
+  }
+
+  .cc_57zhho0j_mdANG1uCic .mtrio-media, .cc_57zhho0j_mdANG1uCic .mtrio-dot-pill {
+    transition: none;
+  }
+
+  .cc_57zhho0j_mdANG1uCic .mtrio-frame:hover img.mtrio-media {
+    transform: none;
+  }
+}
+
+/* Tablet: üç kolon korunur, yalnız boşluklar daralır */
+@media (max-width: 1024px) {
+  .cc_57zhho0j_mdANG1uCic .mtrio-track {
+    gap: 20px;
+  }
+
+  .cc_57zhho0j_mdANG1uCic .mtrio-intro {
+    padding-bottom: 36px;
+  }
+}
+
+/* Mobil: grid yerine tek slaytlık scroll-snap karuseli. Track container'ın yan
+   boşluğundan negatif margin ile taşıp boşluğu kendisi taşır — snapport
+   padding'i saymadığı için scroll-padding-left olmadan ilk slayt ekranın soluna
+   yapışıyor. */
+@media (max-width: 768px) {
+  .cc_57zhho0j_mdANG1uCic .mtrio-intro {
+    padding-bottom: 28px;
+  }
+
+  .cc_57zhho0j_mdANG1uCic .mtrio-track {
+    display: flex;
+    margin: 0 -16px;
+    padding: 0 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 16px;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .cc_57zhho0j_mdANG1uCic .mtrio-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* content-box: flex-basis slaytın görünen genişliği; 12px boşluk üstüne
+     eklenir, sonraki slayt 28px ipucu verir */
+  .cc_57zhho0j_mdANG1uCic .mtrio-card {
+    flex: 0 0 calc(100vw - 72px);
+    padding-right: 12px;
+    box-sizing: content-box;
+    scroll-snap-align: start;
+  }
+
+  .cc_57zhho0j_mdANG1uCic .mtrio-dots {
+    display: flex;
+    padding-top: 20px;
+  }
+}

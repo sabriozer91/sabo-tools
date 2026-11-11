@@ -1,0 +1,30 @@
+/* Alt bileşen stilleri — build yalnızca bu @import'lar üzerinden
+   toplar; import edilmeyen sub-component CSS'i çıktıya girmez.
+   (ProductCard stilleri ProductCarousel içinden gelir.) */
+/* Skipped (covered by shared chunk CSS): ../../sub-components/ProductCarousel/styles.css */
+
+.cc_57zhho0j_nDisEtloxu .pslider {
+  color: var(--wyLeI2Gkwa);
+  background: var(--7LydJvXvGj);
+}
+
+/* Başlık bloğu: Fraunces başlık → açıklama. Karuselin başlık
+   satırında, okların solunda durur. */
+.cc_57zhho0j_nDisEtloxu .pslider-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cc_57zhho0j_nDisEtloxu .pslider-title {
+  margin: 0;
+  max-width: 20ch;
+}
+
+.cc_57zhho0j_nDisEtloxu .pslider-desc {
+  margin: 0;
+  max-width: 56ch;
+  color: var(--iigo9Iys2H);
+  text-wrap: pretty;
+}
